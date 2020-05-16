@@ -7,7 +7,7 @@ use Botble\ACL\Models\User;
 use Botble\Base\Forms\FormAbstract;
 
 use Botble\ACL\Forms\Fields\CategoryMultiFieldCustomCheckbox;
-//use Botble\Blog\Repositories\Interfaces\CategoryInterface;
+use Botble\Blog\Repositories\Interfaces\CategoryInterface;
 
 class ProfileForm extends FormAbstract
 {

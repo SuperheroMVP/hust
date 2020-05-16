@@ -101,7 +101,6 @@ class UserController extends BaseController
      */
     public function store(CreateUserRequest $request, CreateUserService $service, BaseHttpResponse $response)
     {
-//        dd($request);
         $user = $service->execute($request);
         event(new CreatedContentEvent(USER_MODULE_SCREEN_NAME, $request, $user));
 
@@ -221,6 +220,7 @@ class UserController extends BaseController
      */
     public function postUpdateProfile($id, UpdateProfileRequest $request, BaseHttpResponse $response)
     {
+//        dd($request->categories);
         $user = $this->userRepository->findOrFail($id);
 
         $currentUser = $request->user();

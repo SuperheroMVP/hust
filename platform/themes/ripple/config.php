@@ -52,14 +52,49 @@ return [
                 ->usePath()->add('jquery.parallax', 'plugins/jquery.parallax-1.1.3.js', ['jquery'])
                 ->usePath()->add('custom', 'js/custom.min.js', ['jquery'])
                 ->usePath()->add('ripple.js', 'js/ripple.js', ['jquery'])
-                ->usePath()->add('sweet-alert-js', 'js/sweetalert.min.js', ['jquery']);
+                ->usePath()->add('sweet-alert-js', 'js/sweetalert.min.js', ['jquery'])
+                ->usePath()->add('jquery', 'js/jquery.min.js')
+                ->usePath()->add('jquery-migrate', 'js/jquery-migrate.min.js', ['jquery'])
+                ->usePath()->add('popper', 'js/popper.min.js', ['jquery'])
+                ->usePath()->add('bootstrap', 'js/bootstrap.min.js', ['jquery'])
+                ->usePath()->add('colors', 'js/colors.js', ['jquery'])
+                ->usePath()->add('jquery-stellar-min', 'js/jquery.stellar.min.js', ['jquery'])
+                ->usePath()->add('particles', 'js/particles.min.js', ['jquery'])
+                ->usePath()->add('facnybox', 'js/facnybox.min.js', ['jquery'])
+                ->usePath()->add('jquery-magnific-popup', 'js/jquery.magnific-popup.min.js', ['jquery'])
+                ->usePath()->add('masonry-pkgd', 'js/masonry.pkgd.min.js', ['jquery'])
+                ->usePath()->add('circle-progress', 'js/circle-progress.min.js', ['jquery'])
+                ->usePath()->add('owl-carousel', 'js/owl.carousel.min.js', ['jquery'])
+                ->usePath()->add('waypoints', 'js/waypoints.min.js', ['jquery'])
+                ->usePath()->add('slicknav', 'js/slicknav.min.js', ['jquery'])
+                ->usePath()->add('jquery-counterup', 'js/jquery.counterup.min.js', ['jquery'])
+                ->usePath()->add('easing', 'js/easing.min.js', ['jquery'])
+                ->usePath()->add('wow', 'js/wow.min.js', ['jquery'])
+                ->usePath()->add('jquery-scrollUp', 'js/jquery.scrollUp.min.js', ['jquery'])
+                ->usePath()->add('gmaps', 'js/gmaps.min.js', ['jquery'])
+                ->usePath()->add('main', 'js/main.js', ['jquery'])
+            ;
+
 
             $theme
                 ->asset()
                 ->usePath()->add('bootstrap-css', 'plugins/bootstrap/css/bootstrap.min.css')
                 ->usePath()->add('font-awesome', 'plugins/font-awesome/css/font-awesome.min.css')
                 ->usePath()->add('ionicons', 'plugins/ionicons/css/ionicons.min.css')
-                ->usePath()->add('style', 'css/style.css');
+                ->usePath()->add('bootstrap', 'css/bootstrap.min.css')
+                ->usePath()->add('font-awesome', 'css/font-awesome.min.css')
+                ->usePath()->add('jquery.fancybox', 'css/jquery.fancybox.min.css')
+                ->usePath()->add('owl-carousel', 'css/owl.carousel.min.css')
+                ->usePath()->add('owl-theme-default', 'css/owl.theme.default.min.css')
+                ->usePath()->add('animate', 'css/animate.min.css')
+                ->usePath()->add('slicknav', 'css/slicknav.min.css')
+                ->usePath()->add('magnific-popup', 'css/magnific-popup.css')
+                ->usePath()->add('normalize', 'css/normalize.css')
+                ->usePath()->add('style', 'css/style.css')
+                ->usePath()->add('responsive', 'css/responsive.css')
+                ->usePath()->add('color1', 'css/color1.css')
+
+            ;
 
             if (function_exists('shortcode')) {
                 $theme->composer(['page', 'post', 'index'], function (\Botble\Shortcode\View\View $view) {

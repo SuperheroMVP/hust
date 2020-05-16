@@ -8,6 +8,11 @@ use Botble\Blog\Repositories\Interfaces\TagInterface;
 use Botble\Blog\Supports\PostFormat;
 use Illuminate\Support\Arr;
 
+use Botble\Profile\Models\Profile;
+use Botble\Slug\Models\Slug;
+use Botble\Slidebar\Models\Slidebar;
+use Botble\Blog\Models\Post;
+
 if (!function_exists('get_featured_posts')) {
     /**
      * @param $limit
@@ -224,13 +229,18 @@ if (!function_exists('get_categories_with_children')) {
      */
     function get_categories_with_children()
     {
-        $categories = app(CategoryInterface::class)
-            ->getAllCategoriesWithChildren(['status' => BaseStatusEnum::PUBLISHED], [], ['id', 'name', 'parent_id']);
+        if (\Auth::user()->super_user == 1){
+            $categories = app(CategoryInterface::class)
+                ->getAllCategoriesWithChildren(['status' => BaseStatusEnum::PUBLISHED], [], ['id', 'name', 'parent_id']);
+        }else{
+            $cate= Auth::user()->categories;
+            $categories = app(CategoryInterface::class)
+                ->getAllCategoriesWithChildren(['status' => BaseStatusEnum::PUBLISHED], [], ['id', 'name', 'parent_id'])->whereIn('id', $cate);
+        }
         $sortHelper = app(SortItemsWithChildrenHelper::class);
         $sortHelper
             ->setChildrenProperty('child_cats')
             ->setItems($categories);
-
         return $sortHelper->sort();
     }
 }
@@ -256,5 +266,77 @@ if (!function_exists('get_post_formats')) {
     function get_post_formats($convert_to_list = false)
     {
         return PostFormat::getPostFormats($convert_to_list);
+    }
+}
+
+if (!function_exists('get_all_profile')) {
+    /**
+     * @param bool $convert_to_list
+     * @return array
+     *
+     */
+    function get_all_profile()
+    {
+        return Profile::where('status', 'published')->get();
+    }
+}
+
+if (!function_exists('get_slug_profile')) {
+    /**
+     * @param bool $convert_to_list
+     * @return array
+     *
+     */
+    function get_slug_profile($id)
+    {
+        return Slug::where('reference_id', $id)->where('reference_type' , 'Botble\Profile\Models\Profile')->first();
+    }
+}
+
+if (!function_exists('get_img_slidebar')) {
+    /**
+     * @param bool $convert_to_list
+     * @return array
+     *
+     */
+    function get_img_slidebar()
+    {
+        return Slidebar::where('status', "published")->get();
+    }
+}
+
+if (!function_exists('get_post_new')) {
+    /**
+     * @param bool $convert_to_list
+     * @return array
+     *
+     */
+    function get_post_new()
+    {
+        return Post::where('status', "published")->orderBy('created_at', 'desc')->limit(5)->get();
+    }
+}
+
+if (!function_exists('get_slug_newpost')) {
+    /**
+     * @param bool $convert_to_list
+     * @return array
+     *
+     */
+    function get_slug_newpost($id)
+    {
+        return Slug::where('reference_id', $id)->where('reference_type' , 'Botble\Blog\Models\Post')->first();
+    }
+}
+
+if (!function_exists('get_profile_where_cate')) {
+    /**
+     * @param bool $convert_to_list
+     * @return array
+     *
+     */
+    function get_profile_where_cate($id)
+    {
+        return Profile::where('khoa_id', $id)->where('status' , 'published')->get();
     }
 }

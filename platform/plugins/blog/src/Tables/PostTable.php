@@ -2,6 +2,7 @@
 
 namespace Botble\Blog\Tables;
 
+use Botble\Blog\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Botble\Base\Enums\BaseStatusEnum;
 use Botble\Blog\Exports\PostExport;
@@ -12,6 +13,7 @@ use Botble\Table\Abstracts\TableAbstract;
 use Carbon\Carbon;
 use Html;
 use Illuminate\Contracts\Routing\UrlGenerator;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
 class PostTable extends TableAbstract
@@ -125,6 +127,14 @@ class PostTable extends TableAbstract
     public function query()
     {
         $model = $this->repository->getModel();
+        $cate= Auth::user()->categories;
+        $stringCate = implode(',', $cate);
+        $post_id = DB::select("select DISTINCT post_id from post_categories where category_id IN ($stringCate) ORDER BY post_id");
+        $result = [];
+        foreach ($post_id as $item){
+            array_push($result,$item->post_id);
+        }
+
         $query = $model
             ->with(['categories'])
             ->select([
@@ -136,7 +146,7 @@ class PostTable extends TableAbstract
                 'posts.updated_at',
                 'posts.author_id',
                 'posts.author_type',
-            ]);
+            ])->whereIn('id', $result);
 
         return $this->applyScopes(apply_filters(BASE_FILTER_TABLE_QUERY, $query, $model));
     }

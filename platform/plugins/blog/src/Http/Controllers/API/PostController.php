@@ -64,7 +64,7 @@ class PostController extends Controller
      * @param PageInterface $pageRepository
      * @param BaseHttpResponse $response
      * @return BaseHttpResponse
-     * 
+     *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function getSearch(

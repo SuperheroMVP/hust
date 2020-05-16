@@ -18,6 +18,8 @@ use SeoHelper;
 use SiteMapManager;
 use Theme;
 
+use Botble\Profile\Models\Profile;
+
 class PublicController extends Controller
 {
     /**
@@ -45,7 +47,8 @@ class PublicController extends Controller
         SlugInterface $slugRepository,
         SettingStore $settingStore,
         MembershipAuthorization $authorization
-    ) {
+    )
+    {
         $this->slugRepository = $slugRepository;
         $this->settingStore = $settingStore;
         $this->authorization = $authorization;
@@ -98,22 +101,62 @@ class PublicController extends Controller
             return $this->getIndex($response);
         }
 
-        $slug = $this->slugRepository->getFirstBy(['key' => $key, 'prefix' => '']);
+        if ($key == "/profile/all"){
+            $profiles = Profile::get();
+            if (!is_null($profiles)) {
+                $pro = ['profile' => $profiles];
+                $result = [
+                    "view" => "category",
+                    "default_view" => "packages/page::themes.category",
+                    "data" => $pro,
+                    "slug" => $key,
+                ];
+            }
 
-        if (!$slug) {
-            abort(404);
+            if (!empty($result) && is_array($result)) {
+                return Theme::scope($result['view'], $result['data'], Arr::get($result, 'default_view'))->render();
+            }
         }
-
-        $result = apply_filters(BASE_FILTER_PUBLIC_SINGLE_DATA, $slug);
-
-        if (isset($result['slug']) && $result['slug'] !== $key) {
-            return $response->setNextUrl(route('public.single', $result['slug']));
-        }
-
-        event(new RenderingSingleEvent($slug));
-
-        if (!empty($result) && is_array($result)) {
+        elseif ($key == "/tuyensinh/all"){
+            $result = [
+                "view" => "tuyensinh",
+                "default_view" => "packages/page::themes.tuyensinh",
+                "data" => [1,],
+                "slug" => $key,
+            ];
             return Theme::scope($result['view'], $result['data'], Arr::get($result, 'default_view'))->render();
+        }
+        else {
+
+            $slug = $this->slugRepository->getFirstBy(['key' => $key, 'prefix' => '']);
+
+            if (!$slug) {
+                abort(404);
+            }
+
+            $result = apply_filters(BASE_FILTER_PUBLIC_SINGLE_DATA, $slug);
+
+            if ($slug == $result) {
+                $profile = Profile::find($slug->reference_id);
+                if (!is_null($profile)) {
+                    $pro = ['profile' => $profile];
+                    $result = [
+                        "view" => "profile",
+                        "default_view" => "packages/page::themes.profile",
+                        "data" => $pro,
+                        "slug" => $slug->key,
+                    ];
+                }
+            }
+
+            if (isset($result['slug']) && $result['slug'] !== $key) {;
+                return $response->setNextUrl(route('public.single', $result['slug']));
+            }
+
+            event(new RenderingSingleEvent($slug));
+            if (!empty($result) && is_array($result)) {
+                return Theme::scope($result['view'], $result['data'], Arr::get($result, 'default_view'))->render();
+            }
         }
 
         abort(404);

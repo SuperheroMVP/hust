@@ -11,3 +11,7 @@ if (!defined('PAGE_FILTER_PAGE_NAME_IN_ADMIN_LIST')) {
 if (!defined('PAGE_FILTER_FRONT_PAGE_CONTENT')) {
     define('PAGE_FILTER_FRONT_PAGE_CONTENT', 'page_front_page_content');
 }
+
+if (!defined('PAGE_FILTER_FRONT_PROFILE_CONTENT')) {
+    define('PAGE_FILTER_FRONT_PROFILE_CONTENT', 'profile_front_profile_content');
+}

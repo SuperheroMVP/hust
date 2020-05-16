@@ -3,12 +3,14 @@
 namespace Botble\Blog\Forms;
 
 use Assets;
+use Botble\ACL\Models\User;
 use Botble\Base\Enums\BaseStatusEnum;
 use Botble\Base\Forms\FormAbstract;
 use Botble\Blog\Forms\Fields\CategoryMultiField;
 use Botble\Blog\Http\Requests\PostRequest;
 use Botble\Blog\Models\Post;
 use Botble\Blog\Repositories\Interfaces\CategoryInterface;
+use Illuminate\Support\Facades\Auth;
 
 class PostForm extends FormAbstract
 {
@@ -29,9 +31,11 @@ class PostForm extends FormAbstract
             ->addScriptsDirectly('vendor/core/js/tags.js');
 
         $selectedCategories = [];
+
         if ($this->getModel()) {
             $selectedCategories = $this->getModel()->categories()->pluck('category_id')->all();
         }
+
         if (empty($selectedCategories)) {
             $selectedCategories = app(CategoryInterface::class)
                 ->getModel()
@@ -39,6 +43,8 @@ class PostForm extends FormAbstract
                 ->pluck('id')
                 ->all();
         }
+//        $cate= Auth::user()->categories;
+//        dd($selectedCategories);
 
         $tags = null;
 
