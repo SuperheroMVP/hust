@@ -1,19 +1,15 @@
 <?php
 
-namespace Botble\Profile\Forms;
+namespace Botble\Tuyensinh\Forms;
 
 use Botble\Base\Forms\FormAbstract;
 use Botble\Base\Enums\BaseStatusEnum;
-use Botble\Profile\Http\Requests\ProfileRequest;
+use Botble\Tuyensinh\Http\Requests\TuyensinhRequest;
+use Botble\Tuyensinh\Models\Tuyensinh;
 
-use Botble\Profile\Models\Profile;
-use App\User;
-use Botble\Blog\Models\Category;
-use Botble\Blog\Models\Post;
-use Illuminate\Support\Facades\DB;
-
-class ProfileForm extends FormAbstract
+class TuyensinhForm extends FormAbstract
 {
+
     /**
      * @return mixed|void
      * @throws \Throwable
@@ -21,9 +17,9 @@ class ProfileForm extends FormAbstract
     public function buildForm()
     {
         $this
-            ->setModuleName(PROFILE_MODULE_SCREEN_NAME)
-            ->setupModel(new Profile)
-            ->setValidatorClass(ProfileRequest::class)
+            ->setModuleName(TUYENSINH_MODULE_SCREEN_NAME)
+            ->setupModel(new Tuyensinh)
+            ->setValidatorClass(TuyensinhRequest::class)
             ->withCustomFields()
             ->add('name', 'text', [
                 'label' => trans('core/base::forms.name'),
@@ -55,6 +51,21 @@ class ProfileForm extends FormAbstract
                 'label'      => trans('core/base::forms.image'),
                 'label_attr' => ['class' => 'control-label'],
             ])
+            ->add('loai', 'customSelect', [
+                'label'      => "Danh mục",
+                'label_attr' => ['class' => 'control-label required'],
+                'attr' => [
+                    'class' => 'form-control select-full',
+                ],
+                'choices'    => [
+                    'banner' => 'Banner',
+                    'httm' => 'Hệ thống thông minh và IoT',
+                    'htdttm' => 'Hệ thống điện tử thông minh và IoT',
+                    'htktdtvt' => 'Hệ thống kỹ thuật điện tử viễn thông',
+                    'htktys' => 'Hệ thống kỹ thuật y sinh',
+                    'htktdtvttt' => 'Hệ thống kỹ thuật điện tử viễn thông tiên tiến',
+                    ],
+            ])
             ->add('status', 'customSelect', [
                 'label'      => trans('core/base::tables.status'),
                 'label_attr' => ['class' => 'control-label required'],
@@ -63,43 +74,6 @@ class ProfileForm extends FormAbstract
                 ],
                 'choices'    => BaseStatusEnum::labels(),
             ])
-            ->add('author_id', 'customSelect', [
-                'label'      => "Tài khoản",
-                'label_attr' => ['class' => 'control-label required'],
-                'attr' => [
-                    'class' => 'form-control select-full',
-                ],
-                'choices'    => ProfileForm::get_IdUser(),
-            ])
-            ->add('khoa_id', 'customSelect', [
-                'label'      => "Khoa",
-                'label_attr' => ['class' => 'control-label required'],
-                'attr' => [
-                    'class' => 'form-control select-full',
-                ],
-                'choices'    => ProfileForm::get_khoa(),
-            ])
-            ->add('chucvu', 'text', [
-                'label'      => "Chức vụ",
-                'label_attr' => ['class' => 'control-labe   l'],
-            ])
             ->setBreakFieldPoint('status');
-    }
-
-    public function get_IdUser(){
-        $id = [];
-        foreach (User::select('id', 'username')->get() as $key){
-            $id[$key->id]= $key->username;
-        }
-        return $id;
-    }
-    public function get_khoa(){
-        $id_postCategori = Category::where("name", "Sơ đồ tổ chức")->pluck('id')->toarray();
-        $data = DB::table('post_categories')->where('category_id', $id_postCategori[0])->pluck('post_id')->toarray();
-        $id = [];
-        foreach (Post::select('id', 'name')->whereIn('id', $data)->get() as $key){
-            $id[$key->id]= $key->name;
-        }
-        return $id;
     }
 }

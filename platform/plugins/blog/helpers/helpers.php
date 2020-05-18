@@ -12,6 +12,7 @@ use Botble\Profile\Models\Profile;
 use Botble\Slug\Models\Slug;
 use Botble\Slidebar\Models\Slidebar;
 use Botble\Blog\Models\Post;
+use Botble\Tuyensinh\Models\Tuyensinh;
 
 if (!function_exists('get_featured_posts')) {
     /**
@@ -338,5 +339,17 @@ if (!function_exists('get_profile_where_cate')) {
     function get_profile_where_cate($id)
     {
         return Profile::where('khoa_id', $id)->where('status' , 'published')->get();
+    }
+}
+
+if (!function_exists('get_data_tuyensinh')) {
+    /**
+     * @param bool $convert_to_list
+     * @return array
+     *
+     */
+    function get_data_tuyensinh($loai)
+    {
+        return Tuyensinh::where('loai', $loai)->where('status' , 'published')->first();
     }
 }

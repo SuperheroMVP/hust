@@ -2957,6 +2957,34 @@ width: 100%;
 .nav-link:hover{
 	color: #007ba5;
 }
+.tab-admissions{
+	width: 100%;
+	z-index: 10;
+	background: #fff;
+	margin: 20px 0;
+	border-bottom: 1px solid #ddd;
+	text-align: center;
+}
+.tab-admissions li{
+	display: inline-block;
+	width: 20%;
+}
+.tab-admissions li a{
+	font-size: 16px;
+	font-weight: 500;
+	text-transform: uppercase;
+	padding: 20px 10px;
+	display: inline-block;
+	color: #000000;
+}
+.tab-admissions li a.active,
+.tab-admissions li a:hover{
+	background-color: #007ba5;
+	color: #FFFFFF;
+}
+.content-admissions img{
+	margin-bottom: 20px;
+}
 /*=============================
 	End Footer CSS
 ===============================*/
