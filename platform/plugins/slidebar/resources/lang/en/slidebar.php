@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'name'   => 'Slidebars',
+    'name'   => 'Slidebar',
     'create' => 'New slidebar',
     'edit'   => 'Edit slidebar',
 ];

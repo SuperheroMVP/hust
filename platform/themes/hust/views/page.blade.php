@@ -1,11 +1,7 @@
-<section class="breadcrumbs overlay">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h2>{{ $page->name}}</h2>
-            </div>
-        </div>
-    </div>
+<section class="breadcrumbs">
+
+{{--                <h2>{{ $page->name}}</h2>--}}
+                <img src="{{get_object_image(get_data_tuyensinh("banner")->image)}}" width="100%">
 </section>
 <div class="container">
     <br>

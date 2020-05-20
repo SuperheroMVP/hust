@@ -39,6 +39,24 @@ theme_option()
             ],
         ],
     ])
+    ->setSection([
+        'title'      => __('Logo'),
+        'desc'       => __('Change Favicon'),
+        'id'         => 'opt-text-subsection-logo',
+        'subsection' => true,
+        'icon'       => 'fa fa-image',
+        'fields'     => [
+            [
+                'id'         => 'favicon',
+                'type'       => 'mediaImage',
+                'label'      => __('Favicon'),
+                'attributes' => [
+                    'name'  => 'favicon',
+                    'value' => null,
+                ],
+            ],
+        ],
+    ])
     ->setField([
         'id'         => 'phone',
         'section_id' => 'opt-text-subsection-general',

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'name'   => 'Tuyensinhs',
-    'create' => 'New tuyensinh',
-    'edit'   => 'Edit tuyensinh',
+    'name'   => 'Admissions',
+    'create' => 'New admission',
+    'edit'   => 'Edit admission',
 ];

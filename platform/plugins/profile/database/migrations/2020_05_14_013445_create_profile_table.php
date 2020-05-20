@@ -18,7 +18,7 @@ class CreateProfileTable extends Migration
             $table->string('description', 400)->nullable();
             $table->text('content')->nullable();
             $table->integer('author_id');
-            $table->integer('khoa_id', 120);
+            $table->integer('khoa_id');
             $table->string('chucvu', 120);
             $table->string('author_type', 255)->default(addslashes(User::class));
             $table->tinyInteger('is_featured')->unsigned()->default(0);

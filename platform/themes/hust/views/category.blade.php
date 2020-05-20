@@ -1,22 +1,19 @@
 <section class="main-box">
-    <section class="breadcrumbs overlay">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
+    <section class="breadcrumbs ">
+
                     @php
                         $urli = NULL;
                             foreach (request()->segments() as $segment){
                                 $urli = $urli."/".$segment;
                             }
                     @endphp
-                    @if($urli == "/profile/all")
-                        <h2>Cán bộ</h2>
-                    @else
-                        <h2>{{ $category->name}}</h2>
-                    @endif
-                </div>
-            </div>
-        </div>
+{{--                    @if($urli == "/profile/all")--}}
+{{--                        <h2>Cán bộ</h2>--}}
+{{--                    @else--}}
+{{--                        <h2>{{ $category->name}}</h2>--}}
+{{--                    @endif--}}
+{{--                    {{dd(get_object_image(get_data_tuyensinh("banner")->image)) }}--}}
+                    <img src="{{get_object_image(get_data_tuyensinh("banner")->image)}}" width="100%">
     </section>
     <div class="container">
         <!-- Blogs -->
@@ -30,7 +27,7 @@
                                 <div class="search">
                                     <div class="form">
                                         <form class="quick-search" action="{{ route('public.search') }}">
-                                            <input type="text" name="q" placeholder="{{ __('Type to search...') }}"
+                                            <input type="text" name="q" placeholder="{{ __('Tìm kiếm...') }}"
                                                    class="form-control search-input" autocomplete="off">
                                         </form>
                                         <button class="button"><i class="fa fa-search"></i></button>
@@ -165,7 +162,7 @@
                                     @endforeach
                                 @else
                                     <div>
-                                        <p>{{ __('There is no data to display!') }}</p>
+                                        <p>{{ __('Không tìm thấy bài viết nào!') }}</p>
                                     </div>
                                 @endif
                                 @if ($posts->count() > 0)

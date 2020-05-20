@@ -1,21 +1,17 @@
 
-<section class="breadcrumbs overlay">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h2>{{ __('Search result for: ') }} "{{ Request::input('q') }}"</h2>
-            </div>
-        </div>
-    </div>
+<section class="breadcrumbs ">
+{{--                <h2>{{ __('Tìm kiếm: ') }} "{{ Request::input('q') }}"</h2>--}}
+                <img src="{{get_object_image(get_data_tuyensinh("banner")->image)}}" width="100%">
+
 </section>
 <section class="section pt-100 pb-50 bg-lightgray">
     <div class="container">
         {!! Theme::breadcrumb()->render() !!}
         <div class="row">
-                <div class="page-content">
+                <div class="page-content blog">
                     @if ($posts->count() > 0)
                         @foreach ($posts as $post)
-                            <div class="col-lg-6 col-12" style="float: left;">
+                            <div class="col-lg-4 col-12" style="float: left;">
                                 <!-- Single Blog -->
                                 <div class="single-blog">
                                     <div class="blog-head overlay">
@@ -41,8 +37,10 @@
                             {!! $posts->links() !!}
                         </div>
                     @else
-                        <div class="alert alert-warning">
+                        <div class="justify-content-center">
+                            <br>
                             <p>{{ __('Không có kết quả nào!') }}</p>
+                            <br>
                         </div>
                     @endif
             </div>

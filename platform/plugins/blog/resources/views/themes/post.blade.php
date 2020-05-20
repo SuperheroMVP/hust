@@ -1,11 +1,8 @@
-<section class="breadcrumbs overlay">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h2>{{ $post->name}}</h2>
-            </div>
-        </div>
-    </div>
+<section class="breadcrumbs">
+
+{{--                <h2>{{ $post->name}}</h2>--}}
+                <img src="{{get_object_image(get_data_tuyensinh("banner")->image)}}" width="100%">
+
 </section>
 <!-- Blogs -->
 <section class="blog b-archives single section">
@@ -18,7 +15,7 @@
                         <div class="search">
                             <div class="form">
                                 <form class="quick-search" action="{{ route('public.search') }}">
-                                    <input type="text" name="q" placeholder="{{ __('Type to search...') }}"
+                                    <input type="text" name="q" placeholder="{{ __('Tìm kiếm...') }}"
                                            class="form-control search-input" autocomplete="off">
                                 </form>
                                 <button class="button"><i class="fa fa-search"></i></button>

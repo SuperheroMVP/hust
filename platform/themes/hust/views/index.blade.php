@@ -13,7 +13,8 @@
 
             $posts = app(\Botble\Blog\Repositories\Interfaces\PostInterface::class)->getByCategory($allRelatedCategoryIds, 0, $loop->index % 2 == 0 ? 6 : 5);
         @endphp
-        @if($category->name == "de_tai_khoa_hoc")
+
+        @if($category->name == "Đề tài khoa học")
             <!-- Features -->
             <section class="our-features section">
                 <div class="container">
@@ -25,6 +26,13 @@
                         </div>
                     </div>
                     <div class="row">
+                        @php
+                            $i =0;
+                        @endphp
+                        @foreach($posts as $post)
+                            @php
+                                $i++;
+                            @endphp
                         <div class="col-lg-4 col-md-4 col-12">
                             <!-- Single Feature -->
                             <div class="single-feature">
@@ -47,11 +55,15 @@
                             </div>
                             <!--/ End Single Feature -->
                         </div>
+                            @if($i > 2 )
+                                @break
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             </section>
             <!-- End Features -->
-        @elseif($category->categories_check == "tin_tuc")
+        @elseif($category->name == "Tin tức")
             <div class="fun-facts overlay" data-stellar-background-ratio="0.5" style="background-position: 50% 50%;">
                 <div class="container">
                     <div class="row">
@@ -107,6 +119,13 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="blog-slider">
+                                @php
+                                    $i =0;
+                                @endphp
+                                @foreach($posts as $post)
+                                    @php
+                                        $i++;
+                                    @endphp
                                 <div class="single-blog">
                                     <div class="blog-head overlay">
                                         <div class="date">
@@ -125,6 +144,10 @@
                                         </div>
                                     </div>
                                 </div>
+                                    @if($i > 5 )
+                                        @break
+                                    @endif
+                                @endforeach
                             </div>
                         </div>
                     </div>
