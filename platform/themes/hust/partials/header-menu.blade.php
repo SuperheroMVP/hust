@@ -1,4 +1,3 @@
-<ul  id="nav" class="nav menu navbar-nav" {!! $options !!}>
     @foreach ($menu_nodes as $key => $row)
         <div class="single-widget">
             <a href="{{ $row->url }}" target="{{ $row->target }}">
@@ -7,4 +6,3 @@
             </a>
         </div>
     @endforeach
-</ul>

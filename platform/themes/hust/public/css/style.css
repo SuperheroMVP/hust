@@ -2985,6 +2985,15 @@ width: 100%;
 .content-admissions img{
 	margin-bottom: 20px;
 }
+.admission-header {
+	display: inline-block;
+	position: relative;
+	padding: 7px 0;
+	float: right;
+}
+body{
+	display: none;
+}
 /*=============================
 	End Footer CSS
 ===============================*/

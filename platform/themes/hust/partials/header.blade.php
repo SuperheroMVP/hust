@@ -16,54 +16,10 @@
                         <span>VIỆN ĐIỆN TỬ - VIỄN THÔNG</span>
                     </div>
                     <div class="mobile-menu">
-                        <div class="slicknav_menu"><a href="./LearnEdu − Education &amp; Courses HTML5 Template_files/index.html" aria-haspopup="true" role="button" tabindex="0" class="slicknav_btn slicknav_collapsed"><span class="slicknav_menutxt"></span><span class="slicknav_icon slicknav_no-text"><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span></span></a>
+                    </div>
+                </div>
+                <div class="item">
 
-                            <ul class="slicknav_nav slicknav_hidden" aria-hidden="true" role="menu" style="display: none;">
-                                <li class="active slicknav_collapsed slicknav_parent"><a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row"><a href="#" tabindex="-1">Home<i class="fa fa-angle-down"></i></a>
-                                        <span class="slicknav_arrow">►</span></a><ul class="dropdown slicknav_hidden" role="menu" aria-hidden="true" style="display: none;">
-                                        <li><a href="#" role="menuitem" tabindex="-1">Homepage Default</a></li>
-                                        <li><a href="#" role="menuitem" tabindex="-1">Homepage Animation</a></li>
-                                    </ul>
-                                </li>
-                                <li class="slicknav_collapsed slicknav_parent"><a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row"><a href="#" tabindex="-1">Pages<i class="fa fa-angle-down"></i></a>
-                                        <span class="slicknav_arrow">►</span></a><ul class="dropdown slicknav_hidden" role="menu" aria-hidden="true" style="display: none;">
-                                        <li><a href="#" role="menuitem" tabindex="-1">About Us</a></li>
-                                        <li class="slicknav_collapsed slicknav_parent"><a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row"><a href="#" tabindex="-1">Teachers<i class="fa fa-angle-right"></i></a>
-                                                <span class="slicknav_arrow">►</span></a><ul class="dropdown submenu slicknav_hidden" role="menu" aria-hidden="true" style="display: none;">
-                                                <li><a href="#" role="menuitem" tabindex="-1">Teachers V1</a></li>
-                                                <li><a href="#" role="menuitem" tabindex="-1">Teachers V2</a></li>
-                                                <li><a href="#" role="menuitem" tabindex="-1">Teacher Single</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#" role="menuitem" tabindex="-1">Testimonials</a></li>
-                                        <li><a href="#" role="menuitem" tabindex="-1">Faqs</a></li>
-                                        <li><a href="#" role="menuitem" tabindex="-1">404 Page</a></li>
-                                    </ul>
-                                </li>
-                                <li class="slicknav_collapsed slicknav_parent"><a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row"><a href="#" tabindex="-1">Courses<i class="fa fa-angle-down"></i></a>
-                                        <span class="slicknav_arrow">►</span></a><ul class="dropdown slicknav_hidden" role="menu" aria-hidden="true" style="display: none;">
-                                        <li><a href="#" role="menuitem" tabindex="-1">Courses</a></li>
-                                        <li><a href="#" role="menuitem" tabindex="-1">Course Single</a></li>
-                                        <li><a href="#" role="menuitem" tabindex="-1">Course Single Video</a></li>
-                                    </ul>
-                                </li>
-                                <li class="slicknav_collapsed slicknav_parent"><a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row"><a href="#" tabindex="-1">Events<i class="fa fa-angle-down"></i></a>
-                                        <span class="slicknav_arrow">►</span></a><ul class="dropdown slicknav_hidden" role="menu" aria-hidden="true" style="display: none;">
-                                        <li><a href="#" role="menuitem" tabindex="-1">Events</a></li>
-                                        <li><a href="#" role="menuitem" tabindex="-1">Event Single</a></li>
-                                    </ul>
-                                </li>
-                                <li class="slicknav_collapsed slicknav_parent"><a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row"><a href="#" tabindex="-1">Blogs<i class="fa fa-angle-down"></i></a>
-                                        <span class="slicknav_arrow">►</span></a><ul class="dropdown slicknav_hidden" role="menu" aria-hidden="true" style="display: none;">
-                                        <li><a href="#" role="menuitem" tabindex="-1">Blogs Grid Layout</a></li>
-                                        <li><a href="#" role="menuitem" tabindex="-1">Blogs Left Sidebar</a></li>
-                                        <li><a href="#" role="menuitem" tabindex="-1">Blogs Right Sidebar</a></li>
-                                        <li><a href="#" role="menuitem" tabindex="-1">Blogs Single - Left Sidebar</a></li>
-                                        <li><a href="#" role="menuitem" tabindex="-1">Blogs Single - Right Sidebar</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#" role="menuitem" tabindex="-1">Contact</a></li>
-                            </ul></div></div>
                 </div>
                 <div class="item text-right">
                     <div class="header-widget">
