@@ -2985,6 +2985,7 @@ width: 100%;
 .content-admissions img{
 	margin-bottom: 20px;
 }
+
 @-webkit-keyframes glowing {
 	0% { background-color: #004A7F; -webkit-box-shadow: 0 0 3px #004A7F; }
 	50% { background-color: #0094FF; -webkit-box-shadow: 0 0 10px #0094FF; }
