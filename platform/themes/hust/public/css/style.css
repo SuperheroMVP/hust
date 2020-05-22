@@ -103,7 +103,7 @@ Version:	1.0
 	vertical-align: middle;
 }
 .header .header-middle .logo img{
-	width: 67px;
+	width: 140px;
 	display: inline-block;
 }
 .header .header-middle .logo .set-logo{
@@ -112,6 +112,7 @@ Version:	1.0
 .header .header-middle .header-widget{
 	display: inline-block;
 	vertical-align: middle;
+	text-align: left;
 }
 .header .header-middle .item{
 	display: table-cell;
@@ -153,25 +154,32 @@ Version:	1.0
 }
 .header .single-widget i {
 	text-align: center;
-	font-size: 14px;
-	width: 30px;
-	height: 30px;
-	line-height: 30px;
-	border: 1px solid #e6e6e6;
-	border-radius: 100%;
-	-webkit-transition: all 0.3s ease;
-	-moz-transition: all 0.3s ease;
-	transition: all 0.3s ease;
-	display: inline-block;
 	margin-right: 10px;
+	vertical-align: middle;
+}
+.header .single-widget a{
+	color: #000000;
+}
+.header .single-widget a:hover{
+	color: #007ba5;
+}
+.header .single-widget i.fa-user-o::before{
+	content: url('../images/open-day---website-icon_03.png');
+}
+.header .single-widget i.fa-user-secret::before{
+	content: url('../images/icon-department.png');
+}
+.header .single-widget i.fa-power-off::before{
+	content: url('../images/icon-book.png');
 }
 .header .single-widget:hover i{
 	border-color:transparent;
 }
 .header .single-widget h4 {
 	font-weight: 500;
-	font-size: 14px;
+	font-size: 12px;
 	display: inline-block;
+	text-transform: uppercase;
 }
 .header .single-widget h4 span {
 	color: #666;
@@ -461,6 +469,7 @@ Version:	1.0
 }
 .our-features .single-feature img{
 	width:100%;
+	max-height: 240px;
 }
 .our-features .single-feature img:hover{
 	transform:scale(1.2) rotate(5deg);
@@ -468,6 +477,10 @@ Version:	1.0
 .our-features .single-feature h2 {
 	font-size: 20px;
 	margin: 15px 0;
+	color: #000000;
+}
+.our-features .single-feature h2 a:hover{
+	color: #007ba5;
 }
 /*===============================
 	End Features CSS
@@ -1513,8 +1526,10 @@ Version:	1.0
 	font-size: 18px;
 	margin: 0;
 }
-.events .event-content h4 a{
+.events .event-content h4 a:not(:hover){
 	color:#252525;
+}
+.events .event-content h4 a{
 	font-weight:700;
 }
 .events .event-content p{}
@@ -1763,6 +1778,7 @@ Version:	1.0
 }
 .blog .single-blog img{
 	width:100%;
+	max-height: 240px;
 }
 .blog .single-blog:hover img{
 	transform:scale(1.2) rotate(5deg);
@@ -2985,6 +3001,35 @@ width: 100%;
 .content-admissions img{
 	margin-bottom: 20px;
 }
+.breadcrumb li{
+	padding: 0 5px;
+}
+.breadcrumb li i{
+	padding-left: 5px;
+}
+.admission-header a{
+	padding: 10px 9px;
+	background-color: #007ba5;
+	color: #ffffff;
+	position: absolute;
+	top: 0px;
+	right: 0;
+	width: calc(40% - 310px);
+	border-radius: 92px 0 0 92px;
+	-webkit-box-shadow: 0 3px 18px 0 rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 3px 18px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: 0 3px 18px 0 rgba(0, 0, 0, 0.1);
+	z-index: 9;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+}
+.admission-header i{
+	margin-right: 5px;
+}
+.flash {
+
+}
 @-webkit-keyframes glowing {
 	0% { background-color: #004A7F; -webkit-box-shadow: 0 0 3px #004A7F; }
 	50% { background-color: #0094FF; -webkit-box-shadow: 0 0 10px #0094FF; }
@@ -3031,22 +3076,3 @@ width: 100%;
 .blink a{
 	color: #ffffff !important;
 }
-@-webkit-keyframes blinker {
-	from {opacity: 1.0;}
-	to {opacity: 0.0;}
-}
-.blink{
-	background-color: #eeab10;
-	text-decoration: blink;
-	-webkit-animation-name: blinker;
-	-webkit-animation-duration: 0.6s;
-	-webkit-animation-iteration-count:infinite;
-	-webkit-animation-timing-function:ease-in-out;
-	-webkit-animation-direction: alternate;
-}
-.blink a{
-	color: #ffffff !important;
-}
-/*=============================
-	End Footer CSS
-===============================*/
