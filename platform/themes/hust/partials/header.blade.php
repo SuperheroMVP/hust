@@ -7,7 +7,7 @@
             <div class="header-middle-inner">
                 <div class="item">
                     <div class="logo">
-                        <a href="#">
+                        <a href="/">
                             <img src="{{ get_image_url(theme_option('logo')) }}" alt="{{ theme_option('site_title') }}">
                         </a>
                     </div>
