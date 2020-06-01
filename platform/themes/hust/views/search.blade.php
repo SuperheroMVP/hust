@@ -1,9 +1,9 @@
 
-<section class="breadcrumbs ">
+<div class=" ">
 {{--                <h2>{{ __('Tìm kiếm: ') }} "{{ Request::input('q') }}"</h2>--}}
                 <img src="{{get_object_image(get_data_tuyensinh("banner")->image)}}" width="100%">
 
-</section>
+</div>
 <section class="section pt-100 pb-50 bg-lightgray">
     <div class="container">
         {!! Theme::breadcrumb()->render() !!}
@@ -11,7 +11,7 @@
                 <div class="page-content blog">
                     @if ($posts->count() > 0)
                         @foreach ($posts as $post)
-                            <div class="col-lg-4 col-12" style="float: left;">
+                            <div class="col-lg-4 col-12" style="float: left; min-height: 450px;">
                                 <!-- Single Blog -->
                                 <div class="single-blog">
                                     <div class="blog-head overlay">

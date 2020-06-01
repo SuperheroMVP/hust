@@ -49,7 +49,7 @@ class ProfileServiceProvider extends ServiceProvider
                 'priority'    => 5,
                 'parent_id'   => null,
                 'name'        => 'plugins/profile::profile.name',
-                'icon'        => 'fa fa-list',
+                'icon'        => 'fa fa-id-card',
                 'url'         => route('profile.index'),
                 'permissions' => ['profile.index'],
             ]);

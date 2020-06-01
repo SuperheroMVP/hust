@@ -232,7 +232,7 @@ class MemberPostController extends Controller
      * @throws Exception
      */
     public function delete($id, BaseHttpResponse $response)
-    {
+    {dd("agsdf");
         $post = $this->postRepository->getFirstBy([
             'id'          => $id,
             'author_id'   => auth()->guard('member')->user()->getKey(),

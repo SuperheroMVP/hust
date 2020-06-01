@@ -85,6 +85,7 @@ return [
                 ->usePath()->add('jquery-scrollUp', 'js/jquery.scrollUp.min.js', ['jquery'])
                 ->usePath()->add('gmaps', 'js/gmaps.min.js', ['jquery'])
                 ->usePath()->add('main', 'js/main.js', ['jquery'])
+                ->usePath()->add('navigation', 'js/page_navigation.js', ['jquery'])
             ;
 
             $theme

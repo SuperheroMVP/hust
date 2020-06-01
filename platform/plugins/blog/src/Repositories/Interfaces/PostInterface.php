@@ -28,6 +28,14 @@ interface PostInterface extends RepositoryInterface
     public function getByCategory($categoryId, $paginate = 12, $limit = 0);
 
     /**
+     * @param int|array $categoryId
+     * @param int $paginate
+     * @param int $limit
+     * @return mixed
+     */
+    public function getByCategoryIsFeatured($categoryId, $paginate = 12, $limit = 0);
+
+    /**
      * @param int $authorId
      * @param int $limit
      * @return mixed

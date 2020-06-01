@@ -49,7 +49,7 @@ class SlidebarServiceProvider extends ServiceProvider
                 'priority'    => 5,
                 'parent_id'   => null,
                 'name'        => 'plugins/slidebar::slidebar.name',
-                'icon'        => 'fa fa-list',
+                'icon'        => 'fa fa-images',
                 'url'         => route('slidebar.index'),
                 'permissions' => ['slidebar.index'],
             ]);

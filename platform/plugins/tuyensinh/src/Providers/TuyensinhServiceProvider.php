@@ -49,7 +49,7 @@ class TuyensinhServiceProvider extends ServiceProvider
                 'priority'    => 5,
                 'parent_id'   => null,
                 'name'        => 'plugins/tuyensinh::tuyensinh.name',
-                'icon'        => 'fa fa-list',
+                'icon'        => 'fa fa-school',
                 'url'         => route('tuyensinh.index'),
                 'permissions' => ['tuyensinh.index'],
             ]);

@@ -54,9 +54,9 @@
                     @if (is_plugin_active('blog'))
                         <div class="form-search">
                             <form class="quick-search" action="{{ route('public.search') }}">
-                                <input type="text" name="q" placeholder="{{ __('Tìm kiếm...') }}" class="form-control search-input" autocomplete="off">
+                                <input type="text" name="q" placeholder="{{ __('Tìm kiếm...') }}" autocomplete="off">
+                                <a href="#" class="btn-search"><i class="fa fa-search" aria-hidden="true"></i></a>
                             </form>
-                            <div class="search-result"></div>
                         </div>
                     @endif
                 </div>

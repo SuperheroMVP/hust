@@ -1,4 +1,4 @@
-<ul id="child" class="dropdown submenu" style="width: 300px;">
+<ul class="dropdown2 submenu2" style="width: 300px;">
     @foreach ($menu_nodes as $key => $row)
         <li style="width: 300px;">
             <a href="{{ $row->url }}" target="{{ $row->target }}">

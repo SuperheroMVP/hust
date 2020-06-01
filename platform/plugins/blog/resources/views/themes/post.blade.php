@@ -1,9 +1,7 @@
-<section class="breadcrumbs">
-
+<div>
 {{--                <h2>{{ $post->name}}</h2>--}}
-                <img src="{{get_object_image(get_data_tuyensinh("banner")->image)}}" width="100%">
-
-</section>
+     <img src="{{get_object_image(get_data_tuyensinh("banner")->image)}}" width="100%">
+</div>
 <!-- Blogs -->
 <section class="blog b-archives single section">
     <div class="container">
@@ -25,7 +23,7 @@
                 @endif
                 <!-- Categories -->
                     <div class="single-widget categories">
-                        <h3 class="title">Danh sách bộ môn</h3>
+                        <h3 class="title">Bộ môn & trung tâm</h3>
                         <ul>
                             @foreach (get_all_categories(['categories.status' => \Botble\Base\Enums\BaseStatusEnum::PUBLISHED, 'categories.parent_id' => 0, 'categories_check' => 'so_do_to_chuc']) as $category)
                                 @php

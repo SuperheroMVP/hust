@@ -94,7 +94,7 @@ class ProfileForm extends FormAbstract
         return $id;
     }
     public function get_khoa(){
-        $id_postCategori = Category::where("name", "Sơ đồ tổ chức")->pluck('id')->toarray();
+        $id_postCategori = Category::where("name", "Bộ môn & trung tâm")->pluck('id')->toarray();
         $data = DB::table('post_categories')->where('category_id', $id_postCategori[0])->pluck('post_id')->toarray();
         $id = [];
         foreach (Post::select('id', 'name')->whereIn('id', $data)->get() as $key){

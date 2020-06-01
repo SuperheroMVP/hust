@@ -1,4 +1,4 @@
-<ul id="child" class="dropdown submenu" style="width: 300px;">
+<ul class="dropdown" style="width: 300px;">
     @foreach ($menu_nodes as $key => $row)
         <li style="width: 300px;">
             <a href="{{ $row->url }}" target="{{ $row->target }}">
@@ -8,7 +8,7 @@
                 {!!
                     Menu::generateMenu([
                         'slug' => $menu->slug,
-                        'view' => 'last_menu',
+                        'view' => 'child_menu',
                         'options' => ['class' => 'submenu'],
                         'parent_id' => $row->id,
                     ])

@@ -15,7 +15,7 @@ class PostRepository extends RepositoriesAbstract implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function getFeatured($limit = 5)
+    public function getFeatured($limit = 6)
     {
         $data = $this->model
             ->where([
@@ -70,6 +70,35 @@ class PostRepository extends RepositoriesAbstract implements PostInterface
 
         $data = $this->model
             ->where('posts.status', '=', BaseStatusEnum::PUBLISHED)
+            ->join('post_categories', 'post_categories.post_id', '=', 'posts.id')
+            ->join('categories', 'post_categories.category_id', '=', 'categories.id')
+            ->whereIn('post_categories.category_id', $categoryId)
+            ->select('posts.*')
+            ->distinct()
+            ->with('slugable')
+            ->orderBy('posts.created_at', 'desc');
+
+        if ($paginate != 0) {
+            return $this->applyBeforeExecuteQuery($data)->paginate($paginate);
+        }
+
+        return $this->applyBeforeExecuteQuery($data)->limit($limit)->get();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getByCategoryIsFeatured($categoryId, $paginate = 10, $limit = 0)
+    {
+        if (!is_array($categoryId)) {
+            $categoryId = [$categoryId];
+        }
+
+        $data = $this->model
+            ->where([
+                'posts.status'      => BaseStatusEnum::PUBLISHED,
+                'posts.is_featured' => 1,
+            ])
             ->join('post_categories', 'post_categories.post_id', '=', 'posts.id')
             ->join('categories', 'post_categories.category_id', '=', 'categories.id')
             ->whereIn('post_categories.category_id', $categoryId)

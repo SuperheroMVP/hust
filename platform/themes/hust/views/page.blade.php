@@ -1,8 +1,6 @@
-<section class="breadcrumbs">
-
-{{--                <h2>{{ $page->name}}</h2>--}}
+<div class="">
                 <img src="{{get_object_image(get_data_tuyensinh("banner")->image)}}" width="100%">
-</section>
+</div>
 <div class="container">
     <br>
     {!! Theme::breadcrumb()->render() !!}

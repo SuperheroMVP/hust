@@ -1,6 +1,5 @@
 <section class="main-box">
-    <section class="breadcrumbs ">
-
+    <div class=" ">
                     @php
                         $urli = NULL;
                             foreach (request()->segments() as $segment){
@@ -14,7 +13,7 @@
 {{--                    @endif--}}
 {{--                    {{dd(get_object_image(get_data_tuyensinh("banner")->image)) }}--}}
                     <img src="{{get_object_image(get_data_tuyensinh("banner")->image)}}" width="100%">
-    </section>
+    </div>
     <div class="container">
         <!-- Blogs -->
         <section class="blog b-archives section">
@@ -37,7 +36,7 @@
                         @endif
                         <!-- Categories -->
                             <div class="single-widget categories">
-                                <h3 class="title">Danh sách bộ môn</h3>
+                                <h3 class="title">Bộ môn & trung tâm</h3>
                                 <ul>
                                     @foreach (get_all_categories(['categories.status' => \Botble\Base\Enums\BaseStatusEnum::PUBLISHED, 'categories.parent_id' => 0, 'categories_check' => 'so_do_to_chuc']) as $category)
                                         @php
@@ -81,6 +80,7 @@
                                     $profiles = get_all_profile();
                                 @endphp
                                 @if ($profile->count() > 0)
+                                    <div id="content" class="row">
                                     @foreach ($profiles as $profile)
                                         @php
                                             $slug = get_slug_profile($profile->id);
@@ -89,16 +89,18 @@
                                             <!-- Single Blog -->
                                             <div class="single-blog">
                                                 <div class="blog-head overlay">
-                                                    <div class="date">
-                                                        <h4>
-                                                            <time
-                                                                datetime="">{{ date_from_database($profile->created_at, 'M d, Y') }}</time>
-                                                        </h4>
+{{--                                                    <div class="date">--}}
+{{--                                                        <h4>--}}
+{{--                                                            <time--}}
+{{--                                                                datetime="">{{ date_from_database($profile->created_at, 'M d, Y') }}</time>--}}
+{{--                                                        </h4>--}}
+{{--                                                    </div>--}}
+                                                    <div style="max-height: 350px;">
+                                                        <img class="img-full img-bg"
+                                                             src="{{ get_object_image($profile->image, 'medium') }}"
+                                                             style="max-height: none; background-image: url('{{ get_object_image($profile->image) }}'); overflow: hidden;"
+                                                             alt="{{ $profile->name }}">
                                                     </div>
-                                                    <img class="img-full img-bg"
-                                                         src="{{ get_object_image($profile->image, 'medium') }}"
-                                                         style="background-image: url('{{ get_object_image($profile->image) }}');"
-                                                         alt="{{ $profile->name }}">
                                                 </div>
                                                 <div class="blog-content">
                                                     <h4 class="blog-title"><a href="{{ asset($slug->key) }}"
@@ -115,17 +117,16 @@
                                             <!-- End Single Blog -->
                                         </div>
                                     @endforeach
+                                    </div>
                                 @else
                                     <div>
                                         <p>{{ __('There is no data to display!') }}</p>
                                     </div>
                                 @endif
-{{--                                @if ($profile->count() > 0)--}}
-{{--                                    <nav class="pagination-wrap">--}}
-{{--                                        {!! $profile->links() !!}--}}
-{{--                                    </nav>--}}
-{{--                                @endif--}}
                             </div>
+                            <input type='hidden' id='current_page' />
+                            <input type='hidden' id='show_per_page' />
+                            <div id="page_navigation"></div>
                         @else
                             <div class="row">
                                 @if ($posts->count() > 0)
@@ -140,10 +141,12 @@
                                                                 datetime="">{{ date_from_database($post->created_at, 'M d, Y') }}</time>
                                                         </h4>
                                                     </div>
-                                                    <img class="img-full img-bg"
-                                                         src="{{ get_object_image($post->image, 'medium') }}"
-                                                         style="background-image: url('{{ get_object_image($post->image) }}');"
-                                                         alt="{{ $post->name }}">
+                                                    <div>
+                                                        <img class="img-full img-bg"
+                                                             src="{{ get_object_image($post->image, 'medium') }}"
+                                                             style="background-image: url('{{ get_object_image($post->image) }}');"
+                                                             alt="{{ $post->name }}">
+                                                    </div>
                                                 </div>
                                                 <div class="blog-content">
                                                     <h4 class="blog-title"><a href="{{ $post->url }}"

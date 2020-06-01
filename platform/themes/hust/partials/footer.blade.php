@@ -56,5 +56,14 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+                <div class="page-copyright">
+                    <p>{!! strip_tags(theme_option('copyright')) !!}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </footer>
 <!--/ End Footer Top -->

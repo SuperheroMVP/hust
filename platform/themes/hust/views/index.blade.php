@@ -11,7 +11,7 @@
         @php
             $allRelatedCategoryIds = array_unique(array_merge(app(\Botble\Blog\Repositories\Interfaces\CategoryInterface::class)->getAllRelatedChildrenIds($category), [$category->id]));
 
-            $posts = app(\Botble\Blog\Repositories\Interfaces\PostInterface::class)->getByCategory($allRelatedCategoryIds, 0, $loop->index % 2 == 0 ? 6 : 5);
+            $posts = app(\Botble\Blog\Repositories\Interfaces\PostInterface::class)->getByCategoryIsFeatured($allRelatedCategoryIds, 0, $loop->index % 2 == 0 ? 6 : 5);
         @endphp
 
         @if($category->name == "Đề tài khoa học")
