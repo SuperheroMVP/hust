@@ -88,18 +88,22 @@ class ProfileForm extends FormAbstract
 
     public function get_IdUser(){
         $id = [];
-        foreach (User::select('id', 'username')->get() as $key){
-            $id[$key->id]= $key->username;
+        if(auth()->user()->super_user == 1) {
+            foreach (User::select('id', 'username')->get() as $key){
+                $id[$key->id]= $key->username;
+            }
+        }else{
+            $id[1] = auth()->user()->username;
         }
         return $id;
     }
     public function get_khoa(){
-        $id_postCategori = Category::where("name", "Bộ môn & trung tâm")->pluck('id')->toarray();
-        $data = DB::table('post_categories')->where('category_id', $id_postCategori[0])->pluck('post_id')->toarray();
-        $id = [];
-        foreach (Post::select('id', 'name')->whereIn('id', $data)->get() as $key){
-            $id[$key->id]= $key->name;
-        }
+            $id_postCategori = Category::where("name", "Bộ môn & trung tâm")->pluck('id')->toarray();
+            $data = DB::table('post_categories')->where('category_id', $id_postCategori[0])->pluck('post_id')->toarray();
+            $id = [];
+            foreach (Post::select('id', 'name')->whereIn('id', $data)->get() as $key) {
+                $id[$key->id] = $key->name;
+            }
         return $id;
     }
 }

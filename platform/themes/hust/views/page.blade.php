@@ -4,7 +4,7 @@
 <div class="container">
     <br>
     {!! Theme::breadcrumb()->render() !!}
-
+    <br>
     {!! apply_filters(PAGE_FILTER_FRONT_PAGE_CONTENT, $page->content, $page) !!}
     <br>
 </div>

@@ -20,20 +20,8 @@
             {!! Theme::breadcrumb()->render() !!}
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-12">
+                    <div class="col-lg-3 col-12">
                         <div class="learnedu-sidebar left">
-                            @if (is_plugin_active('blog'))
-                                <div class="search">
-                                    <div class="form">
-                                        <form class="quick-search" action="{{ route('public.search') }}">
-                                            <input type="text" name="q" placeholder="{{ __('Tìm kiếm...') }}"
-                                                   class="form-control search-input" autocomplete="off">
-                                        </form>
-                                        <button class="button"><i class="fa fa-search"></i></button>
-                                        <div class="search-result"></div>
-                                    </div>
-                                </div>
-                        @endif
                         <!-- Categories -->
                             <div class="single-widget categories">
                                 <h3 class="title">Bộ môn & trung tâm</h3>
@@ -42,7 +30,7 @@
                                         @php
                                             $allRelatedCategoryIds = array_unique(array_merge(app(\Botble\Blog\Repositories\Interfaces\CategoryInterface::class)->getAllRelatedChildrenIds($category), [$category->id]));
 
-                                            $postk = app(\Botble\Blog\Repositories\Interfaces\PostInterface::class)->getByCategory($allRelatedCategoryIds, 0, $loop->index % 2 == 0 ? 6 : 5);
+                                            $postk = app(\Botble\Blog\Repositories\Interfaces\PostInterface::class)->getByCategory($allRelatedCategoryIds, 0, null);
                                         @endphp
                                         @foreach($postk as $posti)
                                             <li><a href="{{ $posti->url }}"><i
@@ -73,7 +61,7 @@
                             <!--/ End Posts -->
                         </div>
                     </div>
-                    <div class="col-lg-8 col-12">
+                    <div class="col-lg-9 col-12">
                         @if($urli == "/profile/all")
                             <div class="row">
                                 @php
@@ -85,7 +73,7 @@
                                         @php
                                             $slug = get_slug_profile($profile->id);
                                         @endphp
-                                        <div class="col-lg-6 col-12">
+                                        <div class="col-lg-4 col-12">
                                             <!-- Single Blog -->
                                             <div class="single-blog">
                                                 <div class="blog-head overlay">
@@ -95,7 +83,7 @@
 {{--                                                                datetime="">{{ date_from_database($profile->created_at, 'M d, Y') }}</time>--}}
 {{--                                                        </h4>--}}
 {{--                                                    </div>--}}
-                                                    <div style="max-height: 350px;">
+                                                    <div style="height: 255px;">
                                                         <img class="img-full img-bg"
                                                              src="{{ get_object_image($profile->image, 'medium') }}"
                                                              style="max-height: none; background-image: url('{{ get_object_image($profile->image) }}'); overflow: hidden;"
@@ -131,7 +119,7 @@
                             <div class="row">
                                 @if ($posts->count() > 0)
                                     @foreach ($posts as $post)
-                                        <div class="col-lg-6 col-12">
+                                        <div class="col-lg-4 col-12">
                                             <!-- Single Blog -->
                                             <div class="single-blog">
                                                 <div class="blog-head overlay">

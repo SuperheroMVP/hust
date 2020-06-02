@@ -316,7 +316,7 @@ big {
 	border-radius: 0px;
 	text-transform: uppercase;
 	cursor: pointer;
-	font-size: 14px;
+	font-size: 13px;
 	-webkit-transform: perspective(1px) translateZ(0);
 	transform: perspective(1px) translateZ(0);
 	overflow: hidden;

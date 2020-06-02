@@ -9,18 +9,6 @@
         <div class="row">
             <div class="col-lg-4 col-12">
                 <div class="learnedu-sidebar left">
-                    @if (is_plugin_active('blog'))
-                        <div class="search">
-                            <div class="form">
-                                <form class="quick-search" action="{{ route('public.search') }}">
-                                    <input type="text" name="q" placeholder="{{ __('Tìm kiếm...') }}"
-                                           class="form-control search-input" autocomplete="off">
-                                </form>
-                                <button class="button"><i class="fa fa-search"></i></button>
-                                <div class="search-result"></div>
-                            </div>
-                        </div>
-                @endif
                 <!-- Categories -->
                     <div class="single-widget categories">
                         <h3 class="title">Bộ môn & trung tâm</h3>

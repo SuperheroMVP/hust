@@ -1831,8 +1831,8 @@ Version:	1.0
 	top: 12px;
 	text-align: center;
 	border-radius: 100%;
-	width: 70px;
-	height: 70px;
+	width: 50px;
+	height: 50px;
 	line-height: 70px;
 	z-index: 33;
 	-webkit-transition:all 0.3s ease;
@@ -1851,7 +1851,7 @@ Version:	1.0
 	visibility:visible
 }
 .blog .blog-head .date h4 {
-	font-size: 25px;
+	font-size: 11px;
 	font-weight: 600;
 	color: #fff;
 	padding-top: 10px;
@@ -1868,7 +1868,7 @@ Version:	1.0
 	position: relative;
 }
 .blog .blog-content {
-	padding: 20px;
+	padding: 6px;
 }
 .blog .blog-content .blog-title {
 	font-size: 18px;
@@ -1880,7 +1880,7 @@ Version:	1.0
 .blog .blog-content .btn {
 	color: #fff;
 	margin-top: 20px;
-	padding: 12px 30px;
+	padding: 9px 13px;
 }
 .blog .blog-content .btn:before{
 	background:#252525;
@@ -3127,9 +3127,9 @@ width: 100%;
 	padding: 25px;
 }
 #page_navigation a{
-	padding:15px;
+	padding:10px;
 	background-color: #f1f1f1;
-	margin:5px;
+	margin: 3px;
 	color:gray;
 	text-decoration:none
 }
