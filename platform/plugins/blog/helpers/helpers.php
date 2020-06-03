@@ -13,6 +13,7 @@ use Botble\Slug\Models\Slug;
 use Botble\Slidebar\Models\Slidebar;
 use Botble\Blog\Models\Post;
 use Botble\Tuyensinh\Models\Tuyensinh;
+use Botble\Blog\Models\Category;
 
 if (!function_exists('get_featured_posts')) {
     /**
@@ -74,7 +75,7 @@ if (!function_exists('get_posts_by_tag')) {
      * @return mixed
      *
      */
-    function get_posts_by_tag($slug, $paginate = 12)
+    function get_posts_by_tag($slug, $pagiagnate = 12)
     {
         return app(PostInterface::class)->getByTag($slug, $paginate);
     }
@@ -351,5 +352,87 @@ if (!function_exists('get_data_tuyensinh')) {
     function get_data_tuyensinh($loai)
     {
         return Tuyensinh::where('loai', $loai)->where('status' , 'published')->first();
+    }
+}
+if (!function_exists('get_post_by_categorys')) {
+    /**
+     * @param bool $convert_to_list
+     * @return array
+     *
+     */
+    function get_post_by_categorys($categorys , $limit)
+    {
+        $post_id = [];
+        foreach ($categorys as $category){
+            $post = DB::table('post_categories')->where('category_id', $category->id )->get();
+            foreach ($post as $key){
+                $post_id[] = $key->post_id;
+            }
+        }
+        return Post::whereIn('id', $post_id)->where('status', "published")->orderBy('created_at', 'desc')->limit($limit)->get();
+    }
+}
+if (!function_exists('get_menu_dao_tao')) {
+    /**
+     * @param bool $convert_to_list
+     * @return array
+     *
+     */
+    function get_menu_dao_tao($key)
+    {
+        return Category::where('danhmuc', $key)->where('status' , 'published')->where('parent_id' , 0)->get();
+    }
+}
+if (!function_exists('get_menu_con_dao_tao')) {
+    /**
+     * @param bool $convert_to_list
+     * @return array
+     *
+     */
+    function get_menu_con_dao_tao($key)
+    {
+        return Category::where('status' , 'published')->where('parent_id' , $key)->get();
+    }
+}
+
+if (!function_exists('check_url_dao_tao')) {
+    /**
+     * @param bool $convert_to_list
+     * @return array
+     *
+     */
+    function check_url_dao_tao($key)
+    {
+        $slug = Slug::where('key', $key)->pluck('reference_id');
+        foreach ($slug as $s){
+            $cate = Category::where('id', $s)->pluck('danhmuc');
+            foreach ($cate as $c){
+                if ($c == 'daotao'){
+                    return $c;
+                }
+                if ($c == 'nghiencuu'){
+                    return $c;
+                }
+            }
+        }
+        return false;
+    }
+}
+if (!function_exists('get_posts_by_tag_nghiencuu')) {
+    /**
+     * @param bool $convert_to_list
+     * @return array
+     *
+     */
+    function get_posts_by_tag_nghiencuu($limit)
+    {
+        $categorys = Category::where('danhmuc', 'nghiencuu')->get();
+        foreach ($categorys as $category){
+            $post = DB::table('post_categories')->where('category_id', $category->id )->get();
+            foreach ($post as $key){
+                $post_id[] = $key->post_id;
+            }
+        }
+        return Post::whereIn('id', $post_id)->where('status', "published")->orderBy('created_at', 'desc')->limit($limit)->get();
     }
 }

@@ -49,6 +49,7 @@ class Category extends BaseModel
         'is_default',
         'status',
         'author_id',
+        'danhmuc',
     ];
 
     /**

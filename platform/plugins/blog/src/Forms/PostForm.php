@@ -33,12 +33,6 @@ class PostForm extends FormAbstract
             ->addScriptsDirectly('vendor/core/js/tags.js');
 
         $selectedCategories = [];
-        $tag =[];
-        $tagss = Tag::where('status', 'published')
-            ->get();
-        foreach ($tagss as $key){
-            $tag[$key->id] = $key->name;
-        }
 
         if ($this->getModel()) {
             $selectedCategories = $this->getModel()->categories()->pluck('category_id')->all();

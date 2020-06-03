@@ -20,6 +20,58 @@
             {!! Theme::breadcrumb()->render() !!}
             <div class="container">
                 <div class="row">
+                    @if(check_url_dao_tao(request()->segment(count(request()->segments()))) == 'daotao')
+                        <div class="col-lg-3 col-12">
+                            <div class="learnedu-sidebar left">
+                                <!-- Categories -->
+                                <div class="single-widget categories">
+                                    <h3 class="title">Danh mục đào tạo</h3>
+                                    <ul>
+                                        @foreach(get_menu_dao_tao('daotao') as $daotao)
+                                            <li>
+                                                <a href="{{ $daotao->url }}" target="{{ $daotao->target }}"> > {{ $daotao->name }}</a></li>
+                                            @if(get_menu_con_dao_tao($daotao->id))
+                                                <ul style="margin-left: 10px;">
+                                                    @foreach(get_menu_con_dao_tao($daotao->id) as $sub)
+                                                        <li>
+                                                            <a href="{{ $sub->url }}" target="{{ $sub->target }}"> + {{ $sub->name }}</a></li>
+                                                        @if(get_menu_con_dao_tao($sub->id))
+                                                            <ul style="margin-left: 20px;">
+                                                                @foreach(get_menu_con_dao_tao($sub->id) as $child)
+                                                                    <li>
+                                                                        <a href="{{ $child->url }}" target="{{ $child->target }}"> + {{ $child->name }}</a>
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
+                                                        @endif
+                                                    @endforeach
+                                                </ul>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    @elseif(check_url_dao_tao(request()->segment(count(request()->segments()))) == 'nghiencuu')
+                        <div class="learnedu-sidebar left">
+                        <div class="single-widget posts">
+                            <h3>Bài viết <span>mới nhất</span></h3>
+                            @foreach (get_posts_by_tag_nghiencuu(6) as $related_item)
+                                <div class="single-post">
+                                    <div  class="post-img">
+                                        <a href="{{ $related_item->url }}">
+                                            <img src="{{ get_object_image($related_item->image) }}"
+                                                 alt="{{ $related_item->name }}">
+                                        </a>
+                                    </div>
+                                    <div class="post-info">
+                                        <h4><a href="{{ $related_item->url }}"> {{ $related_item->name }}</a></h4>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        </div>
+                    @else
                     <div class="col-lg-3 col-12">
                         <div class="learnedu-sidebar left">
                         <!-- Categories -->
@@ -61,6 +113,7 @@
                             <!--/ End Posts -->
                         </div>
                     </div>
+                    @endif
                     <div class="col-lg-9 col-12">
                         @if($urli == "/profile/all")
                             <div class="row">

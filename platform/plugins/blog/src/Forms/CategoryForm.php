@@ -89,6 +89,17 @@ class CategoryForm extends FormAbstract
                 'label_attr' => ['class' => 'control-label required'],
                 'choices'    => BaseStatusEnum::labels(),
             ])
+            ->add('danhmuc', 'customSelect', [
+                'label'      => 'Danh mục',
+                'label_attr' => ['class' => 'control-label'],
+                'choices'    => [
+                    'default' => 'Mặc định',
+                    'gioithieu' => 'Giới thiệu',
+                    'daotao' => 'Đào tạo',
+                    'nghiencuu' => 'Nghiên cứu',
+                    'tintuc' => 'Tin tức',
+                ],
+            ])
             ->setBreakFieldPoint('status');
     }
 }
