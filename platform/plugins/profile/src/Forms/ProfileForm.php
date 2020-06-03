@@ -81,7 +81,7 @@ class ProfileForm extends FormAbstract
             ])
             ->add('chucvu', 'text', [
                 'label'      => "Chức vụ",
-                'label_attr' => ['class' => 'control-labe   l'],
+                'label_attr' => ['class' => 'control-label'],
             ])
             ->setBreakFieldPoint('status');
     }

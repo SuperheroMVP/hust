@@ -12,6 +12,8 @@ use Botble\Blog\Models\Post;
 use Botble\Blog\Repositories\Interfaces\CategoryInterface;
 use Illuminate\Support\Facades\Auth;
 
+use Botble\Blog\Models\Tag;
+
 class PostForm extends FormAbstract
 {
 
@@ -31,6 +33,12 @@ class PostForm extends FormAbstract
             ->addScriptsDirectly('vendor/core/js/tags.js');
 
         $selectedCategories = [];
+        $tag =[];
+        $tagss = Tag::where('status', 'published')
+            ->get();
+        foreach ($tagss as $key){
+            $tag[$key->id] = $key->name;
+        }
 
         if ($this->getModel()) {
             $selectedCategories = $this->getModel()->categories()->pluck('category_id')->all();
@@ -119,7 +127,7 @@ class PostForm extends FormAbstract
                 'attr'       => [
                     'class'       => 'form-control',
                     'id'          => 'tags',
-                    'data-role'   => 'tagsinput',
+                    'data-role'   => 'taginput',
                     'placeholder' => trans('plugins/blog::posts.form.tags_placeholder'),
                 ],
                 'value'      => $tags,
