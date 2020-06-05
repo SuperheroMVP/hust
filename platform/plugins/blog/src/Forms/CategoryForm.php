@@ -58,11 +58,6 @@ class CategoryForm extends FormAbstract
                     'data-counter' => 400,
                 ],
             ])
-            ->add('is_default', 'onOff', [
-                'label'         => trans('core/base::forms.is_default'),
-                'label_attr'    => ['class' => 'control-label'],
-                'default_value' => false,
-            ])
             ->add('icon', 'text', [
                 'label'      => trans('core/base::forms.icon'),
                 'label_attr' => ['class' => 'control-label'],

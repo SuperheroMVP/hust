@@ -24,6 +24,7 @@ Route::group(['namespace' => 'Theme\Hust\Http\Controllers', 'middleware' => 'web
         Route::get('/tuyensinh/all', [
             'uses' => 'HustController@getView',
         ]);
+        Route::post('feedback', 'HustController@feedback')->name('feedback');
     });
 });
 

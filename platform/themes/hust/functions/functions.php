@@ -67,7 +67,21 @@ theme_option()
             'value'   => null,
             'options' => [
                 'class'        => 'form-control',
-                'data-counter' => 12,
+                'data-counter' => 25,
+            ],
+        ],
+    ])
+    ->setField([
+        'id'         => 'fax',
+        'section_id' => 'opt-text-subsection-general',
+        'type'       => 'text',
+        'label'      => __('Số fax'),
+        'attributes' => [
+            'name'    => 'fax',
+            'value'   => null,
+            'options' => [
+                'class'        => 'form-control',
+                'data-counter' => 25,
             ],
         ],
     ])

@@ -8,34 +8,40 @@
     <div class="container">
         {!! Theme::breadcrumb()->render() !!}
         <div class="row">
+            <div class="col-lg-9 col-12">
                 <div class="page-content blog">
                     @if ($posts->count() > 0)
                         @foreach ($posts as $post)
-                            <div class="col-lg-4 col-12" style="float: left; min-height: 450px;">
+                            <div class="col-lg-12">
                                 <!-- Single Blog -->
-                                <div class="single-blog">
-                                    <div class="blog-head overlay">
-                                        <div class="date">
-                                            <h4><time datetime="">{{ date_from_database($post->created_at, 'M d, Y') }}</time></h4>
-                                        </div>
-                                        <img class="img-full img-bg" src="{{ get_object_image($post->image, 'medium') }}" style="background-image: url('{{ get_object_image($post->image) }}');" alt="{{ $post->name }}">
-                                    </div>
-                                    <div class="blog-content">
-                                        <h4 class="blog-title"><a href="{{ $post->url }}" title="{{ $post->name }}">
+                                <div class="d-flex flex-row p-2">
+                                    <div class="blog-content col-8 ">
+                                        <h4 class="blog-title"><a href="{{ $post->url }}"
+                                                                  title="{{ $post->name }}">
                                                 {{ $post->name }}
                                             </a></h4>
                                         <p>{{ $post->description }}</p>
-                                        <div class="button">
-                                            <a href="{{ $post->url }}" class="btn">Xem thêm<i class="fa fa-angle-double-right"></i></a>
+                                        <a href="{{ $post->url }}" style="color: orange">Xem thêm</a>
+                                    </div>
+                                    <div class="blog-head overlay col-4 p-0">
+                                        <div class="date">
+                                            <h4>
+                                                <time datetime="">{{ date_from_database($post->created_at, 'M d, Y') }}</time>
+                                            </h4>
+                                        </div>
+                                        <div>
+                                            <img class="img-full img-bg"
+                                                 src="{{ get_object_image($post->image, 'medium') }}"
+                                                 style="background-image: url('{{ get_object_image($post->image) }}');"
+                                                 alt="{{ $post->name }}">
                                         </div>
                                     </div>
+
                                 </div>
                                 <!-- End Single Blog -->
+                                <hr>
                             </div>
                         @endforeach
-                        <div class="page-pagination text-right">
-                            {!! $posts->links() !!}
-                        </div>
                     @else
                         <div class="justify-content-center">
                             <br>
@@ -43,6 +49,33 @@
                             <br>
                         </div>
                     @endif
+                        @if ($posts->count() > 0)
+                        <div class="page-pagination text-right">
+                            {!! $posts->links() !!}
+                        </div>
+                        @endif
+            </div>
+            </div>
+            <div class="col-lg-3 col-12">
+                <div class="learnedu-sidebar left">
+                    <div class="single-widget posts">
+                        <h3>Bài viết mới nhất</h3>
+                        @foreach(get_post_new() as $newpost)
+                            @php
+                                $slug = get_slug_newpost($newpost->id);
+                            @endphp
+                            <div class="single-post">
+                                <div class="post-img">
+                                    <img src="{{ get_object_image($newpost->image) }}" alt="">
+                                </div>
+                                <div class="post-info">
+                                    <h4><a href="{{ asset($slug->key) }}">{{$newpost->name}}</a></h4>
+                                    <span><i class="fa fa-calendar"></i>{{$newpost->created_at}}</span>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
     </div>

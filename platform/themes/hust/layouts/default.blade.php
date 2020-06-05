@@ -13,7 +13,6 @@
         <title>{{ SeoHelper::getTitle() }}</title>
 
         {!! Theme::header() !!}
-
     </head>
     <body>
         {!! Theme::partial('header') !!}

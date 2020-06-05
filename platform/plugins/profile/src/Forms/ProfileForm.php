@@ -20,90 +20,94 @@ class ProfileForm extends FormAbstract
      */
     public function buildForm()
     {
-        $this
-            ->setModuleName(PROFILE_MODULE_SCREEN_NAME)
-            ->setupModel(new Profile)
-            ->setValidatorClass(ProfileRequest::class)
-            ->withCustomFields()
-            ->add('name', 'text', [
-                'label' => trans('core/base::forms.name'),
-                'label_attr' => ['class' => 'control-label required'],
-                'attr' => [
-                    'placeholder'  => trans('core/base::forms.name_placeholder'),
-                    'data-counter' => 120,
-                ],
-            ])
-            ->add('description', 'textarea', [
-                'label'      => trans('core/base::forms.description'),
-                'label_attr' => ['class' => 'control-label'],
-                'attr'       => [
-                    'rows'         => 4,
-                    'placeholder'  => trans('core/base::forms.description_placeholder'),
-                    'data-counter' => 400,
-                ],
-            ])
-            ->add('content', 'editor', [
-                'label'      => trans('core/base::forms.content'),
-                'label_attr' => ['class' => 'control-label'],
-                'attr'       => [
-                    'rows'            => 4,
-                    'placeholder'     => trans('core/base::forms.description_placeholder'),
-                    'with-short-code' => true,
-                ],
-            ])
-            ->add('image', 'mediaImage', [
-                'label'      => trans('core/base::forms.image'),
-                'label_attr' => ['class' => 'control-label'],
-            ])
-            ->add('status', 'customSelect', [
-                'label'      => trans('core/base::tables.status'),
-                'label_attr' => ['class' => 'control-label required'],
-                'attr' => [
-                    'class' => 'form-control select-full',
-                ],
-                'choices'    => BaseStatusEnum::labels(),
-            ])
-            ->add('author_id', 'customSelect', [
-                'label'      => "Tài khoản",
-                'label_attr' => ['class' => 'control-label required'],
-                'attr' => [
-                    'class' => 'form-control select-full',
-                ],
-                'choices'    => ProfileForm::get_IdUser(),
-            ])
-            ->add('khoa_id', 'customSelect', [
-                'label'      => "Khoa",
-                'label_attr' => ['class' => 'control-label required'],
-                'attr' => [
-                    'class' => 'form-control select-full',
-                ],
-                'choices'    => ProfileForm::get_khoa(),
-            ])
-            ->add('chucvu', 'text', [
-                'label'      => "Chức vụ",
-                'label_attr' => ['class' => 'control-label'],
-            ])
-            ->setBreakFieldPoint('status');
+            $this
+                ->setModuleName(PROFILE_MODULE_SCREEN_NAME)
+                ->setupModel(new Profile)
+                ->setValidatorClass(ProfileRequest::class)
+                ->withCustomFields()
+                ->add('name', 'text', [
+                    'label' => trans('core/base::forms.name'),
+                    'label_attr' => ['class' => 'control-label required'],
+                    'attr' => [
+                        'placeholder'  => trans('core/base::forms.name_placeholder'),
+                        'data-counter' => 120,
+                    ],
+                ])
+                ->add('description', 'textarea', [
+                    'label'      => trans('core/base::forms.description'),
+                    'label_attr' => ['class' => 'control-label'],
+                    'attr'       => [
+                        'rows'         => 4,
+                        'placeholder'  => trans('core/base::forms.description_placeholder'),
+                        'data-counter' => 400,
+                    ],
+                ])
+                ->add('content', 'editor', [
+                    'label'      => trans('core/base::forms.content'),
+                    'label_attr' => ['class' => 'control-label'],
+                    'attr'       => [
+                        'rows'            => 4,
+                        'placeholder'     => trans('core/base::forms.description_placeholder'),
+                        'with-short-code' => true,
+                    ],
+                ])
+                ->add('image', 'mediaImage', [
+                    'label'      => trans('core/base::forms.image'),
+                    'label_attr' => ['class' => 'control-label'],
+                ])
+                ->add('status', 'customSelect', [
+                    'label'      => trans('core/base::tables.status'),
+                    'label_attr' => ['class' => 'control-label required'],
+                    'attr' => [
+                        'class' => 'form-control select-full',
+                    ],
+                    'choices'    => BaseStatusEnum::labels(),
+                ])
+                ->add('khoa_id', 'customSelect', [
+                    'label'      => "Khoa",
+                    'label_attr' => ['class' => 'control-label required'],
+                    'attr' => [
+                        'class' => 'form-control select-full',
+                    ],
+                    'choices'    => ProfileForm::get_khoa(),
+                ])
+                ->add('chucvu', 'text', [
+                    'label'      => "Chức vụ",
+                    'label_attr' => ['class' => 'control-label'],
+                ])
+                ->setBreakFieldPoint('status');
+
+            if (auth()->user()->super_user == 1) {
+                $this
+                    ->setModuleName(PROFILE_MODULE_SCREEN_NAME)
+                    ->setupModel(new Profile)
+                    ->setValidatorClass(ProfileRequest::class)
+                    ->withCustomFields()
+                    ->add('author_id', 'customSelect', [
+                    'label' => "Tài khoản",
+                    'label_attr' => ['class' => 'control-label required'],
+                    'attr' => [
+                        'class' => 'form-control select-full',
+                    ],
+                    'choices' => ProfileForm::get_IdUser(),
+                ]);
+            }
     }
 
     public function get_IdUser(){
         $id = [];
-        if(auth()->user()->super_user == 1) {
-            foreach (User::select('id', 'username')->get() as $key){
-                $id[$key->id]= $key->username;
-            }
-        }else{
-            $id[1] = auth()->user()->username;
+        foreach (User::select('id', 'username')->get() as $key){
+            $id[$key->id]= $key->username;
         }
         return $id;
     }
     public function get_khoa(){
-            $id_postCategori = Category::where("name", "Bộ môn & trung tâm")->pluck('id')->toarray();
-            $data = DB::table('post_categories')->where('category_id', $id_postCategori[0])->pluck('post_id')->toarray();
-            $id = [];
-            foreach (Post::select('id', 'name')->whereIn('id', $data)->get() as $key) {
-                $id[$key->id] = $key->name;
-            }
+        foreach (Category::where("categories_check", "so_do_to_chuc")->pluck('id') as $id_cate){
+            $id_postCategori = $id_cate;
+        }
+        foreach ( Category::where("parent_id", $id_postCategori)->get() as $key){
+            $id[$key->id] = $key->name;
+        }
         return $id;
     }
 }

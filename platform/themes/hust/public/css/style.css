@@ -1512,8 +1512,12 @@ Version:	1.0
 .events .single-event .head{
 	position:relative;
 	border-bottom: 8px solid #007ba5;
+	height: 200px;
+	overflow: hidden;
 }
-.events .single-event .head img{}
+.events .single-event .head img{
+	height: 230px;
+}
 .events .single-event .head .btn {
 	position: absolute;
 	top: 50%;
@@ -1984,6 +1988,7 @@ width: 100%;
 }
 .blog.b-archives .single-blog{
 	margin:30px 0 0;
+	display: table;
 }
 /* Pagination */
 .blog.b-archives .pagination-main{
@@ -3138,3 +3143,13 @@ width: 100%;
 	background-color: #36c6d3 !important;
 	color: white !important;
 }
+
+.copyright{
+	background-color: #1c7ba5;
+	color: white !important;
+	text-align: center;
+}
+.copyright p{
+	color: white !important;
+}
+

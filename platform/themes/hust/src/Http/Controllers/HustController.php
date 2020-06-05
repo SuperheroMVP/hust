@@ -3,9 +3,11 @@
 namespace Theme\Hust\Http\Controllers;
 
 use Botble\Base\Http\Responses\BaseHttpResponse;
+//use Botble\Captcha\Utilities\Request;
+use Illuminate\Http\Request;
 use Botble\Theme\Http\Controllers\PublicController;
 
-
+use Botble\Contact\Models\Contact;
 
 class HustController extends PublicController
 {
@@ -49,5 +51,17 @@ class HustController extends PublicController
     public function getSiteMap()
     {
         return parent::getSiteMap();
+    }
+
+    public function feedback(Request $request)
+    {
+        $contact = new Contact();
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->phone = $request->phone;
+        $contact->subject = $request->title;
+        $contact->content = $request->content;
+        $contact->save();
+        return redirect()->back() ->with('alert', 'Ý kiến của bạn đã được gửi đi!');
     }
 }

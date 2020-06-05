@@ -7,6 +7,46 @@
         </div>
     </section>
     <!--/ End Slider Area -->
+    <section class="events section">
+        <div class="container">
+            <div class="event-grid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title">
+                            <h2>Thông tin nổi bật</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    @foreach(get_post_by_category_tag(6) as $post)
+                        <div class="col-lg-4 col-sm-12">
+                            <div class="single-event">
+                                <a href="{{ $post->url }}"
+                                   title="{{ $post->name }}"
+                                   class="media-news-img">
+                                    <div class="head">
+                                        <img class="img-full img-bg"
+                                             src="{{ get_object_image($post->image, 'medium') }}"
+                                             style="background-image: url('{{ get_object_image($post->image) }}');"
+                                             alt="{{ $post->name }}">
+                                    </div>
+                                    <div class="event-content">
+                                        <h4><a href="#"><p class="common-title">
+                                                    <a href="{{ $post->url }}"
+                                                       title="{{ $post->name }}">
+                                                        {{ $post->name }}
+                                                    </a>
+                                                </p></a></h4>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
+
     @foreach (get_all_categories(['categories.status' => \Botble\Base\Enums\BaseStatusEnum::PUBLISHED, 'categories.parent_id' => 0, 'is_featured' => 1]) as $category)
         @php
             $allRelatedCategoryIds = array_unique(array_merge(app(\Botble\Blog\Repositories\Interfaces\CategoryInterface::class)->getAllRelatedChildrenIds($category), [$category->id]));

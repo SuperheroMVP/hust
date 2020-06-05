@@ -14,6 +14,7 @@ use Botble\Slidebar\Models\Slidebar;
 use Botble\Blog\Models\Post;
 use Botble\Tuyensinh\Models\Tuyensinh;
 use Botble\Blog\Models\Category;
+use Botble\ACL\Models\User;
 
 if (!function_exists('get_featured_posts')) {
     /**
@@ -315,7 +316,7 @@ if (!function_exists('get_post_new')) {
      */
     function get_post_new()
     {
-        return Post::where('status', "published")->orderBy('created_at', 'desc')->limit(5)->get();
+        return Post::where('status', "published")->orderBy('created_at', 'desc')->limit(6)->get();
     }
 }
 
@@ -339,7 +340,10 @@ if (!function_exists('get_profile_where_cate')) {
      */
     function get_profile_where_cate($id)
     {
-        return Profile::where('khoa_id', $id)->where('status' , 'published')->get();
+        foreach ($id as $key){
+            $khoa_id[] = $key->id;
+        }
+        return Profile::whereIn('khoa_id', $khoa_id)->where('status' , 'published')->get();
     }
 }
 
@@ -370,6 +374,17 @@ if (!function_exists('get_post_by_categorys')) {
             }
         }
         return Post::whereIn('id', $post_id)->where('status', "published")->orderBy('created_at', 'desc')->limit($limit)->get();
+    }
+}
+if (!function_exists('get_post_by_category_tag')) {
+    /**
+     * @param bool $convert_to_list
+     * @return array
+     *
+     */
+    function get_post_by_category_tag($limit)
+    {
+        return Post::where('status', "published")->orderBy('is_featured', 'desc')->orderBy('created_at', 'desc')->limit($limit)->get();
     }
 }
 if (!function_exists('get_menu_dao_tao')) {
@@ -413,6 +428,9 @@ if (!function_exists('check_url_dao_tao')) {
                 if ($c == 'nghiencuu'){
                     return $c;
                 }
+                if ($c == 'tintuc'){
+                    return $c;
+                }
             }
         }
         return false;
@@ -434,5 +452,21 @@ if (!function_exists('get_posts_by_tag_nghiencuu')) {
             }
         }
         return Post::whereIn('id', $post_id)->where('status', "published")->orderBy('created_at', 'desc')->limit($limit)->get();
+    }
+}
+
+if (!function_exists('get_name_user')) {
+    /**
+     * @param bool $convert_to_list
+     * @return array
+     *
+     */
+    function get_name_user($id)
+    {
+        $user = User::where('id', $id)->get();
+        foreach ($user as $key){
+            $name = $key->first_name ." ". $key->last_name;
+        }
+        return $name;
     }
 }

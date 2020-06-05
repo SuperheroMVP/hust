@@ -18,7 +18,6 @@ class ProfileRequest extends Request
     {
         return [
             'name'   => 'required',
-            'author_id'   => 'required',
             'status' => Rule::in(BaseStatusEnum::values()),
         ];
     }

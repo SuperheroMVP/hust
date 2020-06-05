@@ -46,6 +46,7 @@
                         <h2>Liên hệ</h2>
                         <ul class="list">
                             <li><i class="fa fa-phone"></i>Phone: {{ theme_option('phone') }}</li>
+                            <li><i class="fa fa-fax"></i>Fax: {{ theme_option('fax') }}</li>
                             <li><i class="fa fa-envelope"></i>Email: <a href="mailto:{{ theme_option('email') }}">{{ theme_option('email') }}</a>
                             </li>
                             <li><i class="fa fa-map-o"></i>Address: {{ theme_option('address') }}</li>
@@ -56,14 +57,13 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-sm-6 col-xs-12">
-                <div class="page-copyright">
-                    <p>{!! strip_tags(theme_option('copyright')) !!}</p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!--/ End Footer Top -->
 </footer>
-<!--/ End Footer Top -->
+<div class="copyright">
+<div class="container">
+    <div class="page-copyright" >
+        <p>{!! strip_tags(theme_option('copyright')) !!}</p>
+    </div>
+</div>
+</div>
+
