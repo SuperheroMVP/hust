@@ -18,7 +18,6 @@
         <!-- Blogs -->
         <section class="blog b-archives section">
             {!! Theme::breadcrumb()->render() !!}
-            <div class="container">
                 @if(check_url_dao_tao(request()->segment(count(request()->segments()))) == 'tintuc')
                     <div class="row">
                         @if ($posts->count() > 0)
@@ -43,7 +42,8 @@
                                                                              alt="{{ $post->name }}">
                                                                     </div>
                                                                 </div>
-                                                                <div class="blog-content col-6 ">
+                                                                <div class="blog-content col-6 "
+                                                                     style=" background-color: #e9ecef;padding-left: 20px">
                                                                     <h4 class="blog-title"><a href="{{ $post->url }}"
                                                                                               title="{{ $post->name }}">
                                                                             {{ $post->name }}
@@ -68,7 +68,7 @@
                                                             <div class="col-lg-12">
                                                                 <!-- Single Blog -->
                                                                 <div class="d-flex flex-row p-2">
-                                                                    <div class="blog-content col-8 ">
+                                                                    <div class="blog-content col-lg-8 ">
                                                                         <h4 class="blog-title"><a href="{{ $post->url }}"
                                                                                                   title="{{ $post->name }}">
                                                                                 {{ $post->name }}
@@ -76,14 +76,14 @@
                                                                         <p>{{ $post->description }}</p>
                                                                         <a href="{{ $post->url }}" style="color: orange">Xem thêm</a>
                                                                     </div>
-                                                                    <div class="blog-head overlay col-4 p-0">
+                                                                    <div class="blog-head overlay col-lg-4 p-0">
                                                                         <div class="date">
                                                                             <h4>
                                                                                 <time datetime="">{{ date_from_database($post->created_at, 'M d, Y') }}</time>
                                                                             </h4>
                                                                         </div>
-                                                                        <div>
-                                                                            <img class="img-full img-bg"
+                                                                        <div style="text-align: right">
+                                                                            <img class="img-full img-bg" width="100px"
                                                                                  src="{{ get_object_image($post->image, 'medium') }}"
                                                                                  style="background-image: url('{{ get_object_image($post->image) }}');"
                                                                                  alt="{{ $post->name }}">
@@ -361,7 +361,6 @@
 
                     </div>
                 @endif
-            </div>
         </section>
     </div>
 </section>
