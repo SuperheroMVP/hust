@@ -22,12 +22,19 @@ class Profile extends BaseModel
      */
     protected $fillable = [
         'name',
+        'diachi',
         'description',
         'content',
         'image',
         'author_id',
         'khoa_id',
         'chucvu',
+        'loai',
+        'email',
+        'sdt',
+        'facebook',
+        'zalo',
+        'instagram',
         'status',
     ];
 

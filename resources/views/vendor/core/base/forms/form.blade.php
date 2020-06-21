@@ -83,3 +83,28 @@
         @endpush
     @endif
 @endif
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#add_img").button().click(function () {
+            let html = `
+                <div class="image-box">
+                    <input type="hidden" name="image[]" value="" class="image-data">
+                    <div class="preview-image-wrapper ">
+                        <img src="/vendor/core/images/placeholder.png" alt="preview image" class="preview_image" width="150">
+                        <a class="btn_remove_image" title="Xoá ảnh">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                    <div class="image-box-actions">
+                        <a href="#" class="btn_gallery" data-result="image[]" data-action="select-image">
+                            Chọn ảnh
+                        </a>
+                    </div>
+                </div>
+            `;
+            console.log($('.image-data').closest('.form-group'));
+            $('.image-data').closest('.form-group').append(html);
+        });
+    });
+</script>

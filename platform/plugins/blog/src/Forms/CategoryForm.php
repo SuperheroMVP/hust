@@ -55,7 +55,7 @@ class CategoryForm extends FormAbstract
                 'attr'       => [
                     'rows'         => 4,
                     'placeholder'  => trans('core/base::forms.description_placeholder'),
-                    'data-counter' => 400,
+                    'data-counter' => 5000,
                 ],
             ])
             ->add('icon', 'text', [
@@ -84,15 +84,24 @@ class CategoryForm extends FormAbstract
                 'label_attr' => ['class' => 'control-label required'],
                 'choices'    => BaseStatusEnum::labels(),
             ])
+            ->add('image', 'mediaImage', [
+                'label'      => trans('core/base::forms.image'),
+                'label_attr' => ['class' => 'control-label'],
+            ])
             ->add('danhmuc', 'customSelect', [
-                'label'      => 'Danh mục',
+                'label'      => 'Template',
                 'label_attr' => ['class' => 'control-label'],
                 'choices'    => [
                     'default' => 'Mặc định',
                     'gioithieu' => 'Giới thiệu',
                     'daotao' => 'Đào tạo',
                     'nghiencuu' => 'Nghiên cứu',
+                    'mucnghiencuu' => 'Mục nghiên cứu',
                     'tintuc' => 'Tin tức',
+                    'btandtt' => 'Bộ môn và trung tâm',
+                    'lab' => 'Centers&Labs',
+                    'icce' => 'Hôi thảo ICCE',
+                    'conso' => 'Con số ',
                 ],
             ])
             ->setBreakFieldPoint('status');

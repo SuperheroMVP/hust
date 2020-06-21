@@ -18,9 +18,11 @@ class CreatePagesTable extends Migration
             $table->longText('content');
             $table->integer('user_id')->references('id')->on('users');
             $table->string('image', 255)->nullable();
+            $table->string('video', 255)->nullable();
             $table->string('template', 60)->nullable();
+            $table->string('temp_view', 60)->nullable();
             $table->tinyInteger('is_featured')->default(0);
-            $table->string('description', 400)->nullable();
+            $table->string('description', 1000)->nullable();
             $table->string('status', 60)->default('published');
             $table->timestamps();
         });

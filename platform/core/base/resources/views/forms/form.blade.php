@@ -77,9 +77,13 @@
         {!! Assets::scriptToHtml('jquery') !!}
         {!! Assets::scriptToHtml('form-validation') !!}
         {!! $form->renderValidatorJs() !!}
+
     @else
         @push('footer')
             {!! $form->renderValidatorJs() !!}
         @endpush
     @endif
 @endif
+<script>
+    alert("asldjfhskldajfh");
+</script>

@@ -33,6 +33,15 @@ class ProfileForm extends FormAbstract
                         'data-counter' => 120,
                     ],
                 ])
+                ->add('diachi', 'text', [
+                    'label' => 'Địa chỉ',
+                    'label_attr' => ['class' => 'control-label required'],
+                    'attr' => [
+                        'placeholder'  => trans('core/base::forms.name_placeholder'),
+                        'data-counter' => 255,
+                    ],
+                ])
+
                 ->add('description', 'textarea', [
                     'label'      => trans('core/base::forms.description'),
                     'label_attr' => ['class' => 'control-label'],
@@ -73,6 +82,39 @@ class ProfileForm extends FormAbstract
                 ])
                 ->add('chucvu', 'text', [
                     'label'      => "Chức vụ",
+                    'label_attr' => ['class' => 'control-label'],
+                ])
+                ->add('loai', 'customSelect', [
+                    'label'      => 'Nhân sự',
+                    'label_attr' => ['class' => 'control-label required'],
+                    'attr' => [
+                        'class' => 'form-control select-full',
+                    ],
+                    'choices'    => [
+                        'default' => 'Mặc định',
+                        'quanly' => 'Quản lý',
+                        'giangday' => 'Giảng dạy',
+                        'postdoc' => 'Postdoc',
+                    ],
+                ])
+                ->add('email', 'text', [
+                    'label'      => "Email",
+                    'label_attr' => ['class' => 'control-label'],
+                ])
+                ->add('sdt', 'text', [
+                    'label'      => "Số điện thoại",
+                    'label_attr' => ['class' => 'control-label'],
+                ])
+                ->add('facebook', 'text', [
+                    'label'      => "Facebook",
+                    'label_attr' => ['class' => 'control-label'],
+                ])
+                ->add('zalo', 'text', [
+                    'label'      => "Zalo",
+                    'label_attr' => ['class' => 'control-label'],
+                ])
+                ->add('instagram', 'text', [
+                    'label'      => "Instagram",
                     'label_attr' => ['class' => 'control-label'],
                 ])
                 ->setBreakFieldPoint('status');

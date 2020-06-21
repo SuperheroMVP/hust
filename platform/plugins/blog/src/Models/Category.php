@@ -47,6 +47,7 @@ class Category extends BaseModel
         'is_featured',
         'order',
         'is_default',
+        'image',
         'status',
         'author_id',
         'danhmuc',

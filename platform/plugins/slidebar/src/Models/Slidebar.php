@@ -23,6 +23,7 @@ class Slidebar extends BaseModel
     protected $fillable = [
         'name',
         'image',
+        'loai',
         'status',
     ];
 

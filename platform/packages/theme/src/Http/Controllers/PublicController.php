@@ -126,6 +126,24 @@ class PublicController extends Controller
             ];
             return Theme::scope($result['view'], $result['data'], Arr::get($result, 'default_view'))->render();
         }
+        elseif ($key == "/ieee-icces"){
+            $result = [
+                "view" => "icce",
+                "default_view" => "packages/page::themes.icce",
+                "data" => [1,],
+                "slug" => $key,
+            ];
+            return Theme::scope($result['view'], $result['data'], Arr::get($result, 'default_view'))->render();
+        }
+        elseif ($key == "lich-su-phat-trien"){
+            $result = [
+                "view" => "lichsuphattrien",
+                "default_view" => "packages/page::themes.lichsuphattrien",
+                "data" => [1,],
+                "slug" => $key,
+            ];
+            return Theme::scope($result['view'], $result['data'], Arr::get($result, 'default_view'))->render();
+        }
         else {
 
             $slug = $this->slugRepository->getFirstBy(['key' => $key, 'prefix' => '']);

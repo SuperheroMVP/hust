@@ -296,18 +296,6 @@ if (!function_exists('get_slug_profile')) {
     }
 }
 
-if (!function_exists('get_img_slidebar')) {
-    /**
-     * @param bool $convert_to_list
-     * @return array
-     *
-     */
-    function get_img_slidebar()
-    {
-        return Slidebar::where('status', "published")->get();
-    }
-}
-
 if (!function_exists('get_post_new')) {
     /**
      * @param bool $convert_to_list
@@ -468,5 +456,17 @@ if (!function_exists('get_name_user')) {
             $name = $key->first_name ." ". $key->last_name;
         }
         return $name;
+    }
+}
+
+if (!function_exists('get_categoty_child')) {
+    /**
+     * @param bool $convert_to_list
+     * @return array
+     *
+     */
+    function get_categoty_child($id)
+    {
+        return Category::where('parent_id', $id)->orderBy('order', 'DESC')->get();
     }
 }

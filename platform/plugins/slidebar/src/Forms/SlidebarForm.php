@@ -33,6 +33,17 @@ class SlidebarForm extends FormAbstract
                 'label'      => trans('core/base::forms.image'),
                 'label_attr' => ['class' => 'control-label'],
             ])
+            ->add('loai', 'customSelect', [
+                'label'      => 'Loại',
+                'label_attr' => ['class' => 'control-label required'],
+                'attr' => [
+                    'class' => 'form-control select-full',
+                ],
+                'choices'    => [
+                    'banner' => 'Banner',
+                    'slide' => 'Slide',
+                ],
+            ])
             ->add('status', 'customSelect', [
                 'label'      => trans('core/base::tables.status'),
                 'label_attr' => ['class' => 'control-label required'],

@@ -19,7 +19,7 @@ class CategoryRequest extends Request
     {
         return [
             'name'        => 'required|max:120',
-            'description' => 'max:400',
+            'description' => 'max:5000',
             'slug'        => 'required',
             'order'       => 'required|integer|min:0',
             'status'      => Rule::in(BaseStatusEnum::values()),

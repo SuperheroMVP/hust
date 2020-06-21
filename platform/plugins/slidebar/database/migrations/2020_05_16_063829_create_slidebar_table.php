@@ -16,6 +16,7 @@ class CreateSlidebarTable extends Migration
             $table->increments('id');
             $table->string('name', 120);
             $table->string('image', 255)->nullable();
+            $table->string('loai', 60);
             $table->string('status', 60)->default('published');
             $table->timestamps();
         });
