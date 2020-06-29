@@ -142,12 +142,12 @@ theme_option()
         ],
     ])
     ->setField([
-        'id'         => 'ctdt',
+        'id'         => 'top_vn',
         'section_id' => 'opt-text-subsection-general',
         'type'       => 'number',
-        'label'      => __('Chương trình đào tạo'),
+        'label'      => __('Top Việt Nam'),
         'attributes' => [
-            'name'    => 'ctdt',
+            'name'    => 'top_vn',
             'value'   => null,
             'options' => [
                 'class'        => 'form-control',
@@ -156,12 +156,12 @@ theme_option()
         ],
     ])
     ->setField([
-        'id'         => 'sinhvien',
+        'id'         => 'nam_kinh_nghiem',
         'section_id' => 'opt-text-subsection-general',
         'type'       => 'number',
-        'label'      => __('Sinh viên'),
+        'label'      => __('Số năm kinh nghiệm'),
         'attributes' => [
-            'name'    => 'sinhvien',
+            'name'    => 'nam_kinh_nghiem',
             'value'   => null,
             'options' => [
                 'class'        => 'form-control',
@@ -170,12 +170,12 @@ theme_option()
         ],
     ])
     ->setField([
-        'id'         => 'ctkh',
+        'id'         => 'truong_doi_tac',
         'section_id' => 'opt-text-subsection-general',
         'type'       => 'number',
-        'label'      => __('Chương trình khoa học'),
+        'label'      => __('Trường đối tác'),
         'attributes' => [
-            'name'    => 'ctkh',
+            'name'    => 'truong_doi_tac',
             'value'   => null,
             'options' => [
                 'class'        => 'form-control',
@@ -184,12 +184,42 @@ theme_option()
         ],
     ])
     ->setField([
-        'id'         => 'doitac',
+        'id'         => 'doanh_nghiep_doi_tac',
         'section_id' => 'opt-text-subsection-general',
         'type'       => 'number',
-        'label'      => __('Đối tác'),
+        'label'      => __('Doanh nghiệp đối tác'),
         'attributes' => [
-            'name'    => 'doitac',
+            'name'    => 'doanh_nghiep_doi_tac',
+            'value'   => null,
+            'options' => [
+                'class'        => 'form-control',
+                'data-counter' => 120,
+            ],
+        ],
+    ])
+
+    ->setField([
+        'id'         => 'phong_tnth',
+        'section_id' => 'opt-text-subsection-general',
+        'type'       => 'number',
+        'label'      => __('Phòng thí nghiệm thực hành'),
+        'attributes' => [
+            'name'    => 'phong_tnth',
+            'value'   => null,
+            'options' => [
+                'class'        => 'form-control',
+                'data-counter' => 120,
+            ],
+        ],
+    ])
+
+    ->setField([
+        'id'         => 'phong_tnnc',
+        'section_id' => 'opt-text-subsection-general',
+        'type'       => 'number',
+        'label'      => __('Phòng thí nghiệm nghiên cứu'),
+        'attributes' => [
+            'name'    => 'phong_tnnc',
             'value'   => null,
             'options' => [
                 'class'        => 'form-control',

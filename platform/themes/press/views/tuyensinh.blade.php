@@ -4,7 +4,6 @@
 <div class="container">
     <ul class="nav tab-admissions" id="pills-tab" role="tablist">
         @foreach(get_data_tuyen_sinh() as  $key => $ts)
-            @php if($ts->loai == 'banner'){ continue; } @endphp
         <li role="presentation" @if($key == 0) class="active" @endif><a href="#pills-profile-{{$key}}" aria-controls="home" role="tab" data-toggle="tab">{{$ts->name}}</a></li>
         @endforeach
 {{--            <li role="presentation" class=""><a href="#pills-profile" aria-controls="home" role="tab" data-toggle="tab">Hệ thống điện tử thông minh & IOT</a></li>--}}
@@ -14,7 +13,6 @@
     </ul>
     <div class="tab-content content-admissions">
         @foreach(get_data_tuyen_sinh() as  $key => $ts)
-            @php if($ts->loai == 'banner'){ continue; } @endphp
             <div  role="tabpanel" class="tab-pane @if($key == 0) active @endif" id="pills-profile-{{$key}}">
                     {!! apply_filters(PAGE_FILTER_FRONT_PROFILE_CONTENT, $ts->content, $ts) !!}
             </div>

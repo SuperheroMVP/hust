@@ -5,10 +5,11 @@ namespace Botble\Profile\Models;
 use Botble\Base\Traits\EnumCastable;
 use Botble\Base\Enums\BaseStatusEnum;
 use Botble\Base\Models\BaseModel;
+use \Botble\Slug\Traits\SlugTrait;
 
 class Profile extends BaseModel
 {
-    use EnumCastable;
+    use EnumCastable, SlugTrait;
 
     /**
      * The database table used by the model.

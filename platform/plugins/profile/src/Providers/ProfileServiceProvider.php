@@ -32,6 +32,12 @@ class ProfileServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        $this->app->booted(function () {
+            \SlugHelper::registerModule(Profile::class);
+            \SlugHelper::setPrefix(Profile::class, '');
+        });
+        // "your-prefix" is prefix for your slug field. URL will be http://domain.local/your-prefix/slug-here
+
         $this->setNamespace('plugins/profile')
             ->loadAndPublishConfigurations(['permissions'])
             ->loadMigrations()

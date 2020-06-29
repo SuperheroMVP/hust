@@ -59,11 +59,7 @@ class TuyensinhForm extends FormAbstract
                 ],
                 'choices'    => [
                     'banner' => 'Banner',
-                    'httm' => 'Hệ thống thông minh và IoT',
-                    'htdttm' => 'Hệ thống điện tử thông minh và IoT',
-                    'htktdtvt' => 'Hệ thống kỹ thuật điện tử viễn thông',
-                    'htktys' => 'Hệ thống kỹ thuật y sinh',
-                    'htktdtvttt' => 'Hệ thống kỹ thuật điện tử viễn thông tiên tiến',
+                    'tuyensinh' => 'Bài viết tuyển sinh',
                     ],
             ])
             ->add('status', 'customSelect', [

@@ -207,7 +207,7 @@ if (!function_exists('get_categories')) {
 
         $categories = $repo->getCategories(Arr::get($args, 'select', ['*']), [
             'categories.is_default' => 'DESC',
-            'categories.order'      => 'ASC',
+            'categories.order' => 'ASC',
         ]);
 
         $categories = sort_item_with_children($categories);
@@ -232,11 +232,11 @@ if (!function_exists('get_categories_with_children')) {
      */
     function get_categories_with_children()
     {
-        if (\Auth::user()->super_user == 1){
+        if (\Auth::user()->super_user == 1) {
             $categories = app(CategoryInterface::class)
                 ->getAllCategoriesWithChildren(['status' => BaseStatusEnum::PUBLISHED], [], ['id', 'name', 'parent_id']);
-        }else{
-            $cate= Auth::user()->categories;
+        } else {
+            $cate = Auth::user()->categories;
             $categories = app(CategoryInterface::class)
                 ->getAllCategoriesWithChildren(['status' => BaseStatusEnum::PUBLISHED], [], ['id', 'name', 'parent_id'])->whereIn('id', $cate);
         }
@@ -292,7 +292,7 @@ if (!function_exists('get_slug_profile')) {
      */
     function get_slug_profile($id)
     {
-        return Slug::where('reference_id', $id)->where('reference_type' , 'Botble\Profile\Models\Profile')->first();
+        return Slug::where('reference_id', $id)->where('reference_type', 'Botble\Profile\Models\Profile')->first();
     }
 }
 
@@ -316,7 +316,7 @@ if (!function_exists('get_slug_newpost')) {
      */
     function get_slug_newpost($id)
     {
-        return Slug::where('reference_id', $id)->where('reference_type' , 'Botble\Blog\Models\Post')->first();
+        return Slug::where('reference_id', $id)->where('reference_type', 'Botble\Blog\Models\Post')->first();
     }
 }
 
@@ -328,10 +328,10 @@ if (!function_exists('get_profile_where_cate')) {
      */
     function get_profile_where_cate($id)
     {
-        foreach ($id as $key){
+        foreach ($id as $key) {
             $khoa_id[] = $key->id;
         }
-        return Profile::whereIn('khoa_id', $khoa_id)->where('status' , 'published')->get();
+        return Profile::whereIn('khoa_id', $khoa_id)->where('status', 'published')->get();
     }
 }
 
@@ -343,7 +343,7 @@ if (!function_exists('get_data_tuyensinh')) {
      */
     function get_data_tuyensinh($loai)
     {
-        return Tuyensinh::where('loai', $loai)->where('status' , 'published')->first();
+        return Tuyensinh::where('loai', $loai)->where('status', 'published')->first();
     }
 }
 if (!function_exists('get_post_by_categorys')) {
@@ -352,12 +352,12 @@ if (!function_exists('get_post_by_categorys')) {
      * @return array
      *
      */
-    function get_post_by_categorys($categorys , $limit)
+    function get_post_by_categorys($categorys, $limit)
     {
         $post_id = [];
-        foreach ($categorys as $category){
-            $post = DB::table('post_categories')->where('category_id', $category->id )->get();
-            foreach ($post as $key){
+        foreach ($categorys as $category) {
+            $post = DB::table('post_categories')->where('category_id', $category->id)->get();
+            foreach ($post as $key) {
                 $post_id[] = $key->post_id;
             }
         }
@@ -383,7 +383,7 @@ if (!function_exists('get_menu_dao_tao')) {
      */
     function get_menu_dao_tao($key)
     {
-        return Category::where('danhmuc', $key)->where('status' , 'published')->where('parent_id' , 0)->get();
+        return Category::where('danhmuc', $key)->where('status', 'published')->where('parent_id', 0)->get();
     }
 }
 if (!function_exists('get_menu_con_dao_tao')) {
@@ -394,7 +394,7 @@ if (!function_exists('get_menu_con_dao_tao')) {
      */
     function get_menu_con_dao_tao($key)
     {
-        return Category::where('status' , 'published')->where('parent_id' , $key)->get();
+        return Category::where('status', 'published')->where('parent_id', $key)->get();
     }
 }
 
@@ -407,16 +407,16 @@ if (!function_exists('check_url_dao_tao')) {
     function check_url_dao_tao($key)
     {
         $slug = Slug::where('key', $key)->pluck('reference_id');
-        foreach ($slug as $s){
+        foreach ($slug as $s) {
             $cate = Category::where('id', $s)->pluck('danhmuc');
-            foreach ($cate as $c){
-                if ($c == 'daotao'){
+            foreach ($cate as $c) {
+                if ($c == 'daotao') {
                     return $c;
                 }
-                if ($c == 'nghiencuu'){
+                if ($c == 'nghiencuu') {
                     return $c;
                 }
-                if ($c == 'tintuc'){
+                if ($c == 'tintuc') {
                     return $c;
                 }
             }
@@ -433,9 +433,9 @@ if (!function_exists('get_posts_by_tag_nghiencuu')) {
     function get_posts_by_tag_nghiencuu($limit)
     {
         $categorys = Category::where('danhmuc', 'nghiencuu')->get();
-        foreach ($categorys as $category){
-            $post = DB::table('post_categories')->where('category_id', $category->id )->get();
-            foreach ($post as $key){
+        foreach ($categorys as $category) {
+            $post = DB::table('post_categories')->where('category_id', $category->id)->get();
+            foreach ($post as $key) {
                 $post_id[] = $key->post_id;
             }
         }
@@ -452,8 +452,8 @@ if (!function_exists('get_name_user')) {
     function get_name_user($id)
     {
         $user = User::where('id', $id)->get();
-        foreach ($user as $key){
-            $name = $key->first_name ." ". $key->last_name;
+        foreach ($user as $key) {
+            $name = $key->first_name . " " . $key->last_name;
         }
         return $name;
     }
@@ -468,5 +468,23 @@ if (!function_exists('get_categoty_child')) {
     function get_categoty_child($id)
     {
         return Category::where('parent_id', $id)->orderBy('order', 'DESC')->get();
+    }
+}
+
+if (!function_exists('get_posts_in_category')) {
+    /**
+     * @param bool $convert_to_list
+     * @return array
+     *
+     */
+    function get_posts_in_category($name)
+    {
+        $id = Category::where('name', $name)->pluck('id');
+        $post_id = [];
+        $post = DB::table('post_categories')->where('category_id', $id)->get();
+        foreach ($post as $key) {
+            $post_id[] = $key->post_id;
+        }
+        return Post::whereIn('id', $post_id)->where('status', "published")->orderBy('created_at', 'desc')->get();
     }
 }

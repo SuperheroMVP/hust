@@ -4,7 +4,7 @@
     <div class="owl-carousel-1col owl-carousel owl-theme owl-loaded" data-dots="true">
         @foreach( get_img_slidebar('banner') as $slide)
             <div class="item">
-                <img src="{{ get_object_image($slide->image, 'medium') }}">
+                <img src="{{ get_object_image($slide->image, '') }}">
             </div>
         @endforeach
 
@@ -90,36 +90,52 @@
                      style=" background-position: 50% 665px;">
                 <div class="container">
                     <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-md-50">
                             <div class="funfact text-center">
                                 <i class="fa fa-institution mt-5 text-theme-color-2"></i>
                                 <h2 data-animation-duration="2000" data-value="5248"
-                                    class="animate-number text-white mt-0 font-38 font-weight-500 appeared">{{ theme_option('ctdt') }}</h2>
-                                <h5 class="text-white text-uppercase mb-0">Chương trình đào tạo</h5>
+                                    class="animate-number text-white mt-0 font-38 font-weight-500 appeared">{{ theme_option('top_vn') }}</h2>
+                                <h5 class="text-white text-uppercase mb-0">Số 1 Việt nam và Top 400 thế giới</h5>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-md-50">
+                            <div class="funfact text-center">
+                                <i class="fa fa-clock-o mt-5 text-theme-color-2"></i>
+                                <h2 data-animation-duration="2000" data-value="5248"
+                                    class="animate-number text-white mt-0 font-38 font-weight-500 appeared">{{ theme_option('nam_kinh_nghiem') }}</h2>
+                                <h5 class="text-white text-uppercase mb-0">Năm kinh nghiệm</h5>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-md-50">
                             <div class="funfact text-center">
                                 <i class="fa fa-graduation-cap mt-5 text-theme-color-2"></i>
-                                <h2 data-animation-duration="2000" data-value="675"
-                                    class="animate-number text-white mt-0 font-38 font-weight-500 appeared">{{ theme_option('sinhvien') }}</h2>
-                                <h5 class="text-white text-uppercase mb-0">Sinh viên</h5>
+                                <h2 data-animation-duration="2000" data-value="5248"
+                                    class="animate-number text-white mt-0 font-38 font-weight-500 appeared">{{ theme_option('truong_doi_tac') }}</h2>
+                                <h5 class="text-white text-uppercase mb-0">Trường nước ngoài đối tác</h5>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-md-50">
+                            <div class="funfact text-center">
+                                <i class="fa fa-briefcase mt-5 text-theme-color-2"></i>
+                                <h2 data-animation-duration="2000" data-value="675"
+                                    class="animate-number text-white mt-0 font-38 font-weight-500 appeared">{{ theme_option('doanh_nghiep_doi_tac') }}</h2>
+                                <h5 class="text-white text-uppercase mb-0">Doanh nghiệp đối tác</h5>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-md-50">
                             <div class="funfact text-center">
                                 <i class="fa fa-video-camera mt-5 text-theme-color-2"></i>
                                 <h2 data-animation-duration="2000" data-value="248"
-                                    class="animate-number text-white mt-0 font-38 font-weight-500 appeared">{{ theme_option('ctkh') }}</h2>
-                                <h5 class="text-white text-uppercase mb-0">Chương trình khoa học</h5>
+                                    class="animate-number text-white mt-0 font-38 font-weight-500 appeared">{{ theme_option('phong_tnth') }}</h2>
+                                <h5 class="text-white text-uppercase mb-0">Phòng thí nghiệm thực hành</h5>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-6 col-md-3 mb-md-0">
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-md-0">
                             <div class="funfact text-center">
                                 <i class="fa fa-trophy mt-5 text-theme-color-2"></i>
                                 <h2 data-animation-duration="2000" data-value="24"
-                                    class="animate-number text-white mt-0 font-38 font-weight-500 appeared">{{ theme_option('doitac') }}</h2>
-                                <h5 class="text-white text-uppercase mb-0">Đối tác</h5>
+                                    class="animate-number text-white mt-0 font-38 font-weight-500 appeared">{{ theme_option('phong_tnnc') }}</h2>
+                                <h5 class="text-white text-uppercase mb-0">Phòng thí nghiệm nghiên cứu</h5>
                             </div>
                         </div>
                     </div>
@@ -131,31 +147,31 @@
                 <div class="container pb-50">
                     <div class="section-content">
                         <div class="row">
-                            <div class="col-md-6">
-                                <h3 class="text-uppercase line-bottom mt-0 line-height-1"><i
-                                            class="fa fa-calendar mr-10"></i>Sự kiện <span class="text-theme-color-2">Nổi bật</span>
-                                </h3>
-                                @foreach(get_post_by_category_tag(3) as $post)
-                                    <article class="post media-post clearfix pb-0 mb-10">
-                                        <a href="{{ $post->url }}" class="post-thumb mr-20" style="width: 30%"><img
-                                                    alt=""
-                                                    src="{{ get_object_image($post->image, 'medium') }}"></a>
-                                        <div class="post-right">
-                                            <h4 class="mt-0 mb-5"><a href="{{ $post->url }}">{{ $post->name }}</a></h4>
-                                            <ul class="list-inline font-12 mb-5">
-                                                <li class="pr-0"><i
-                                                            class="fa fa-calendar mr-5"></i>{{date_format($post->created_at,"d/m/yy H:i:s")}}
-                                                </li>
-                                                {{--                                                <li class="pl-5"><i class="fa fa-map-marker mr-5"></i>New York</li>--}}
-                                            </ul>
-                                            <p class="mb-0 font-13">{{ $post->description }}</p>
-                                            <a class="text-theme-colored font-13" href="{{ $post->url }}">Xen thêm →</a>
-                                        </div>
-                                    </article>
-                                @endforeach
+{{--                            <div class="col-md-6">--}}
+{{--                                <h3 class="text-uppercase line-bottom mt-0 line-height-1"><i--}}
+{{--                                            class="fa fa-calendar mr-10"></i>Sự kiện <span class="text-theme-color-2">Nổi bật</span>--}}
+{{--                                </h3>--}}
+{{--                                @foreach(get_post_by_category_tag(3) as $post)--}}
+{{--                                    <article class="post media-post clearfix pb-0 mb-10">--}}
+{{--                                        <a href="{{ $post->url }}" class="post-thumb mr-20" style="width: 30%"><img--}}
+{{--                                                    alt=""--}}
+{{--                                                    src="{{ get_object_image($post->image, 'medium') }}"></a>--}}
+{{--                                        <div class="post-right">--}}
+{{--                                            <h4 class="mt-0 mb-5"><a href="{{ $post->url }}">{{ $post->name }}</a></h4>--}}
+{{--                                            <ul class="list-inline font-12 mb-5">--}}
+{{--                                                <li class="pr-0"><i--}}
+{{--                                                            class="fa fa-calendar mr-5"></i>{{date_format($post->created_at,"d/m/yy H:i:s")}}--}}
+{{--                                                </li>--}}
+{{--                                                --}}{{--                                                <li class="pl-5"><i class="fa fa-map-marker mr-5"></i>New York</li>--}}
+{{--                                            </ul>--}}
+{{--                                            <p class="mb-0 font-13">{{ $post->description }}</p>--}}
+{{--                                            <a class="text-theme-colored font-13" href="{{ $post->url }}">Xen thêm →</a>--}}
+{{--                                        </div>--}}
+{{--                                    </article>--}}
+{{--                                @endforeach--}}
 
-                            </div>
-                            <div class="col-md-6">
+{{--                            </div>--}}
+                            <div class="col-md-12">
                                 @foreach(get_reason_set(5) as $index => $reason_set)
                                     @if($index == 0)
                                         <h3 class="line-bottom mt-0 line-height-1">{{$reason_set->name}}</span>

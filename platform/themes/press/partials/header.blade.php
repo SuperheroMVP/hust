@@ -3,7 +3,7 @@
     <div class="header-top bg-theme-color-2 sm-text-center p-0">
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 col-xs-6">
                     <div class="widget no-border m-0">
                         <ul class="list-inline font-13 sm-text-center mt-5">
                             <li>
@@ -20,7 +20,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 col-xs-6">
                     <div class="widget m-0 pull-right sm-pull-none sm-text-center">
                         <ul class="list-inline pull-right">
                             <li class="mb-0 pb-0">
@@ -64,7 +64,7 @@
     <div class="header-middle p-0 bg-lightest xs-text-center">
         <div class="container pt-0 pb-0">
             <div class="row">
-                <div class="col-xs-12 col-sm-2 col-md-2">
+                <div class="col-xs-6 col-sm-2 col-md-2">
                     <div class="widget no-border m-0">
                         <a class="menuzord-brand pull-left flip xs-pull-center mb-15" href="/"><img src="{{ get_image_url(theme_option('logo')) }}" alt="{{ theme_option('site_title') }}"></a>
                     </div>
@@ -103,7 +103,8 @@
     <div class="header-nav">
         <div class="header-nav-wrapper navbar-scrolltofixed bg-theme-colored border-bottom-theme-color-2-1px" style="z-index: auto; position: static; top: auto;">
             <div class="container">
-                <nav id="menuzord" class="menuzord bg-theme-colored pull-left flip menuzord-responsive"><a href="javascript:void(0)" class="showhide" style="display: none;"><em></em><em></em><em></em></a>
+                <nav id="menuzord" class="menuzord bg-theme-colored pull-left flip menuzord-responsive">
+{{--                    <a href="javascript:void(0)" class="showhide" style="display: none;"><em></em><em></em><em></em></a>--}}
                     <!-- Main Menu -->
                     {!!
                     Menu::renderMenuLocation('main-menu', [
@@ -121,7 +122,8 @@
                     </div>
                 </nav>
             </div>
-        </div><div style="display: none; width: 1905px; height: 73px; float: none;"></div>
+        </div>
+{{--        <div style="display: none; width: 1905px; height: 73px; float: none;"></div>--}}
     </div>
 </header>
 

@@ -14,6 +14,6 @@ if (!function_exists('get_data_tuyen_sinh')) {
      */
     function get_data_tuyen_sinh()
     {
-        return Tuyensinh::where('status', 'published')->orderBy('loai', 'desc')->get();
+        return Tuyensinh::where('status', 'published')->where('loai', 'tuyensinh')->orderBy('loai', 'desc')->get();
     }
 }

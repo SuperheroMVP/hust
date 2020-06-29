@@ -1,4 +1,4 @@
-<!-- Section: inner-header -->
+ <!-- Section: inner-header -->
 <section class="inner-header divider parallax layer-overlay overlay-dark-5"
          style="background-image: url({{get_object_image(get_slide('slide')->image)}}); background-position: 50% 97px;">
     <div class="container pt-70 pb-20">
@@ -166,72 +166,14 @@
                     <div class="single-widget categories">
                         <div>
                             <h3 class="title">Chương trình đào tạo</h3>
-                            @foreach(get_menu_dao_tao('daotao') as $daotao)
-                                @if(get_menu_con_dao_tao($daotao->id))
-                                    <style>
-                                        #menu-dt li i {
-                                            margin-top: 5px;
-                                            float: right;
-                                        }
-
-                                        #menu-dt .dropdown {
-                                            display: none;
-                                        }
-
-                                        #menu-dt .show {
-                                            display: block;
-                                        }
-                                    </style>
-                                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                                    <script>
-                                        jQuery(document).ready(function () {
-                                            jQuery('.dropbtn').click(function (event) {
-                                                var id = event.target.id;
-                                                jQuery(`.${id}`).toggleClass('show');
-                                            });
-                                        });
-                                    </script>
-                                    <ul id="menu-dt">
-                                        @foreach(get_menu_con_dao_tao($daotao->id) as $sub)
-                                            <li><b style="font-size: 17px;">
-                                                    <a href="{{ $sub->url }}" target="{{ $sub->target }}">
-                                                        {{ $sub->name }}</a> @if(get_menu_con_dao_tao($sub->id)->count() > 0)
-                                                        <i class="fa fa-chevron-circle-right dropbtn"
-                                                           id="{{ $sub->id }}"></i> @endif </b></li>
-                                            @if(get_menu_con_dao_tao($sub->id)->count() > 0)
-                                                <ul class="dropdown {{ $sub->id }}"
-                                                    style="margin-left: 15px;">
-                                                    @foreach(get_menu_con_dao_tao($sub->id) as $child)
-                                                        <li>
-                                                            <a href="{{ $child->url }}"
-                                                               target="{{ $child->target }}" style="font-size: 16px;">
-                                                                {{ $child->name }}</a>
-                                                            @if(get_menu_con_dao_tao($child->id)->count() > 0)
-                                                                <i class="fa fa-chevron-circle-right dropbtn"
-                                                                   id="{{ $child->id }}"></i> @endif
-                                                        </li>
-                                                        @if(get_menu_con_dao_tao($child->id)->count() > 0)
-                                                            <ul class="dropdown  {{ $child->id }}"
-                                                                id="{{ $sub->id }}"
-                                                                style="margin-left: 30px;">
-                                                                @foreach(get_menu_con_dao_tao($child->id) as $last)
-                                                                    <li>
-                                                                        <a href="{{ $last->url }}"
-                                                                           target="{{ $last->target }}">
-                                                                            {{ $last->name }}</a>
-                                                                    </li>
-                                                                @endforeach
-                                                                <li></li>
-                                                            </ul>
-                                                        @endif
-                                                    @endforeach
-                                                    <li></li>
-                                                </ul>
-                                            @endif
-                                        @endforeach
-                                    </ul>
-                                @endif
+                            <ul class="list-group list-group-flush">
+                            @foreach(get_posts_in_category('Cử nhân/kĩ sư Điện tử Viễn thông') as $post)
+                                    <li class="list-group-item"><a href="{{$post->url}}">{{$post->name}}</a></li>
                             @endforeach
+                                @foreach(get_posts_in_category('Đào tạo') as $post)
+                                    <li class="list-group-item"><a href="{{$post->url}}">{{$post->name}}</a></li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -272,77 +214,35 @@
             </section>
         </div>
         <!-- Section: Services -->
-        <section id="services" class="bg-lighter">
-            <div class="container">
-                <div class="section-title">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2 class="text-uppercase text-theme-colored title line-bottom">Mục tiêu <span
-                                        class="text-theme-color-2 font-weight-400">Tôn chỉ</span></h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mtli-row-clearfix">
-                    @foreach(get_goals_and_principles(6) as $gap)
-                        <div class="col-xs-12 col-sm-6 col-md-4">
-                            <div class="icon-box iconbox-theme-colored bg-white p-15 mb-30 border-1px">
-                                <button class="icon icon-dark border-left-theme-color-2-3px pull-left flip mb-0 mr-0 mt-5">
-                                    <i class="pe-7s-scissors"></i>
-                                </button>
-                                <div class="icon-box-details">
-                                    <h4 class="icon-box-title font-16 font-weight-600 m-0 mb-5">{{$gap->name}}</h4>
-                                    <p class="text-gray font-13 mb-0">{!! apply_filters(GOALSANDPRINCIPLES_MODULE_SCREEN_NAME, $gap->content, $gap) !!}</p>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </section>
+{{--        <section id="services" class="bg-lighter">--}}
+{{--            <div class="container">--}}
+{{--                <div class="section-title">--}}
+{{--                    <div class="row">--}}
+{{--                        <div class="col-md-12">--}}
+{{--                            <h2 class="text-uppercase text-theme-colored title line-bottom">Mục tiêu <span--}}
+{{--                                        class="text-theme-color-2 font-weight-400">Tôn chỉ</span></h2>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="row mtli-row-clearfix">--}}
+{{--                    @foreach(get_goals_and_principles(6) as $gap)--}}
+{{--                        <div class="col-xs-12 col-sm-6 col-md-4">--}}
+{{--                            <div class="icon-box iconbox-theme-colored bg-white p-15 mb-30 border-1px">--}}
+{{--                                <button class="icon icon-dark border-left-theme-color-2-3px pull-left flip mb-0 mr-0 mt-5">--}}
+{{--                                    <i class="pe-7s-scissors"></i>--}}
+{{--                                </button>--}}
+{{--                                <div class="icon-box-details">--}}
+{{--                                    <h4 class="icon-box-title font-16 font-weight-600 m-0 mb-5">{{$gap->name}}</h4>--}}
+{{--                                    <p class="text-gray font-13 mb-0">{!! apply_filters(GOALSANDPRINCIPLES_MODULE_SCREEN_NAME, $gap->content, $gap) !!}</p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    @endforeach--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </section>--}}
 </div>
 <!-- Divider: Funfact -->
-<section class="divider parallax layer-overlay overlay-theme-colored-9" data-bg-img="images/bg/bg2.jpg"
-         data-parallax-ratio="0.7"
-         style=" background-position: 50% 665px;">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-                <div class="funfact text-center">
-                    <i class="pe-7s-smile mt-5 text-theme-color-2"></i>
-                    <h2 data-animation-duration="2000" data-value="5248"
-                        class="animate-number text-white mt-0 font-38 font-weight-500 appeared">{{ theme_option('ctdt') }}</h2>
-                    <h5 class="text-white text-uppercase mb-0">Chương trình đào tạo</h5>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-                <div class="funfact text-center">
-                    <i class="pe-7s-note2 mt-5 text-theme-color-2"></i>
-                    <h2 data-animation-duration="2000" data-value="675"
-                        class="animate-number text-white mt-0 font-38 font-weight-500 appeared">{{ theme_option('sinhvien') }}</h2>
-                    <h5 class="text-white text-uppercase mb-0">Sinh viên</h5>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-                <div class="funfact text-center">
-                    <i class="pe-7s-users mt-5 text-theme-color-2"></i>
-                    <h2 data-animation-duration="2000" data-value="248"
-                        class="animate-number text-white mt-0 font-38 font-weight-500 appeared">{{ theme_option('ctkh') }}</h2>
-                    <h5 class="text-white text-uppercase mb-0">Chương trình khoa học</h5>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-3 mb-md-0">
-                <div class="funfact text-center">
-                    <i class="pe-7s-cup mt-5 text-theme-color-2"></i>
-                    <h2 data-animation-duration="2000" data-value="24"
-                        class="animate-number text-white mt-0 font-38 font-weight-500 appeared">{{ theme_option('doitac') }}</h2>
-                    <h5 class="text-white text-uppercase mb-0">Đối tác</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Section: Why Choose Us -->
-<!-- Divider: Call To Action -->
 </div>
 @elseif($page->temp_view == 'connguoi')
     <div class="col-lg-12 col-12">
@@ -402,16 +302,17 @@
                                 <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-30 mb-sm-30">
                                     <div class="team maxwidth400">
                                         <div class="thumb"><img class="img-fullwidth"
-                                                                src="{{ get_object_image($profile->image, 'medium') }}"
-                                                                alt="{{ $profile->name }}"></div>
+                                                                src="{{ get_object_image($profile->image, 'avatar') }}"
+                                                                alt="{{ $profile->name }}" width="100%"></div>
                                         <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
                                             <h4 class="name text-theme-color-2 mt-0"> {{ $profile->name }}</h4>
-                                            <p class="mb-20">{{ $profile->chucvu}}</p>
+                                            <p class="mb-20 min-height-40">{{ $profile->chucvu}}</p>
                                             <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
                                                 <li><a href="http://{{$profile->facebook}}" target="_blank"><i
                                                                 class="fa fa-facebook"></i></a></li>
-                                                <li><a href="http://{{$profile->zalo}}" target="_blank"><i
-                                                                class="fa fa-zalo"></i></a></li>
+                                                <li><a href="http://{{$profile->zalo}}" target="_blank"><img
+                                                                src="https://zalo-chat-static.zadn.vn/v1/favicon-96x96.png"
+                                                                alt=""></a></li>
                                                 <li><a href="mailto:{{$profile->email}}" target="_blank"><i
                                                                 class="fa fa-google-plus"></i></a></li>
                                             </ul>
@@ -458,11 +359,11 @@
                                 <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-30 mb-sm-30">
                                     <div class="team maxwidth400">
                                         <div class="thumb"><img class="img-fullwidth"
-                                                                src="{{ get_object_image($profile->image, 'medium') }}"
-                                                                alt="{{ $profile->name }}"></div>
+                                                                src="{{ get_object_image($profile->image, 'avatar') }}"
+                                                                alt="{{ $profile->name }}" width="100%"></div>
                                         <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
                                             <h4 class="name text-theme-color-2 mt-0"> {{ $profile->name }}</h4>
-                                            <p class="mb-20">{{ $profile->chucvu}}</p>
+                                            <p class="mb-20  min-height-40">{{ $profile->chucvu}}</p>
                                             <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
                                                 <li><a href="http://{{$profile->facebook}}" target="_blank"><i
                                                                 class="fa fa-facebook"></i></a></li>

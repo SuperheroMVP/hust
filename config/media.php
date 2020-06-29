@@ -3,7 +3,9 @@
 return [
     'max_quota'               => env('RV_MEDIA_MAX_QUOTA', 1024 * 1024 * 1024),
     'sizes'                   => [
-        'thumb' => '150x150',
+        'thumb'    => '150x150',
+        'avatar'   => '200x300',
+        'post'   => '480x270',
     ],
     'route'                   => [
         'prefix'     => env('ADMIN_DIR', 'admin') . '/media',

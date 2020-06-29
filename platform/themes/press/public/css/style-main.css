@@ -6419,10 +6419,11 @@ blockquote p {
  * -----------------------------------------------
 */
 .footer {
-  background: #fafafa;
+  background: #ffffff;
+  color: white;
 }
 .footer a {
-  color: #808080;
+  color: #ffffff;
 }
 .footer a:focus,
 .footer a:hover,
@@ -6517,4 +6518,25 @@ blockquote p {
 }
 .breadcrumb > li + li::before{
   display: none;
+}
+.min-height-40{
+  min-height: 50px;
+}
+@media (max-width: 700px) {
+  li.display-text-mobile{
+    display: none !important;
+  }
+}
+@media (max-width: 400px) {
+  .list-inline>li {
+    padding-right: 0px!important;
+    padding-left: 0px!important;
+  }
+  .text-white {
+    color: #fff !important;
+    font-size: 11px !important;
+  }
+  .mr-15 {
+    margin-right: 0px !important;
+  }
 }
