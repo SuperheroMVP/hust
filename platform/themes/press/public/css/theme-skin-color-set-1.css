@@ -69,7 +69,7 @@ COLOR CODE2: #9c100f
 .bg-theme-color-2,
 .line-bottom:after,
 .line-bottom-center:after {
-  background: #F2184F !important;
+  background: #9c1010 !important;
 }
 .team-block .team-thumb .styled-icons a:hover,
 .work-gallery .gallery-thumb .styled-icons a:hover,
@@ -121,7 +121,7 @@ COLOR CODE2: #9c100f
 }
 /*Theme Colored Red Border-bottom-color*/
 .border-bottom-theme-color-2-1px {
-  border-bottom: 1px solid #f3184f !important;
+  border-bottom: 1px solid #9c1010 !important;
 }
 .border-bottom-theme-color-2-2px {
   border-bottom: 2px solid #9c100f !important;
