@@ -5,7 +5,7 @@
         }
 @endphp
 <section class="inner-header divider parallax layer-overlay overlay-dark-5"
-         style="background-image: url({{get_object_image(get_slide('slide')->image)}}); background-position: 50% 97px;">
+         style="background-image: url({{get_object_image(get_slide('slide')->image)}}); background-position: 100% 97px;">
     <div class="container pt-70 pb-20">
         <!-- Section Content -->
         <div class="section-content">
@@ -85,6 +85,8 @@
                                                href="{{$post->url}}">Xem thêm</a>
                                         </div>
                                     @endforeach
+                                @else
+                                    <h4>Không tìm thấy bài viết nào!</h4>
                                 @endif
                             </div>
                             @if ($posts->count() > 0)
@@ -295,11 +297,11 @@
                                         @foreach (get_post_new() as $related_item)
                                             <article class="post media-post clearfix pb-0 mb-10">
                                                 <a class="post-thumb" href="{{ $related_item->url }}"><img
-                                                            src="{{ get_object_image($related_item->image) }}" alt=""
-                                                            width="50%"></a>
+                                                        src="{{ get_object_image($related_item->image) }}" alt=""
+                                                        width="50%"></a>
                                                 <div class="post-right">
                                                     <h5 class="post-title mt-0"><a
-                                                                href="#">{{ $related_item->name }}</a>
+                                                            href="#">{{ $related_item->name }}</a>
                                                     </h5>
                                                     <p>{{ $related_item->discription }}</p>
                                                 </div>
@@ -356,86 +358,46 @@
         @elseif( $category->danhmuc == 'tintuc' )
             <section>
                 <div class="container">
-                    @if ($posts->count() > 0)
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row" style="background-color: #f0f0f0;">
-                                    <div class="col-sm-6 col-md-5" style="padding-left: 0;">
+                    <div class="row">
+                        <div class="col-md-9 border-left blog-pull-right">
+                            @foreach(get_categoty_child($category->id) as $key => $post)
+                                <div class="row mb-15">
+                                    <div class="col-sm-6 col-md-4">
                                         <div class="thumb"><img alt="featured project"
-                                                                src="{{ get_object_image($posts[0]->image, 'medium') }}"
+                                                                src="{{ get_object_image($post->image, 'medium') }}"
                                                                 class="img-fullwidth"></div>
                                     </div>
-                                    <div class="col-sm-6 col-md-7">
-                                        <br>
-                                        <h4 class="line-bottom mt-0 mt-sm-20">{{$posts[0]->name}}</h4>
+                                    <div class="col-sm-6 col-md-8">
+                                        <h4 class="line-bottom mt-0 mt-sm-20">{{$post->name}}</h4>
+                                        <h5>{{$post->description}}</h5>
                                         <ul class="review_text list-inline">
                                         </ul>
-                                        <p>{{$posts[0]->description}}</p>
+                                        <p>{{$post->description}}</p>
                                         <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"
-                                           href="{{$posts[0]->url}}">Xem thêm</a>
+                                           href="{{$post->url}}">Xem thêm</a>
                                     </div>
                                 </div>
                                 <hr>
-                            </div>
+                            @endforeach
                         </div>
-                    @endif
-                    <div class="row">
-                        <div class="col-md-9">
-                            @if ($posts->count() > 1)
-                                @foreach($posts as $key => $post)
-                                    @php if($key == 0){ continue; }  @endphp
-                                    <div class="row mb-15">
-                                        <div class="col-sm-6 col-md-4  blog-pull-right">
-                                            <div class="thumb"><img alt="featured project"
-                                                                    src="{{ get_object_image($post->image, 'medium') }}"
-                                                                    class="img-fullwidth"></div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-8">
-                                            <h4 class="line-bottom mt-0 mt-sm-20">{{$post->name}}</h4>
-                                            <ul class="review_text list-inline">
-                                            </ul>
-                                            <p>{{$post->description}}</p>
-                                            <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"
-                                               href="{{$post->url}}">Xem thêm</a>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                @endforeach
-                            @else
-                                <div>
-                                    <br>
-                                    <p>{{ __('Không tìm thấy bài viết nào!') }}</p>
-                                </div>
-                            @endif
-                        </div>
-                        <div class="col-md-3 border-left">
+                        <div class="col-md-3">
                             <div class="sidebar sidebar-left mt-sm-30">
                                 <div class="widget">
                                     <h4 class="widget-title line-bottom">Bài viết mới nhất</h4>
                                     <div class="latest-posts">
                                         @foreach (get_post_new() as $related_item)
                                             <article class="post media-post clearfix pb-0 mb-10">
-                                                <a class="post-thumb" href="{{ $related_item->url }}"><img
-                                                            src="{{ get_object_image($related_item->image) }}" alt=""
-                                                            width="60%"></a>
+                                                <a class="post-thumb"  href="{{ $related_item->url }}"><img src="{{ get_object_image($related_item->image) }}"   alt="" width="75" height="75"> </a>
                                                 <div class="post-right">
-                                                    <h5 class="post-title mt-0"><a
-                                                                href="#">{{ $related_item->name }}</a>
-                                                    </h5>
-                                                    <p>{{ $related_item->discription }}</p>
+                                                    <h5 class="post-title mt-0"><a href="{{ $related_item->url }}">{{ $related_item->name }}</a></h5>
+                                                    <p>Create at:{{$related_item->created_at->format('d-m-Y')}}</p>
+
                                                 </div>
                                             </article>
                                         @endforeach
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            @if ($posts->count() > 0)
-                                <nav class="pagination-wrap">
-                                    {!! $posts->links() !!}
-                                </nav>
-                            @endif
                         </div>
                     </div>
 
@@ -485,11 +447,11 @@
                                         @foreach (get_post_new() as $related_item)
                                             <article class="post media-post clearfix pb-0 mb-10">
                                                 <a class="post-thumb" href="{{ $related_item->url }}"><img
-                                                            src="{{ get_object_image($related_item->image) }}"
-                                                            alt=""></a>
+                                                        src="{{ get_object_image($related_item->image) }}"
+                                                        alt=""></a>
                                                 <div class="post-right">
                                                     <h5 class="post-title mt-0"><a
-                                                                href="#">{{ $related_item->name }}</a>
+                                                            href="#">{{ $related_item->name }}</a>
                                                     </h5>
                                                     <p>{{ $related_item->discription }}</p>
                                                 </div>

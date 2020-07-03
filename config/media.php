@@ -5,7 +5,7 @@ return [
     'sizes'                   => [
         'thumb'    => '150x150',
         'avatar'   => '200x300',
-        'post'   => '480x270',
+        'post'   => '960x540',
     ],
     'route'                   => [
         'prefix'     => env('ADMIN_DIR', 'admin') . '/media',

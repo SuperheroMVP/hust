@@ -49,35 +49,41 @@
             <!-- Section: COURSES -->
             <section class="bg-lighter">
                 <div class="container pb-60">
-                    <div class="section-title mb-10">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <h2 class="mt-0 text-uppercase font-28 line-bottom line-height-1">{{$category->name}}</h2>
-                            </div>
-                        </div>
-                    </div>
+{{--                    <div class="section-title mb-10">--}}
+{{--                        <div class="row">--}}
+{{--                            <div class="col-md-8">--}}
+{{--                                <h2 class="mt-0 text-uppercase font-28 line-bottom line-height-1">{{$category->name}}</h2>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <div class="section-content">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="owl-carousel-4col owl-carousel owl-theme owl-loaded" data-dots="true">
-                                    @foreach($posts as $post)
-                                        <div class="item">
-                                            <div class="service-block mb-md-30 bg-white">
-                                                <div class="thumb"
-                                                     style="background-image: url({{ get_object_image($post->image, 'medium') }}); height: 220px;">
-                                                    {{--                                                    <img alt="featured project"--}}
-                                                    {{--                                                                        src="{{ get_object_image($post->image, 'medium') }}"--}}
-                                                    {{--                                                                        class="img-responsive img-fullwidth">--}}
-                                                </div>
-                                                <div class="content text-left flip p-25 pt-0">
-                                                    <h4 class="line-bottom mb-10">{{ $post->name }}</h4>
-                                                    <p>{{ $post->description }}</p>
-                                                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"
-                                                       href="{{ $post->url }}">Xem thêm</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
+{{--                                    @foreach($posts as $post)--}}
+{{--                                        <div class="item">--}}
+{{--                                            <div class="service-block mb-md-30 bg-white">--}}
+{{--                                                <div class="thumb"--}}
+{{--                                                     style="background-image: url({{ get_object_image($post->image, 'medium') }}); height: 220px;">--}}
+{{--                                                    --}}{{--                                                    <img alt="featured project"--}}
+{{--                                                    --}}{{--                                                                        src="{{ get_object_image($post->image, 'medium') }}"--}}
+{{--                                                    --}}{{--                                                                        class="img-responsive img-fullwidth">--}}
+{{--                                                </div>--}}
+{{--                                                <div class="content text-left flip p-25 pt-0">--}}
+{{--                                                    <h4 class="line-bottom mb-10">{{ $post->name }}</h4>--}}
+{{--                                                    <p>{{ $post->description }}</p>--}}
+{{--                                                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"--}}
+{{--                                                       href="{{ $post->url }}">Xem thêm</a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    @endforeach--}}
+                                    {!!
+                                        Menu::renderMenuLocation('daotao-menu', [
+                                            'theme' => true,
+                                            'view' => 'daotao_menu',
+                                        ])
+                                    !!}
                                 </div>
                             </div>
                         </div>

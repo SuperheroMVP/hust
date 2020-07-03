@@ -27,7 +27,7 @@ class CreateMenusTable extends Migration
             $table->integer('related_id')->default(0)->unsigned()->index();
             $table->string('type', 60);
             $table->string('url', 120)->nullable();
-            $table->string('icon_font', 50)->nullable();
+            $table->string('icon_font', 500)->nullable();
             $table->tinyInteger('position')->unsigned()->default(0);
             $table->string('title', 120)->nullable();
             $table->string('css_class', 120)->nullable();

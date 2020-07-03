@@ -1,5 +1,6 @@
 <section class="inner-header divider parallax layer-overlay overlay-dark-5"
          style="background-image: url({{get_object_image(get_slide('slide')->image)}}); background-position: 50% 97px;">
+
     <div class="container pt-70 pb-20">
         <!-- Section Content -->
         <div class="section-content">

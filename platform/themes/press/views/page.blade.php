@@ -1,6 +1,6 @@
  <!-- Section: inner-header -->
 <section class="inner-header divider parallax layer-overlay overlay-dark-5"
-         style="background-image: url({{get_object_image(get_slide('slide')->image)}}); background-position: 50% 97px;">
+         style="background-image: url({{get_object_image(get_slide('slide')->image)}}); background-position: 100% 97px;">
     <div class="container pt-70 pb-20">
         <!-- Section Content -->
         <div class="section-content">
@@ -167,12 +167,18 @@
                         <div>
                             <h3 class="title">Chương trình đào tạo</h3>
                             <ul class="list-group list-group-flush">
-                            @foreach(get_posts_in_category('Cử nhân/kĩ sư Điện tử Viễn thông') as $post)
-                                    <li class="list-group-item"><a href="{{$post->url}}">{{$post->name}}</a></li>
-                            @endforeach
-                                @foreach(get_posts_in_category('Đào tạo') as $post)
-                                    <li class="list-group-item"><a href="{{$post->url}}">{{$post->name}}</a></li>
-                                @endforeach
+{{--                            @foreach(get_posts_in_category('Cử nhân/kĩ sư Điện tử Viễn thông') as $post)--}}
+{{--                                    <li class="list-group-item"><a href="{{$post->url}}">{{$post->name}}</a></li>--}}
+{{--                            @endforeach--}}
+{{--                                @foreach(get_posts_in_category('Đào tạo') as $post)--}}
+{{--                                    <li class="list-group-item"><a href="{{$post->url}}">{{$post->name}}</a></li>--}}
+{{--                                @endforeach--}}
+                                {!!
+                                    Menu::renderMenuLocation('content-menu', [
+                                        'theme' => true,
+                                        'view' => 'content_menu',
+                                    ])
+                                !!}
                             </ul>
                         </div>
                     </div>
@@ -273,7 +279,7 @@
                                             Thêm</a>
                                     </div>
                                 </div>
-                                
+
                             @endforeach
                             </div>
                         </div>
@@ -395,7 +401,7 @@
             @endif
         @else
             <div class="container" style="margin-top: 20px;">
-                <h4>SET Faculty and Staff Directory</h4>
+                <h4>Danh mục đội ngũ cán bộ viện Điện Tử Viễn Thông</h4>
                 <br>
                 @php
                     $profiles = get_all_profile();
@@ -403,8 +409,8 @@
                 @if ($profiles->count() > 0)
                     <table class="table">
                         <tr>
-                            <th>Name</th>
-                            <th>Office address</th>
+                            <th>Họ Và Tên</th>
+                            <th>Văn Phòng</th>
                             <th>phone</th>
                             <th>email</th>
                             <th>Status</th>
@@ -437,6 +443,7 @@
             {!! apply_filters(PAGE_FILTER_FRONT_PAGE_CONTENT, $page->content, $page) !!}
         </div>
     </div>
+
 @else
     <div class="container">
         {{--        <div class="row">--}}
