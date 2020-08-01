@@ -2,8 +2,8 @@
     "name": "Blog",
     "namespace": "Botble\\Blog\\",
     "provider": "Botble\\Blog\\Providers\\BlogServiceProvider",
-    "author": "Sang Nguyen",
-    "url": "https://sangnguyen.info",
+    "author": "Vanhuy",
+    "url": "",
     "version": "4.0",
     "description": "Manage posts, categories, tags"
 }

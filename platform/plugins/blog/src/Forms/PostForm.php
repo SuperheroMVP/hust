@@ -78,7 +78,7 @@ class PostForm extends FormAbstract
                 'attr'       => [
                     'rows'         => 4,
                     'placeholder'  => trans('core/base::forms.description_placeholder'),
-                    'data-counter' => 400,
+                    'data-counter' => 2000,
                 ],
             ])
             ->add('is_featured', 'onOff', [

@@ -1,76 +1,4 @@
-/*------------------------------------------------------------------
-[Master Stylesheet]
 
-Project:        Studypress
-Version:        1.0
-Primary use:    StudyPress | Education & Courses HTML Template
-Author:         ThemeMascot
-URL:            http://themeforest.net/user/ThemeMascot
--------------------------------------------------------------------*/
-/*
-This file contains the common styles of this theme.
-*/
-/*------------------------------------------------------------------
-[Table of contents]
-
-	* Typography.less
-	* Common.less
-	* Extra.less
-	* Header.less
-	* Nav.less
-	* Inner-Header-Title.less
-	* Vertical-Nav.less
-	* menu-full-page.less
-	* Boxed-layout.less
-	* Form.less
-	* Side-Push-Panel.less
-	* Box-Hover-Effect.less
-	* Work-Gallery.less
-	* gallery-isotope.less
-	* Slider.less
-	* Home.less
-	* About.less
-	* Contact.less
-	* Services.less
-	* Shop.less
-	* Blog.less
-	* Shortcode.less
-		* Alerts.less
-		* Buttons.less
-		* Blockquote.less
-		* Clients.less
-		* Countdown.less
-		* Countdown-Timer.less
-		* Dividers.less
-		* Facebook-Disqus-Comments.less
-		* Faqs.less
-		* Flexslider.less
-		* Flip-Box.less
-		* Font-Icons-Style.less
-		* Funfacts.less
-		* Icon-Boxes.less
-		* Infinitescroll.less
-		* Instagram.less
-		* Light-Box.less
-		* Map.less
-		* Pegination.less
-		* Pricing.less
-		* Process-Steps.less
-		* Progress-Bar.less
-		* Promo.less
-		* Section-Title.less
-		* Separators.less
-		* styled-icons.less
-		* Tabs.less
-		* Teams.less
-		* Testimonials.less
-		* Toggles-Accordions.less
-		* Vertical-Timeline.less
-		* Working-Process.less
-		* Widgets.less
-	* Footer
-* ===============================================
-*/
 @import "../css/font-awesome.min.css";
 @import "../css/font-awesome-animation.min.css";
 @import "../css/pe-icon-7-stroke.css";
@@ -3680,7 +3608,7 @@ table.no-border td {
   transform: scale(1);
 }
 .blog-pull-right {
-  float: right;
+  float: right !important;
 }
 @media only screen and (max-width: 767px) {
   .blog-pull-right {
@@ -4193,7 +4121,7 @@ blockquote p {
 }
 .mobile-parallax {
   background-size: cover;
-  background-attachment: scroll;
+  /*background-attachment: scroll;*/
   background-position: center center;
 }
 .divider .container {
@@ -6183,8 +6111,11 @@ blockquote p {
   margin-bottom: 20px;
 }
 .widget ul li {
-  margin-bottom: 5px;
-  padding-bottom: 5px;
+  /*margin-bottom: 5px;*/
+  /*padding-bottom: 5px;*/
+   margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #d3d3d3;
 }
 .widget ul.list li,
 .widget .post {
@@ -6522,10 +6453,35 @@ blockquote p {
 .min-height-40{
   min-height: 50px;
 }
+.bg-deep {
+    background-color: #f1f1f1 !important;
+}
+
+a.post-thumb.mr-20 img {
+    width: 130px;
+    height: auto;
+    max-width: 100%;
+    background-size: 100% 100%;
+}
+img.img-fullwidth.img_doingugiangday {
+    width: 100%;
+    max-height: 300px;
+    background-size: 100% 100%;
+}
 @media (max-width: 700px) {
   li.display-text-mobile{
     display: none !important;
   }
+    .fix-padding-banner-mobile{
+        padding-top: 10px !important;
+    }
+    .owl-carousel .owl-item img {
+        display: block;
+        width: 100%;
+        height: 120px;
+        background-size: contain;
+        -webkit-transform-style: preserve-3d;
+    }
 }
 @media (max-width: 400px) {
   .list-inline>li {
@@ -6539,4 +6495,14 @@ blockquote p {
   .mr-15 {
     margin-right: 0px !important;
   }
+    .owl-carousel .owl-item img {
+        display: block;
+        width: 100%;
+        height: 120px;
+        background-size: 100% 100%;
+        -webkit-transform-style: preserve-3d;
+    }
+}
+.min-height-60{
+  min-height: 60px;
 }

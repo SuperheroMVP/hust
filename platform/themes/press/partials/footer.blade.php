@@ -1,5 +1,6 @@
 <!-- Footer -->
-<footer id="footer" class="footer divider layer-overlay overlay-dark-9" data-bg-img="images/bg/bg2.jpg">
+{{--<footer id="footer" class="footer divider layer-overlay overlay-dark-9" data-bg-img="images/bg/bg2.jpg">--}}
+<footer id="footer" class="footer divider layer-overlay overlay-dark-9" >
     <div class="container">
         <div class="row border-bottom">
             <div class="col-sm-6 col-md-3">
@@ -53,5 +54,5 @@
             </div>
         </div>
     </div>
-    <a class="scrollToTop" href="#" style="display: none;"><i class="fa fa-angle-up"></i></a>
+    <a class="scrollToTop" href="#" style="display: none; background-color: forestgreen; border-radius: 50%; bottom: 100px; right: 21px;"><i class="fa fa-angle-up"></i></a>
 </footer>

@@ -32,6 +32,9 @@
                 if ($tag->danhmuc == "btandtt"){
                     $name = $tag->danhmuc;
                 }
+                if ($tag->danhmuc == "tintuc"){
+                    $name = $tag->danhmuc;
+                }
             }
         @endphp
         @if($name == 'lab')
@@ -41,49 +44,14 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <ul>
-                                        <li>
-                                            <h5>Địa chỉ:</h5>
-                                            <p>{{ theme_option('address') }}</p>
-                                        </li>
-                                        <li>
-                                            <h5>Danh mục:</h5>
-                                            <p>@foreach(get_menu_con_dao_tao($post->id) as $sub)
-                                                    {{ $sub->name }},
-                                                    @if(get_menu_con_dao_tao($sub->id)->count() > 0)
-                                                        @foreach(get_menu_con_dao_tao($sub->id) as $child)
-                                                            {{ $child->name }},
-                                                            @if(get_menu_con_dao_tao($child->id)->count() > 0)
-
-                                                                @foreach(get_menu_con_dao_tao($child->id) as $last)
-                                                                    {{ $last->name }},
-
-                                                                @endforeach
-                                                            @endif
-                                                        @endforeach
-                                                    @endif
-                                                @endforeach</p>
-                                        </li>
-                                        <li>
-                                            <h5>Ngày viết:</h5>
-                                            <p></p>
-                                        </li>
-                                        <li>
-                                            <h5>Email:</h5>
-                                            <p>{{ theme_option('email') }}<p>
-                                        </li>
-                                    </ul>
+                                    <p>{{$post->description}}</p>
                                 </div>
                                 <div class="col-md-8">
                                     <img src="{{ get_object_image($post->image, 'medium') }}" alt="">
                                 </div>
                             </div>
                             <div class="row mt-60">
-                                <div class="col-md-6">
-                                    <h4 class="mt-0">Mô tả</h4>
-                                    <p>{{$post->description}}</p>
-                                </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <blockquote>
                                         <p>{!! $post->content !!}</p>
                                         <footer>Someone famous <i></i>n <cite title="Source Title">Source Title</cite>
@@ -91,71 +59,90 @@
                                     </blockquote>
                                 </div>
                             </div>
-                            <div class="row mt-30">
-                                <div class="col-md-12">
-                                    <h4 class="mb-20">Recent Projects</h4>
-                                    <div class="owl-carousel-6col owl-carousel owl-theme owl-loaded">
-                                        @foreach (get_post_by_categorys($post->categories, 12) as $related_item)
-                                            <div class="item"><img
-                                                        src="{{ get_object_image($related_item->image, 'medium') }}"
-                                                        alt="">
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
+                            {{--                            <div class="row mt-30">--}}
+                            {{--                                <div class="col-md-12">--}}
+                            {{--                                    <h4 class="mb-20">Recent Projects</h4>--}}
+                            {{--                                    <div class="owl-carousel-6col owl-carousel owl-theme owl-loaded">--}}
+                            {{--                                        @foreach (get_post_by_categorys($post->categories, 12) as $related_item)--}}
+                            {{--                                            <div class="item"><img--}}
+                            {{--                                                        src="{{ get_object_image($related_item->image, 'medium') }}"--}}
+                            {{--                                                        alt="">--}}
+                            {{--                                            </div>--}}
+                            {{--                                        @endforeach--}}
+                            {{--                                    </div>--}}
+                            {{--                                </div>--}}
+                            {{--                            </div>--}}
                         </div>
                     </section>
                 </div>
                 {!! apply_filters(BASE_FILTER_PUBLIC_COMMENT_AREA, null) !!}
             @elseif($name == 'btandtt')
-                <div class="col-lg-3 col-12">
-                    <div class="learnedu-sidebar left">
-                        @php
-                            $profiles = get_profile_where_cate($post->categories);
-                        @endphp
-                        @if(count($profiles) >0)
-                            <div class="single-widget categories">
-                                <h3 class="title">Cán bộ giảng viên</h3>
-                                <ul>
-                                    @foreach($profiles as $profile)
-                                        @php
-                                            $slug = get_slug_profile($profile->id);
-                                        @endphp
-                                        <div class="single-post">
-                                            <div class="post-img">
-                                                <a href="{{ asset($slug->key) }}">
-                                                    <img src="{{ get_object_image($profile->image) }}"
-                                                         alt="{{ $profile->name }}">
-                                                </a>
-                                            </div>
-                                            <div class="post-info">
-                                                <h4><a href="{{ asset($slug->key) }}"> {{ $profile->name }} <br>
-                                                        <p>{{ $profile->chucvu }}</p></a></h4>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </ul>
+                <section>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9 blog-pull-right">
+                                {!! $post->content !!}
                             </div>
-                    @endif
-                    <!-- Posts -->
-                        <div class="single-widget posts">
-                            <h3>Bài viết liên quan</h3>
-                            @foreach (get_post_by_categorys($post->categories, 12) as $related_item)
-                                <div class="single-post">
-                                    <div class="post-img">
-                                        <a href="{{ $related_item->url }}">
-                                            <img src="{{ get_object_image($related_item->image) }}"
-                                                 alt="{{ $related_item->name }}">
-                                        </a>
-                                    </div>
-                                    <div class="post-info">
-                                        <h4><a href="{{ $related_item->url }}"> {{ $related_item->name }}</a></h4>
+                            <div class="col-md-3">
+                                <div class="learnedu-sidebar left widget">
+                                    <!-- Categories -->
+                                    <div class="single-widget categories">
+                                        <h3 class="line-bottom">{{$post->categories[0]->name}}</h3>
+                                        <ul id="menu-dt list list-border angle-double-right">
+                                            @foreach(get_post_by_categorys( $post->categories , 12 ) as $postt)
+                                                <li>
+                                                    <a href="{{$postt->url}}" target="">{{$postt->name}}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                {!! apply_filters(BASE_FILTER_PUBLIC_COMMENT_AREA, null) !!}
+            @elseif($name == 'tintuc')
+                <div class="col-lg-3 col-12">
+                    <div class="learnedu-sidebar left widget">
+                        <!-- Categories -->
+                        <div class="single-widget categories">
+                            <h3 class="line-bottom mt-0 line-height-1">Danh mục tin tức</h3>
+                            <ul id="menu-dt list list-border angle-double-right">
+                                @foreach(get_child_menu('Tin tức') as $sub)
+                                    <li>
+                                        <a href="{{ $sub->url }}" target="{{ $sub->target }}">
+                                            {{ $sub->name }}</a>
+                                        @if(get_child_menu_where_id($sub->id)->count() > 0)
+                                            <ul>
+                                                @foreach(get_child_menu_where_id($sub->id) as $e_sub)
+                                                    <li>
+                                                        <a href="{{ $e_sub->url }}" target="{{ $e_sub->target }}">
+                                                            {{ $e_sub->name }}</a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="line-bottom mt-0 line-height-1">Tin tức mới nhất</h3>
+                        <div class="latest-posts">
+                            @foreach (get_posts_in_category_limit('Tin tức đào tạo',3) as $related_item)
+                                <article class="post media-post clearfix pb-0 mb-10">
+                                    <a class="post-thumb"  href="{{ $related_item->url }}"><img src="{{ get_object_image($related_item->image) }}"   alt="" width="75" height="75"> </a>
+                                    <div class="post-right">
+                                        <h5 class="post-title mt-0"><a href="{{ $related_item->url }}">{{ $related_item->name }}</a></h5>
+                                        <p>Create at:{{$related_item->created_at->format('d-m-Y')}}</p>
+                                        <a href="{{ $related_item->url }}" class="btn-read-more">Xem thêm</a>
+                                    </div>
+                                </article>
                             @endforeach
                         </div>
-                        <!--/ End Posts -->
+
                     </div>
                 </div>
                 <div class="col-lg-9 col-12">
@@ -200,7 +187,8 @@
                                                 display: block;
                                             }
                                         </style>
-                                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                                        <script
+                                                src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
                                         <script>
                                             jQuery(document).ready(function () {
                                                 jQuery('.dropbtn').click(function (event) {
@@ -272,73 +260,11 @@
                     </div>
                 </div>
             @else
-                <div class="col-lg-3 col-12">
-                    <div class="learnedu-sidebar left">
-                        @php
-                            $profiles = get_profile_where_cate($post->categories);
-                        @endphp
-                        @if(count($profiles) >0)
-                            <div class="single-widget categories">
-                                <h3 class="title">Cán bộ giảng viên</h3>
-                                <ul>
-                                    @foreach($profiles as $profile)
-                                        @php
-                                            $slug = get_slug_profile($profile->id);
-                                        @endphp
-                                        <div class="single-post">
-                                            <div class="post-img">
-                                                <a href="{{ asset($slug->key) }}">
-                                                    <img src="{{ get_object_image($profile->image) }}"
-                                                         alt="{{ $profile->name }}">
-                                                </a>
-                                            </div>
-                                            <div class="post-info">
-                                                <h4><a href="{{ asset($slug->key) }}"> {{ $profile->name }} <br>
-                                                        <p>{{ $profile->chucvu }}</p></a></h4>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </ul>
-                            </div>
-                    @endif
-                    <!-- Posts -->
-                        <div class="single-widget posts">
-                            <h3>Bài viết liên quan</h3>
-                            @foreach (get_post_by_categorys($post->categories, 12) as $related_item)
-                                <div class="single-post">
-                                    <div class="post-img">
-                                        <a href="{{ $related_item->url }}">
-                                            <img src="{{ get_object_image($related_item->image) }}"
-                                                 alt="{{ $related_item->name }}">
-                                        </a>
-                                    </div>
-                                    <div class="post-info">
-                                        <h4><a href="{{ $related_item->url }}"> {{ $related_item->name }}</a></h4>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                        <!--/ End Posts -->
+                <div class="col-md-12">
+                    <div class="conten">
+                        {!! $post->content !!}
                     </div>
-                </div>
-                <div class="col-lg-9 col-12">
-                    <div class="blog-detail">
-                        <div class="title">
-                            <h4>{{$post->name}}</h4>
-                            <div style="width: 100px; border-top: 3px solid;"></div>
-                            <br>
-                        </div>
-                        <div class="conten">
-                            {!! $post->content !!}
-                        </div>
-                        <br>
-                        <div class="discription">
-                            <h6>Đăng bởi: {{get_name_user($post->author_id)}}</h6>
-                            <p>{{$post->created_at}}</p>
-                        </div>
-                        <br/>
-                        {!! apply_filters(BASE_FILTER_PUBLIC_COMMENT_AREA, null) !!}
-                    </div>
+                    {!! apply_filters(BASE_FILTER_PUBLIC_COMMENT_AREA, null) !!}
                 </div>
             @endif
         </div>

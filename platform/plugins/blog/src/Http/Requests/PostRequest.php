@@ -18,7 +18,7 @@ class PostRequest extends Request
     {
         return [
             'name'        => 'required|max:255',
-            'description' => 'max:400',
+            'description' => 'max:2000',
             'categories'  => 'required',
             'slug'        => 'required|max:255',
             'status'      => Rule::in(BaseStatusEnum::values()),

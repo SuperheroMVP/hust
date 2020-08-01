@@ -26,7 +26,7 @@ class PageForm extends FormAbstract
         $templates = [
             'default' => 'Default',
             'gioithieu' => 'Giới thiệu',
-//            'thongtinchung' => 'Thông tin chung',
+            'cocautochuc' => 'Cơ cấu tổ chức',
             'daotao' => 'Đào tạo',
             'lienhe' => 'Liên hệ',
 //            'bomontrungtam' => 'Bộ môn & Trung tâm',
@@ -34,6 +34,8 @@ class PageForm extends FormAbstract
             'connguoi' => 'Con người',
             'subconnguoi' => 'Danh mục con người',
             'conso' => 'Con số',
+            'sub_dao_tao'=>'Sub Đào Tao',
+
         ];
         $this
             ->setModuleName(PAGE_MODULE_SCREEN_NAME)

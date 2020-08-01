@@ -87,7 +87,7 @@ return [
                 ->usePath()->add('font-awesome.min', 'css/font-awesome.min.css')
 //                ->usePath()->add('animate', 'css/animate.css')
 //                ->usePath()->add('color-switcher', 'css/color-switcher.css')
-//                ->usePath()->add('font-awesome', 'css/font-awesome.min.css')
+                ->usePath()->add('font-awesome', 'css/font-awesome.min.css')
                 ->usePath()->add('css-plugin-collections', 'css/css-plugin-collections.css')
                 ->usePath()->add('custom-bootstrap-margin-padding', 'css/custom-bootstrap-margin-padding.css')
 //                ->usePath()->add('jquery-ui', 'css/jquery-ui.min.css')

@@ -152,7 +152,7 @@ class PostController extends BaseController
         $post->is_featured = $request->input('is_featured', false);
 
         $this->postRepository->createOrUpdate($post);
-
+        
         event(new UpdatedContentEvent(POST_MODULE_SCREEN_NAME, $request, $post));
 
         $tagService->execute($request, $post);

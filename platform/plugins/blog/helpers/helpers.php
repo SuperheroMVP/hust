@@ -302,9 +302,9 @@ if (!function_exists('get_post_new')) {
      * @return array
      *
      */
-    function get_post_new()
+    function get_post_new($limit)
     {
-        return Post::where('status', "published")->orderBy('created_at', 'desc')->limit(6)->get();
+        return Post::where('status', "published")->orderBy('created_at', 'desc')->limit($limit)->get();
     }
 }
 
@@ -362,6 +362,24 @@ if (!function_exists('get_post_by_categorys')) {
             }
         }
         return Post::whereIn('id', $post_id)->where('status', "published")->orderBy('created_at', 'desc')->limit($limit)->get();
+    }
+}
+if (!function_exists('get_post_is_featured_by_categorys')) {
+    /**
+     * @param bool $convert_to_list
+     * @return array
+     *
+     */
+    function get_post_is_featured_by_categorys($categorys, $limit)
+    {
+        $post_id = [];
+        foreach ($categorys as $category) {
+            $post = DB::table('post_categories')->where('category_id', $category->id)->get();
+            foreach ($post as $key) {
+                $post_id[] = $key->post_id;
+            }
+        }
+        return Post::whereIn('id', $post_id)->where('status', "published")->where('is_featured', '1')->orderBy('created_at', 'desc')->limit($limit)->get();
     }
 }
 if (!function_exists('get_post_by_category_tag')) {
@@ -486,5 +504,63 @@ if (!function_exists('get_posts_in_category')) {
             $post_id[] = $key->post_id;
         }
         return Post::whereIn('id', $post_id)->where('status', "published")->orderBy('created_at', 'desc')->get();
+    }
+}
+if (!function_exists('get_posts_in_category_limit')) {
+    /**
+     * @param bool $convert_to_list
+     * @return array
+     *
+     */
+    function get_posts_in_category_limit($name , $limit)
+    {
+        $id = Category::where('name', $name)->pluck('id');
+        $post_id = [];
+        $post = DB::table('post_categories')->where('category_id', $id)->get();
+        foreach ($post as $key) {
+            $post_id[] = $key->post_id;
+        }
+        return Post::whereIn('id', $post_id)->where('status', "published")->orderBy('created_at', 'desc')->limit($limit)->get();
+    }
+}
+
+if (!function_exists('get_child_menu')) {
+    /**
+     * @param bool $convert_to_list
+     * @return array
+     *
+     */
+    function get_child_menu($name)
+    {
+        $parent_id = Category::where('name', $name)->pluck('id');
+        return Category::where('parent_id', $parent_id)->get();
+    }
+}
+if (!function_exists('get_child_menu_where_id')) {
+    /**
+     * @param bool $convert_to_list
+     * @return array
+     *
+     */
+    function get_child_menu_where_id($id)
+    {
+        return Category::where('parent_id', $id)->get();
+    }
+}
+
+if (!function_exists('get_first_posts_in_category')) {
+    /**
+     * @param bool $convert_to_list
+     * @return array
+     *
+     */
+    function get_first_posts_in_category($id)
+    {
+        $post_id = [];
+        $post = DB::table('post_categories')->where('category_id', $id)->get();
+        foreach ($post as $key) {
+            $post_id[] = $key->post_id;
+        }
+        return Post::whereIn('id', $post_id)->where('status', "published")->orderBy('created_at', 'asc')->first();
     }
 }

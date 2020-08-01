@@ -40,6 +40,24 @@ theme_option()
         ],
     ])
     ->setSection([
+        'title'      => __('Logo Thumb'),
+        'desc'       => __('Logo Thumb'),
+        'id'         => 'opt-text-subsection-logo',
+        'subsection' => true,
+        'icon'       => 'fa fa-image',
+        'fields'     => [
+            [
+                'id'         => 'logo_thumb',
+                'type'       => 'mediaImage',
+                'label'      => __('Logo Thumb'),
+                'attributes' => [
+                    'name'  => 'logo_thumb',
+                    'value' => null,
+                ],
+            ],
+        ],
+    ])
+    ->setSection([
         'title'      => __('Logo'),
         'desc'       => __('Change Favicon'),
         'id'         => 'opt-text-subsection-logo',

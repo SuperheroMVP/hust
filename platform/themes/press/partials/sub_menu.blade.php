@@ -1,6 +1,6 @@
-<ul class="dropdown" style="width: 300px;">
+<ul class="dropdown" style="width: 350px;">
     @foreach ($menu_nodes as $key => $row)
-        <li style="width: 300px;">
+        <li style="width: 350px;">
             <a href="{{ $row->url }}" target="{{ $row->target }}">
                 @if ($row->icon_font)<i class="{{$row->icon_font}}"></i> @endif{{ $row->title }}
             </a>

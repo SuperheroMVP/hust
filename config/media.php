@@ -5,6 +5,7 @@ return [
     'sizes'                   => [
         'thumb'    => '150x150',
         'avatar'   => '200x300',
+        'avatar-big'   => '300x300',
         'post'   => '960x540',
     ],
     'route'                   => [

@@ -26,4 +26,5 @@
     <div>
         {!! $posts->links() !!}
     </div>
+
 @endif
