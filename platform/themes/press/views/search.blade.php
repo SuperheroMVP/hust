@@ -1,7 +1,5 @@
-
-<section class="inner-header divider parallax layer-overlay overlay-dark-5"
-         style="background-image: url({{get_object_image(get_slide('slide')->image)}}); background-position: 50% 97px;">
-
+<div class="banner">
+    <img src="{{ get_object_image(get_data_tuyensinh("banner")->image )}}">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -9,7 +7,18 @@
             </div>
         </div>
     </div>
-</section>
+</div>
+{{--<section class="inner-header divider parallax layer-overlay overlay-dark-5"--}}
+{{--         style="background-image: url({{get_object_image(get_slide('slide')->image)}}); background-position: 50% 97px;">--}}
+
+{{--    <div class="container">--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-12">--}}
+{{--                <h2>{{ __('Kết quả tìm kiếm cho: ') }} "{{ Request::input('q') }}"</h2>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
 <section class="section pt-100 pb-50 bg-lightgray">
     <div class="container">
         {!! Theme::breadcrumb()->render() !!}

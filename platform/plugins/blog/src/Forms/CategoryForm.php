@@ -105,6 +105,7 @@ class CategoryForm extends FormAbstract
                     'tintuc_daotao'=>'Tin tức đào tạo',
                     'danhmuc_daotao'=>'Danh mục đào tạo',
                     'cơ_cau_to_chuc'=>'Cơ cấu tổ chức',
+                    'tuyen_sinh'=>'Tuyển Sinh',
                 ],
             ])
             ->setBreakFieldPoint('status');

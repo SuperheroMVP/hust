@@ -7,6 +7,7 @@
                 {!! $crumb['label'] !!}
                 <meta itemprop="name" content="{{ $crumb['label'] }}" />
             </a>
+{{--            <i class="fa fa-angle-right"></i>--}}
             <i class="fa fa-angle-right"></i>
         </li>
         @else

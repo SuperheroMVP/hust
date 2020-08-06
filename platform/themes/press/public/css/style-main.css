@@ -6111,11 +6111,11 @@ blockquote p {
   margin-bottom: 20px;
 }
 .widget ul li {
-  /*margin-bottom: 5px;*/
-  /*padding-bottom: 5px;*/
-   margin-bottom: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px dashed #d3d3d3;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  /* margin-bottom: 10px;*/
+  /*  padding-bottom: 10px;*/
+  /*  border-bottom: 1px dashed #d3d3d3;*/
 }
 .widget ul.list li,
 .widget .post {
@@ -6468,6 +6468,10 @@ img.img-fullwidth.img_doingugiangday {
     max-height: 300px;
     background-size: 100% 100%;
 }
+ul.breadcrumb li a{
+    font-weight: 900;
+    color:#184066;
+}
 @media (max-width: 700px) {
   li.display-text-mobile{
     display: none !important;
@@ -6505,4 +6509,9 @@ img.img-fullwidth.img_doingugiangday {
 }
 .min-height-60{
   min-height: 60px;
+}
+.border_bottom_dashed{
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #d3d3d3;
 }

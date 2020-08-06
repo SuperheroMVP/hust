@@ -1,17 +1,23 @@
-<section class="inner-header divider parallax layer-overlay overlay-dark-5"
-         style="background-image: url({{get_object_image(get_slide('slide')->image)}}); background-position: 50% 97px;">
-    <div class="container pt-70 pb-20">
-        <!-- Section Content -->
-        <div class="section-content">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3 class="page-intro__title">{{ $post->name }}</h3>
-                    {!! Theme::breadcrumb()->render() !!}
-                </div>
-            </div>
-        </div>
+{{--<section class="inner-header divider parallax layer-overlay overlay-dark-5"--}}
+{{--         style="background-image: url({{get_object_image(get_slide('slide')->image)}}); background-position: 50% 97px;">--}}
+{{--    <div class="container pt-70 pb-20">--}}
+{{--        <!-- Section Content -->--}}
+{{--        <div class="section-content">--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-md-12">--}}
+{{--                    <h3 class="page-intro__title">{{ $post->name }}</h3>--}}
+{{--                    {!! Theme::breadcrumb()->render() !!}--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
+<div class="banner">
+    <img src="{{ get_object_image(get_data_tuyensinh("banner")->image )}}">
+    <div class="container">
+        {!! Theme::breadcrumb()->render() !!}
     </div>
-</section>
+</div>
 <!-- Blogs -->
 <section class="blog b-archives single section">
     <div class="container">
@@ -33,6 +39,9 @@
                     $name = $tag->danhmuc;
                 }
                 if ($tag->danhmuc == "tintuc"){
+                    $name = $tag->danhmuc;
+                }
+                if ($tag->danhmuc == "tuyen_sinh"){
                     $name = $tag->danhmuc;
                 }
             }
@@ -85,16 +94,30 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="learnedu-sidebar left widget">
-                                        <!-- Categories -->
+                                        <!-- baif vieets nooir baatj -->
                                         <div class="single-widget categories">
                                             <h3 class="line-bottom">{{$post->categories[0]->name}}</h3>
                                             <ul id="menu-dt list list-border angle-double-right">
-                                                @foreach(get_post_by_categorys( $post->categories , 12 ) as $postt)
-                                                <li>
-                                                    <a href="{{$postt->url}}" target="">{{$postt->name}}</a>
-                                                </li>
+                                                @foreach(get_post_is_featured_by_categorys( $post->categories , 12 ) as $postt)
+                                                    <li>
+                                                        <a href="{{$postt->url}}" target="">{{$postt->name}}</a>
+                                                    </li>
                                                 @endforeach
                                             </ul>
+                                        </div>
+                                        <!-- baif vieest mowis -->
+                                        <!-- Categories -->
+                                        <div class="single-widget categories">
+                                            <h3 class="line-bottom">Bài viết mới nhất</h3>
+                                            @foreach (get_post_by_categorys( $post->categories , 12 ) as $related_item)
+                                                <article class="post media-post clearfix pb-0 mb-10">
+                                                    <a class="post-thumb"  href="{{ $related_item->url }}"><img src="{{ get_object_image($related_item->image) }}"   alt="" width="75" height="75"> </a>
+                                                    <div class="post-right">
+                                                        <h5 class="post-title mt-0"><a href="{{ $related_item->url }}">{{ $related_item->name }}</a></h5>
+                                                    </div>
+                                                </article>
+                                                <hr>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -164,6 +187,46 @@
                         {!! apply_filters(BASE_FILTER_PUBLIC_COMMENT_AREA, null) !!}
                     </div>
                 </div>
+            @elseif($name == 'tuyen_sinh')
+                <section>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9 blog-pull-right">
+                                {!! $post->content !!}
+                            </div>
+                            <div class="col-md-3">
+                                <div class="learnedu-sidebar left widget">
+                                    <!-- baif vieets nooir baatj -->
+                                    <div class="single-widget categories">
+                                        <h3 class="line-bottom">{{$post->categories[0]->name}}</h3>
+                                        <ul id="menu-dt list list-border angle-double-right">
+                                            @foreach(get_post_by_categorys( $post->categories , 12 ) as $postt)
+                                                <li>
+                                                    <a href="{{$postt->url}}" target="">{{$postt->name}}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    <!-- baif vieest mowis -->
+                                    <!-- Categories -->
+                                    <div class="single-widget categories">
+                                        <h3 class="line-bottom">Bài viết mới nhất</h3>
+                                        @foreach (get_post_by_categorys( $post->categories , 12 ) as $related_item)
+                                            <article class="post media-post clearfix pb-0 mb-10">
+                                                <a class="post-thumb"  href="{{ $related_item->url }}"><img src="{{ get_object_image($related_item->image) }}"   alt="" width="75" height="75"> </a>
+                                                <div class="post-right">
+                                                    <h5 class="post-title mt-0"><a href="{{ $related_item->url }}">{{ $related_item->name }}</a></h5>
+                                                </div>
+                                            </article>
+                                            <hr>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                {!! apply_filters(BASE_FILTER_PUBLIC_COMMENT_AREA, null) !!}
             @elseif($name == true)
                 <div class="col-lg-3 col-12">
                     <div class="learnedu-sidebar left">
@@ -266,6 +329,7 @@
                     </div>
                     {!! apply_filters(BASE_FILTER_PUBLIC_COMMENT_AREA, null) !!}
                 </div>
+
             @endif
         </div>
     </div>

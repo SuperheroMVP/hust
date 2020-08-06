@@ -3,6 +3,8 @@
         foreach (request()->segments() as $segment){
             $urli = $urli."/".$segment;
         }
+
+    //dd(request()->segments());
 @endphp
 {{--<section class="inner-header divider parallax layer-overlay overlay-dark-5"--}}
 {{--         style="background-image: url({{get_object_image(get_slide('slide')->image)}});">--}}
@@ -24,7 +26,11 @@
 {{--</section>--}}
 <div class="banner">
     <img src="{{ get_object_image(get_data_tuyensinh("banner")->image )}}">
+    <div class="container">
+        {!! Theme::breadcrumb()->render() !!}
+    </div>
 </div>
+
 <div class="container">
     <!-- Blogs -->
     <section class="blog b-archives section">
@@ -449,9 +455,91 @@
                                     <h3 class="line-bottom">Bài viết mới nhất</h3>
                                     @foreach (get_post_by_categorys( $post->categories , 12 ) as $related_item)
                                         <article class="post media-post clearfix pb-0 mb-10">
-                                            <a class="post-thumb"  href="{{ $related_item->url }}"><img src="{{ get_object_image($related_item->image) }}"   alt="" width="75" height="75"> </a>
+                                            <a class="post-thumb" href="{{ $related_item->url }}"><img
+                                                        src="{{ get_object_image($related_item->image) }}" alt=""
+                                                        width="75" height="75"> </a>
                                             <div class="post-right">
-                                                <h5 class="post-title mt-0"><a href="{{ $related_item->url }}">{{ $related_item->name }}</a></h5>
+                                                <h5 class="post-title mt-0"><a
+                                                            href="{{ $related_item->url }}">{{ $related_item->name }}</a>
+                                                </h5>
+                                            </div>
+                                        </article>
+                                        <hr>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        @elseif( $category->danhmuc == 'tuyen_sinh')
+
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9 blog-pull-right">
+                            @if ($posts->count() > 0)
+                                @foreach($posts as $post)
+                                    <div class="row mb-15">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="thumb">
+                                                @if($post->image != null)
+                                                    <img alt="featured project"
+                                                         src="{{ get_object_image($post->image, 'post') }}"
+                                                         class="img-fullwidth">
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-12">
+                                            <div style="background-color: #ececec; padding: 15px;">
+                                                <h4 class="line-bottom">{{$post->name}}</h4>
+                                                <p>{{$post->description}}</p>
+                                                <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"
+                                                   href="{{$post->url}}">Xem thêm</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                @endforeach
+                            @else
+                                <div>
+                                    <br>
+                                    <p>{{ __('Không tìm thấy bài viết nào!') }}</p>
+                                </div>
+                            @endif
+                            @if ($posts->count() > 0)
+                                <nav class="pagination-wrap">
+                                    {!! $posts->links() !!}
+                                </nav>
+                            @endif
+                        </div>
+                        <div class="col-md-3">
+                            <div class="learnedu-sidebar left widget">
+                                <!-- baif vieets nooir baatj -->
+                                <div class="single-widget categories">
+                                    <h3 class="line-bottom">{{$post->categories[0]->name}}</h3>
+                                    <ul id="menu-dt list list-border angle-double-right">
+                                        @foreach(get_post_by_categorys( $post->categories , 12 ) as $postt)
+                                            <li>
+                                                <a href="{{$postt->url}}" target="">{{$postt->name}}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <!-- baif vieest mowis -->
+                                <!-- Categories -->
+                                <div class="single-widget categories">
+                                    <h3 class="line-bottom">Bài viết mới nhất</h3>
+                                    @foreach (get_post_by_categorys( $post->categories , 12 ) as $related_item)
+                                        <article class="post media-post clearfix pb-0 mb-10">
+                                            <a class="post-thumb" href="{{ $related_item->url }}"><img
+                                                    src="{{ get_object_image($related_item->image) }}" alt=""
+                                                    width="75" height="75"> </a>
+                                            <div class="post-right">
+                                                <h5 class="post-title mt-0"><a
+                                                        href="{{ $related_item->url }}">{{ $related_item->name }}</a>
+                                                </h5>
                                             </div>
                                         </article>
                                         <hr>
@@ -467,73 +555,55 @@
             <section>
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-3">
-                            <div class="learnedu-sidebar left widget">
-                                <!-- Categories -->
-                                <div class="single-widget categories">
-                                    <h3 class="title">Danh mục tin tức</h3>
-                                    <ul id="menu-dt list list-border angle-double-right">
-                                        @foreach(get_child_menu('Tin tức') as $sub)
-                                            <li>
-                                                <a href="{{ $sub->url }}" target="{{ $sub->target }}">
-                                                    {{ $sub->name }}</a>
-                                                @if(get_child_menu_where_id($sub->id)->count() > 0)
-                                                    <ul>
-                                                        @foreach(get_child_menu_where_id($sub->id) as $e_sub)
-                                                            <li>
-                                                                <a href="{{ $e_sub->url }}"
-                                                                   target="{{ $e_sub->target }}">
-                                                                    {{ $e_sub->name }}</a>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
-                                                @endif
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-md-9 blog-pull-right">
-                            <div class="row">
-                                @if ($posts->count() > 0)
-                                    @foreach($posts as $post)
-                                        <div class="col-sm-12 col-md-3 mt-10">
-                                            <div class="thumb">
+                            @foreach($posts as $menu_child)
+                                <div class="row mb-15">
+                                    <div class="col-sm-12 col-md-12">
+                                        <div class="thumb">
+                                            @if($menu_child->image != null)
                                                 <img alt="featured project"
-                                                     src="{{ get_object_image($post->image, 'post') }}"
-                                                     class="img-fullwidth" width="100%">
-                                            </div>
-                                            <h4 class="line-bottom mt-0 mt-sm-20">{{$post->name}}</h4>
-                                            <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"
-                                               href="{{$post->url}}">Xem thêm
-                                            </a>
+                                                     src="{{ get_object_image($menu_child->image, 'post') }}"
+                                                     class="img-fullwidth">
+                                            @endif
                                         </div>
-                                    @endforeach
-                                @else
-                                    <h4>Không tìm thấy bài viết nào!</h4>
-                                @endif
-                            </div>
-                            @if ($posts->count() > 0)
-                                <nav class="pagination-wrap">
-                                    {!! $posts->links() !!}
-                                </nav>
-                            @endif
+                                    </div>
+                                    <div class="col-sm-12 col-md-12">
+                                        <div style="background-color: #ececec; padding: 15px;">
+                                            <h4 class="line-bottom">{{$menu_child->name}}</h4>
+                                            <p>{{$menu_child->description}}</p>
+                                            <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"
+                                               href="{{$menu_child->url}}">Xem thêm</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            @endforeach
                         </div>
-                    </div>
-
-                </div>
-            </section>
-        @elseif( $category->danhmuc == 'tintuc_daotao' )
-            <section>
-                <div class="container">
-                    <div class="row">
                         <div class="col-md-3">
-                            <h3 class="line-bottom mt-0 line-height-1">Tin tức mới nhất</span>
-                            </h3>
+                            <h3 class="title">Danh mục tin tức</h3>
+                            <ul id="menu-dt list list-border angle-double-right">
+                                @foreach(get_child_menu('Tin tức') as $sub)
+                                    <li class="border_bottom_dashed">
+                                        <a href="{{ $sub->url }}" target="{{ $sub->target }}">
+                                            {{ $sub->name }}</a>
+                                        @if(get_child_menu_where_id($sub->id)->count() > 0)
+                                            <ul>
+                                                @foreach(get_child_menu_where_id($sub->id) as $e_sub)
+                                                    <li class="border_bottom_dashed">
+                                                        <a href="{{ $e_sub->url }}"
+                                                           target="{{ $e_sub->target }}">
+                                                            {{ $e_sub->name }}</a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
+                                    </li>
+                                @endforeach
+                            </ul>
+                            <h3 class="line-bottom mt-0 line-height-1">Tin tức mới nhất</h3>
                             <div class="latest-posts">
-                                @foreach (get_post_new(5) as $related_item)
-                                    <article class="post media-post clearfix pb-0 mb-10">
+                                @foreach (get_post_by_category_id_and_child_category($category->id, 6) as $related_item)
+                                    <article class="post media-post clearfix pb-0 mb-10 border_bottom_dashed">
                                         <a class="post-thumb" href="{{ $related_item->url }}"><img
                                                     src="{{ get_object_image($related_item->image) }}" alt="" width="75"
                                                     height="75"> </a>
@@ -548,28 +618,88 @@
                                 @endforeach
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
+        @elseif( $category->danhmuc == 'tintuc_daotao' )
+            <section>
+                <div class="container">
+                    <div class="row">
                         <div class="col-md-9 blog-pull-right">
-                            @foreach(get_child_menu('Tin tức') as $menu_child)
-                                <div class="col-lg-12 col-md-12 mt-1">
-                                    <div class="latest-posts">
-                                        <article class="post media-post clearfix pb-0 mb-10">
-                                            <a class="post-thumb" href="{{ $menu_child->url }}"><img
-                                                        src="{{get_object_image($menu_child->image, 'post') }}" alt=""
-                                                        width="250" height="120"> </a>
-                                            <div class="post-right">
-                                                <h5 class="post-title mt-0"><a
-                                                            href="{{ $menu_child->url }}">{{$menu_child->name}}</a></h5>
-                                                <p>Create at:{{$menu_child->created_at->format('d-m-Y')}}</p>
-                                                <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"
-                                                   href="{{$menu_child->url}}">Xem thêm</a>
+                            <div class="row">
+                                @if ($posts->count() > 0)
+                                    @foreach($posts as $post)
+                                        <div class="row mb-15">
+                                            <div class="col-sm-12 col-md-12">
+                                                <div class="thumb">
+                                                    @if($post->image != null)
+                                                        <img alt="featured project"
+                                                             src="{{ get_object_image($post->image, 'post') }}"
+                                                             class="img-fullwidth">
+                                                    @endif
+                                                </div>
                                             </div>
-                                        </article>
-                                    </div>
-                                </div>
-                            @endforeach
+                                            <div class="col-sm-12 col-md-12">
+                                                <div style="background-color: #ececec; padding: 15px;">
+                                                    <h4 class="line-bottom">{{$post->name}}</h4>
+                                                    <p>{{$post->description}}</p>
+                                                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"
+                                                       href="{{$post->url}}">Xem thêm</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+{{--                                        <div class="col-sm-12 col-md-3 mt-10">--}}
+{{--                                            <div class="thumb">--}}
+{{--                                                <img alt="featured project"--}}
+{{--                                                     src="{{ get_object_image($post->image, 'post') }}"--}}
+{{--                                                     class="img-fullwidth" width="100%">--}}
+{{--                                            </div>--}}
+{{--                                            <h4 class="line-bottom mt-0 mt-sm-20">{{$post->name}}</h4>--}}
+{{--                                            <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"--}}
+{{--                                               href="{{$post->url}}">Xem thêm--}}
+{{--                                            </a>--}}
+{{--                                        </div>--}}
+                                    @endforeach
+                                @else
+                                    <h4>Không tìm thấy bài viết nào!</h4>
+                                @endif
+                            </div>
+                            @if ($posts->count() > 0)
+                                <nav class="pagination-wrap">
+                                    {!! $posts->links() !!}
+                                </nav>
+                            @endif
+                        </div>
+                        <div class="col-md-3">
+                                <!-- Categories -->
+                                    <h3 class="line-bottom mt-0 line-height-1">Tin tức nổi bật</h3>
+                                    <ul id="menu-dt list list-border angle-double-right">
+                                        @foreach(get_post_is_featured_by_category_id($category->id, 12) as $sub)
+                                            <li class="border_bottom_dashed">
+                                                <a href="{{ $sub->url }}" target="{{ $sub->target }}">{{ $sub->name }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                            <h3 class="line-bottom mt-0 line-height-1">Tin tức mới nhất</h3>
+                            <div class="latest-posts">
+                                @foreach (get_post_by_category_id($category->id, 6) as $related_item)
+                                    <article class="post media-post clearfix pb-0 mb-10 border_bottom_dashed">
+                                        <a class="post-thumb" href="{{ $related_item->url }}"><img
+                                                    src="{{ get_object_image($related_item->image) }}" alt="" width="75"
+                                                    height="75"> </a>
+                                        <div class="post-right">
+                                            <h5 class="post-title mt-0"><a
+                                                        href="{{ $related_item->url }}">{{ $related_item->name }}</a>
+                                            </h5>
+                                            <p>Create at:{{$related_item->created_at->format('d-m-Y')}}</p>
+                                            <a href="{{ $related_item->url }}" class="btn-read-more">Xem thêm</a>
+                                        </div>
+                                    </article>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
-
                 </div>
             </section>
         @elseif( $category->danhmuc == 'cơ_cau_to_chuc' )

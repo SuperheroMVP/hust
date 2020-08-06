@@ -308,26 +308,26 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="owl-carousel-4col owl-carousel owl-theme owl-loaded" data-dots="true">
-{{--                                {!!--}}
-{{--                                    Menu::renderMenuLocation('cocautochuc-menu', [--}}
-{{--                                        'theme' => true,--}}
-{{--                                        'view' => 'page_daotao_sub_menu',--}}
-{{--                                    ])--}}
-{{--                                !!}--}}
-                                @foreach(get_posts_in_category('Cơ cấu tổ chức') as $post_child)
-                                    <div class="item">
-                                        <div class="service-block mb-md-30 bg-white">
-                                            <div class="thumb" style="background-image: url({{ $post_child->image}}); max-height: 220px;">
-                                                <img alt="featured project"  src="{{get_object_image($post_child->image, 'medium') }}" class="img-responsive img-fullwidth">
-                                            </div>
-                                            <div class="content text-left flip p-25 pt-0">
-                                                <h4 class="line-bottom mb-10">{{ $post_child->name }}</h4>
-                                                <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"
-                                                   href="{{ $post_child->url }}">Xem thêm</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
+                                {!!
+                                    Menu::renderMenuLocation('cocautochuc-menu', [
+                                        'theme' => true,
+                                        'view' => 'page_daotao_sub_menu',
+                                    ])
+                                !!}
+{{--                                @foreach(get_posts_in_category('Cơ cấu tổ chức') as $post_child)--}}
+{{--                                    <div class="item">--}}
+{{--                                        <div class="service-block mb-md-30 bg-white">--}}
+{{--                                            <div class="thumb" style="background-image: url({{ $post_child->image}}); max-height: 220px;">--}}
+{{--                                                <img alt="featured project"  src="{{get_object_image($post_child->image, 'medium') }}" class="img-responsive img-fullwidth">--}}
+{{--                                            </div>--}}
+{{--                                            <div class="content text-left flip p-25 pt-0">--}}
+{{--                                                <h4 class="line-bottom mb-10">{{ $post_child->name }}</h4>--}}
+{{--                                                <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"--}}
+{{--                                                   href="{{ $post_child->url }}">Xem thêm</a>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                @endforeach--}}
                             </div>
                         </div>
                     </div>
@@ -647,7 +647,7 @@
                                 <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-30 mb-sm-30">
                                     <div class="team maxwidth400">
                                         <div class="thumb">
-                                            <img class="img-fullwidth img_doingugiangday" src="{{ get_object_image($profile->image, 'thumb') }}"  alt="{{ $profile->name }}">
+                                            <img class="img-fullwidth img_doingugiangday" src="{{ get_object_image($profile->image, 'avatar-big') }}"  alt="{{ $profile->name }}">
                                         </div>
                                         <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
                                             <h4 class="name text-theme-color-2 mt-0"> {{ $profile->name }}</h4>
@@ -705,7 +705,7 @@
                                 <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-30 mb-sm-30">
                                     <div class="team maxwidth400">
                                         <div class="thumb"><img class="img-fullwidth"
-                                                                src="{{ get_object_image($profile->image, 'thumb') }}"
+                                                                src="{{ get_object_image($profile->image, 'avatar-big') }}"
                                                                 alt="{{ $profile->name }}" width="100%"></div>
                                         <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
                                             <h4 class="name text-theme-color-2 mt-0"> {{ $profile->name }}</h4>

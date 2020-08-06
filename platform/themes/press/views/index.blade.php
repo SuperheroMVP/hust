@@ -117,21 +117,31 @@
     </section>
     <!-- Section: Why Choose Us -->
     <section id="event" class="bg-lighter">
-        <div class="container pb-50">
+        <div class="container pb-30">
             <div class="section-content">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
 
-                            <h3 class="line-bottom mt-0 line-height-1">Sự kiện nổi bật</span>
+                            <h3 class="line-bottom mt-0 line-height-1">Tin tức nổi bật</span>
                             </h3>
                             <div class="latest-posts">
-                                @foreach (get_post_new(3) as $related_item)
+                                @foreach (get_posts_in_category_outstanding_limit('Tin Tức',3) as $related_item)
+{{--                                    <article class="post media-post clearfix pb-0 mb-10">--}}
+{{--                                        <a class="post-thumb"  href="{{ $related_item->url }}"><img src="{{ get_object_image($related_item->image) }}"   alt="" width="75" height="75"> </a>--}}
+{{--                                        <div class="post-right">--}}
+{{--                                            <h5 class="post-title mt-0"><a href="{{ $related_item->url }}">{{ $related_item->name }}</a></h5>--}}
+{{--                                            <p>Create at:{{$related_item->created_at->format('d-m-Y')}}</p>--}}
+{{--                                            <div>--}}
+{{--                                                <p class="read_post_outsanding">ccxczxczcxzczxc</p>--}}
+{{--                                                <a href="{{ $related_item->url }}" class="btn-read-more">Xem thêm</a>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </article>--}}
                                     <article class="post media-post clearfix pb-0 mb-10">
-                                        <a class="post-thumb"  href="{{ $related_item->url }}"><img src="{{ get_object_image($related_item->image) }}"   alt="" width="75" height="75"> </a>
+                                        <a class="post-thumb" href="{{ $related_item->url }}"><img src="{{ get_object_image($related_item->image) }}" alt="" width="75" height="75"></a>
                                         <div class="post-right">
                                             <h5 class="post-title mt-0"><a href="{{ $related_item->url }}">{{ $related_item->name }}</a></h5>
-                                            <p>Create at:{{$related_item->created_at->format('d-m-Y')}}</p>
-                                            <a href="{{ $related_item->url }}" class="btn-read-more">Xem thêm</a>
+                                            <p>{{ $related_item->description }}...</p>
                                         </div>
                                     </article>
                                 @endforeach
@@ -211,67 +221,67 @@
             </div>
         </div>
     </section>
-    @foreach (get_all_categories(['categories.status' => \Botble\Base\Enums\BaseStatusEnum::PUBLISHED, 'categories.parent_id' => 82, 'is_featured' => 1]) as $category)
-        @php
-            $allRelatedCategoryIds = array_unique(array_merge(app(\Botble\Blog\Repositories\Interfaces\CategoryInterface::class)->getAllRelatedChildrenIds($category), [$category->id]));
-            $posts = app(\Botble\Blog\Repositories\Interfaces\PostInterface::class)->getByCategoryIsFeatured($allRelatedCategoryIds, 0, $loop->index % 2 == 0 ? 6 : 5);
-        @endphp
-            <!-- Section: team -->
-            <section>
-                <div class="container">
-                    <div class="section-title mb-10">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <h2 class="mt-0 text-uppercase font-28 line-bottom line-height-1">{{ $category->name }}</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="section-content">
-                        <div class="row">
-                            @foreach($posts as $key => $post)
-                                <div class="col-xs-12 col-sm-6 col-md-4 wow fadeInLeft" data-wow-duration="1s"
-                                     data-wow-delay="0.3s"
-                                     style="visibility: hidden; animation-duration: 1s; animation-delay: 0.3s; animation-name: none;">
-                                    <article class="post clearfix mb-sm-30">
-                                        <div class="entry-header">
-                                            <div class="post-thumb thumb"
-                                                 style="background-image: url({{ get_object_image($post->image, 'medium') }}); height: 220px;">
-                                                {{--                                                <img src="{{ get_object_image($post->image, 'medium') }}"--}}
-                                                {{--                                                     alt="{{ $post->name }}"--}}
-                                                {{--                                                     class="img-responsive img-fullwidth">--}}
-                                            </div>
-                                        </div>
-                                        <div class="entry-content p-20 pr-10 bg-white">
-                                            <div class="entry-meta media mt-0 no-bg no-border">
-                                                <div
-                                                        class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
-                                                </div>
-                                                <div class="media-body pl-15">
-                                                    <div class="event-content pull-left flip">
-                                                        <h4 class="entry-title text-white text-uppercase m-0 mt-5"><a
-                                                                    href="{{ $post->url }}">{{ $post->name }}</a></h4>
-                                                        <ul class="list-inline font-12 mb-5">
-                                                            <li class="pr-0"><i
-                                                                        class="fa fa-calendar mr-5"></i>{{date_format($post->created_at,"d/m/yy")}}
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <p class="mt-10">{{ $post->description }}</p>
-                                            {{--                                            <p class="mt-10">{{ $post->created_at }}</p>--}}
-                                            <a href="{{ $post->url }}" class="btn-read-more">Xem thêm</a>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                    </article>
-                                </div>
-                                @if($key > 1 ) @break @endif
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </section>
-    @endforeach
+{{--    @foreach (get_all_categories(['categories.status' => \Botble\Base\Enums\BaseStatusEnum::PUBLISHED, 'categories.parent_id' => 82, 'is_featured' => 1]) as $category)--}}
+{{--        @php--}}
+{{--            $allRelatedCategoryIds = array_unique(array_merge(app(\Botble\Blog\Repositories\Interfaces\CategoryInterface::class)->getAllRelatedChildrenIds($category), [$category->id]));--}}
+{{--            $posts = app(\Botble\Blog\Repositories\Interfaces\PostInterface::class)->getByCategoryIsFeatured($allRelatedCategoryIds, 0, $loop->index % 2 == 0 ? 6 : 5);--}}
+{{--        @endphp--}}
+{{--            <!-- Section: team -->--}}
+{{--            <section>--}}
+{{--                <div class="container">--}}
+{{--                    <div class="section-title mb-10">--}}
+{{--                        <div class="row">--}}
+{{--                            <div class="col-md-8">--}}
+{{--                                <h2 class="mt-0 text-uppercase font-28 line-bottom line-height-1">{{ $category->name }}</h2>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="section-content">--}}
+{{--                        <div class="row">--}}
+{{--                            @foreach($posts as $key => $post)--}}
+{{--                                <div class="col-xs-12 col-sm-6 col-md-4 wow fadeInLeft" data-wow-duration="1s"--}}
+{{--                                     data-wow-delay="0.3s"--}}
+{{--                                     style="visibility: hidden; animation-duration: 1s; animation-delay: 0.3s; animation-name: none;">--}}
+{{--                                    <article class="post clearfix mb-sm-30">--}}
+{{--                                        <div class="entry-header">--}}
+{{--                                            <div class="post-thumb thumb"--}}
+{{--                                                 style="background-image: url({{ get_object_image($post->image, 'medium') }}); height: 220px;">--}}
+{{--                                                --}}{{--                                                <img src="{{ get_object_image($post->image, 'medium') }}"--}}
+{{--                                                --}}{{--                                                     alt="{{ $post->name }}"--}}
+{{--                                                --}}{{--                                                     class="img-responsive img-fullwidth">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="entry-content p-20 pr-10 bg-white">--}}
+{{--                                            <div class="entry-meta media mt-0 no-bg no-border">--}}
+{{--                                                <div--}}
+{{--                                                        class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">--}}
+{{--                                                </div>--}}
+{{--                                                <div class="media-body pl-15">--}}
+{{--                                                    <div class="event-content pull-left flip">--}}
+{{--                                                        <h4 class="entry-title text-white text-uppercase m-0 mt-5"><a--}}
+{{--                                                                    href="{{ $post->url }}">{{ $post->name }}</a></h4>--}}
+{{--                                                        <ul class="list-inline font-12 mb-5">--}}
+{{--                                                            <li class="pr-0"><i--}}
+{{--                                                                        class="fa fa-calendar mr-5"></i>{{date_format($post->created_at,"d/m/yy")}}--}}
+{{--                                                            </li>--}}
+{{--                                                        </ul>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                            <p class="mt-10">{{ $post->description }}</p>--}}
+{{--                                            --}}{{--                                            <p class="mt-10">{{ $post->created_at }}</p>--}}
+{{--                                            <a href="{{ $post->url }}" class="btn-read-more">Xem thêm</a>--}}
+{{--                                            <div class="clearfix"></div>--}}
+{{--                                        </div>--}}
+{{--                                    </article>--}}
+{{--                                </div>--}}
+{{--                                @if($key > 1 ) @break @endif--}}
+{{--                            @endforeach--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </section>--}}
+{{--    @endforeach--}}
 @endif
 <!-- Divider: Clients -->
 <!-- end main-content -->

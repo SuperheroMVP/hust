@@ -85,16 +85,30 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="learnedu-sidebar left widget">
-                                    <!-- Categories -->
+                                    <!-- baif vieets nooir baatj -->
                                     <div class="single-widget categories">
                                         <h3 class="line-bottom">{{$post->categories[0]->name}}</h3>
                                         <ul id="menu-dt list list-border angle-double-right">
-                                            @foreach(get_post_by_categorys( $post->categories , 12 ) as $postt)
+                                            @foreach(get_post_is_featured_by_categorys( $post->categories , 12 ) as $postt)
                                                 <li>
                                                     <a href="{{$postt->url}}" target="">{{$postt->name}}</a>
                                                 </li>
                                             @endforeach
                                         </ul>
+                                    </div>
+                                    <!-- baif vieest mowis -->
+                                    <!-- Categories -->
+                                    <div class="single-widget categories">
+                                        <h3 class="line-bottom">Bài viết mới nhất</h3>
+                                        @foreach (get_post_by_categorys( $post->categories , 12 ) as $related_item)
+                                            <article class="post media-post clearfix pb-0 mb-10">
+                                                <a class="post-thumb"  href="{{ $related_item->url }}"><img src="{{ get_object_image($related_item->image) }}"   alt="" width="75" height="75"> </a>
+                                                <div class="post-right">
+                                                    <h5 class="post-title mt-0"><a href="{{ $related_item->url }}">{{ $related_item->name }}</a></h5>
+                                                </div>
+                                            </article>
+                                            <hr>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
