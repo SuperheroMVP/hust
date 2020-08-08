@@ -86,6 +86,11 @@ class PostForm extends FormAbstract
                 'label_attr'    => ['class' => 'control-label'],
                 'default_value' => false,
             ])
+            ->add('sort', 'number', [
+                'label'         => trans('core/base::forms.sort'),
+                'label_attr'    => ['class' => 'control-label'],
+                'default_value' => false,
+            ])
             ->add('content', 'editor', [
                 'label'      => trans('core/base::forms.content'),
                 'label_attr' => ['class' => 'control-label'],

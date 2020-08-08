@@ -24,13 +24,101 @@
 {{--        </div>--}}
 {{--    </div>--}}
 {{--</section>--}}
+{{--{{dd(get_posts_in_category_outstanding('Tin tức tuyển sinh'))}}--}}
+{{--{{dd(get_slide("tuyen_sinh")}}--}}
+@if( $category->danhmuc == 'tuyen_sinh')
+{{--    {{dd($category)->id}}--}}
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <?php $i=0?>
+            @foreach(get_slide("tuyen_sinh") as $post_item_slide)
+                <li data-target="#myCarousel" data-slide-to="{{$i}}"
+                    @if($i==0)
+                    class="active"
+                    @endif
+                ></li>
+                <?php $i++?>
+            @endforeach
+        </ol>
+        <div class="carousel-inner">
+            <?php $i=0?>
+            @foreach((get_slide("tuyen_sinh")) as $item_slide)
+                @if(get_posts_in_category_outstanding('Tin tức tuyển sinh')->count())
+                    @foreach((get_posts_in_category_outstanding('Tin tức tuyển sinh')) as $post_item_slide)
+                        <div
+                            @if($i==0)
+                            class="item active"
+                            @else
+                            class="item"
+                            @endif
+                        >
+                            <img src="{{get_object_image($item_slide->image )}}" style="width:100%;">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>{{$post_item_slide->name}}</h5>
+                                <p>{{$post_item_slide->description}}...</p>
+                                <a href="{{$post_item_slide->url}}">Xem thêm</a>
+                            </div>
+                        </div>
+                        <?php $i++?>
+                    @endforeach
+                @endif
+            @endforeach
+
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <div class ="container">
+        <main class="pb-40 pt-40">
+            <div id="TrainDetail" class="page faqs-page page-train" filter-action="https://ts.hust.edu.vn/training-cate/filter" data-action="https://ts.hust.edu.vn/saving-training">
+                <div class="container">
+                    @if(get_categoty_child($category->id)->count())
+                        @foreach(get_categoty_child($category->id) as $item)
+                            <div class="alphabet">
+                                <a href="javascript:void(0)" class="active_tap" data-filter="">{{$item->name}}</a>
+                            </div>
+                            @if(get_posts_in_category($item->name) ->count())
+                                <div class="content_alpha">
+                                    <ul class="menu-child list-trainings">
+                                        @foreach(get_posts_in_category($item->name) as $post_item)
+                                            <li class="item-cate">
+                                                <a href="javascript:void(0);" class="toggle-cate">
+                                                    <i class="fa fa-angle-right fix_croll" aria-hidden="true"></i>
+                                                    {{$post_item->name}}
+                                                </a>
+
+                                                <ul class="sub_child">
+                                                    {!!$post_item->content!!}
+                                                    <a class="chitiet" href="{{$post_item->url}}"><i class="fa fa-angle-right" aria-hidden="true"></i>Chi tiết</a>
+                                                </ul>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                        @endforeach
+                    @endif
+
+                </div>
+            </div>
+        </main>
+    </div>
+@else
 <div class="banner">
     <img src="{{ get_object_image(get_data_tuyensinh("banner")->image )}}">
     <div class="container">
         {!! Theme::breadcrumb()->render() !!}
     </div>
 </div>
-
 <div class="container">
     <!-- Blogs -->
     <section class="blog b-archives section">
@@ -127,8 +215,8 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
+                </div>
             </section>
         @elseif($category->danhmuc == 'danhmuc_daotao')
             <section>
@@ -473,84 +561,7 @@
 
                 </div>
             </section>
-        @elseif( $category->danhmuc == 'tuyen_sinh')
 
-            <section>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-9 blog-pull-right">
-                            @if ($posts->count() > 0)
-                                @foreach($posts as $post)
-                                    <div class="row mb-15">
-                                        <div class="col-sm-12 col-md-12">
-                                            <div class="thumb">
-                                                @if($post->image != null)
-                                                    <img alt="featured project"
-                                                         src="{{ get_object_image($post->image, 'post') }}"
-                                                         class="img-fullwidth">
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12 col-md-12">
-                                            <div style="background-color: #ececec; padding: 15px;">
-                                                <h4 class="line-bottom">{{$post->name}}</h4>
-                                                <p>{{$post->description}}</p>
-                                                <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"
-                                                   href="{{$post->url}}">Xem thêm</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                @endforeach
-                            @else
-                                <div>
-                                    <br>
-                                    <p>{{ __('Không tìm thấy bài viết nào!') }}</p>
-                                </div>
-                            @endif
-                            @if ($posts->count() > 0)
-                                <nav class="pagination-wrap">
-                                    {!! $posts->links() !!}
-                                </nav>
-                            @endif
-                        </div>
-                        <div class="col-md-3">
-                            <div class="learnedu-sidebar left widget">
-                                <!-- baif vieets nooir baatj -->
-                                <div class="single-widget categories">
-                                    <h3 class="line-bottom">{{$post->categories[0]->name}}</h3>
-                                    <ul id="menu-dt list list-border angle-double-right">
-                                        @foreach(get_post_by_categorys( $post->categories , 12 ) as $postt)
-                                            <li>
-                                                <a href="{{$postt->url}}" target="">{{$postt->name}}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                <!-- baif vieest mowis -->
-                                <!-- Categories -->
-                                <div class="single-widget categories">
-                                    <h3 class="line-bottom">Bài viết mới nhất</h3>
-                                    @foreach (get_post_by_categorys( $post->categories , 12 ) as $related_item)
-                                        <article class="post media-post clearfix pb-0 mb-10">
-                                            <a class="post-thumb" href="{{ $related_item->url }}"><img
-                                                    src="{{ get_object_image($related_item->image) }}" alt=""
-                                                    width="75" height="75"> </a>
-                                            <div class="post-right">
-                                                <h5 class="post-title mt-0"><a
-                                                        href="{{ $related_item->url }}">{{ $related_item->name }}</a>
-                                                </h5>
-                                            </div>
-                                        </article>
-                                        <hr>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
         @elseif( $category->danhmuc == 'tintuc' )
             <section>
                 <div class="container">
@@ -798,5 +809,6 @@
         @endif
     </section>
 </div>
+@endif
 </section>
 

@@ -31,6 +31,7 @@ return [
     'order_by'                => 'Order by',
     'order_by_placeholder'    => 'Order by',
     'is_featured'             => 'Is featured?',
+    'sort'                    =>'Sort',
     'is_default'              => 'Is default?',
     'update'                  => 'Update',
     'publish'                 => 'Publish',

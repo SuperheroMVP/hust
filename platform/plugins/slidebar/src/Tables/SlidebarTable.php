@@ -87,6 +87,7 @@ class SlidebarTable extends TableAbstract
         $query = $model->select([
             'slidebars.id',
             'slidebars.name',
+            'slidebars.loai',
             'slidebars.created_at',
             'slidebars.status',
         ]);
@@ -109,6 +110,11 @@ class SlidebarTable extends TableAbstract
             'name' => [
                 'name'  => 'slidebars.name',
                 'title' => trans('core/base::tables.name'),
+                'class' => 'text-left',
+            ],
+            'loai' => [
+                'name'  => 'slidebars.loai',
+                'title' => 'Loại',
                 'class' => 'text-left',
             ],
             'created_at' => [

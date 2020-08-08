@@ -75,12 +75,13 @@
     }
 </style>
 {{--{{ dd(get_posts_in_category_outstanding_limit('Tin tức tuyển sinh',5)) }}--}}
+{{--{{dd(get_slide("tuyen_sinh"))}}--}}
 
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <?php $i=0?>
-            @foreach(get_posts_in_category_outstanding_limit('Tin tức tuyển sinh',5) as $post_item_slide)
+            @foreach(get_slide("tuyen_sinh") as $post_item_slide)
               <li data-target="#myCarousel" data-slide-to="{{$i}}"
                   @if($i==0)
                    class="active"
@@ -90,25 +91,28 @@
             @endforeach
         </ol>
 
-        <!-- Wrapper for slides -->
+
+
         <div class="carousel-inner">
             <?php $i=0?>
-            @foreach(get_posts_in_category_outstanding_limit('Tin tức tuyển sinh',5) as $post_item_slide)
-            <div
-                @if($i==0)
-                class="item active"
-                @else
-                class="item"
-                @endif
-            >
-                <img src="https://soict.hust.edu.vn/content/uploads/2019/05/t-1.jpg" alt="Los Angeles" style="width:100%;">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>{{$post_item_slide->name}}</h5>
-                    <p>{{$post_item_slide->description}}...</p>
-                    <a href="{{$post_item_slide->url}}">Xem thêm</a>
-                </div>
-            </div>
-                    <?php $i++?>
+            @foreach((get_slide("tuyen_sinh")) as $item_slide)
+                    @foreach((get_posts_in_category_outstanding_limit('Tin tức tuyển sinh',3)) as $post_item_slide)
+                        <div
+                            @if($i==0)
+                            class="item active"
+                            @else
+                            class="item"
+                            @endif
+                        >
+                            <img src="{{get_object_image($item_slide->image )}}" style="width:100%;">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>{{$post_item_slide->name}}</h5>
+                                <p>{{$post_item_slide->description}}...</p>
+                                <a href="{{$post_item_slide->url}}">Xem thêm</a>
+                            </div>
+                        </div>
+                        <?php $i++?>
+                    @endforeach
             @endforeach
 
         </div>
@@ -161,6 +165,7 @@
             </div>
         </div>
     </main>
+</div>
 
 {{--    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>--}}
 {{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>--}}

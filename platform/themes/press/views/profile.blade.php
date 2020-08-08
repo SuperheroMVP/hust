@@ -1,5 +1,5 @@
-<section class="inner-header divider parallax layer-overlay overlay-dark-5"
-         style="background-image: url({{get_object_image(get_slide('slide')->image)}}); background-position: 50% 97px;">
+{{--<section class="inner-header divider parallax layer-overlay overlay-dark-5"--}}
+{{--         style="background-image: url({{get_object_image(get_slide('slide')->image)}}); background-position: 50% 97px;">--}}
 
     <div class="container pt-70 pb-20">
         <!-- Section Content -->
@@ -12,7 +12,7 @@
             </div>
         </div>
     </div>
-</section>
+{{--</section>--}}
 <div class="container">
     <br>
     {!! apply_filters(PAGE_FILTER_FRONT_PROFILE_CONTENT, $profile->content, $profile) !!}

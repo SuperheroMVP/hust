@@ -573,6 +573,26 @@ if (!function_exists('get_posts_in_category')) {
         return Post::whereIn('id', $post_id)->where('status', "published")->orderBy('created_at', 'desc')->get();
     }
 }
+if (!function_exists('get_posts_in_category_outstanding')) {
+    /**
+     * @param bool $convert_to_list
+     * @return array
+     *
+     */
+    function get_posts_in_category_outstanding($name)
+    {
+        $id = Category::where('name', $name)->pluck('id');
+        $post_id = [];
+        $post = DB::table('post_categories')->where('category_id', $id)->get();
+        foreach ($post as $key) {
+            $post_id[] = $key->post_id;
+        }
+        return Post::whereIn('id', $post_id)->where([
+            ['status', "published"],
+            ['is_featured',1]
+        ])->orderBy('created_at', 'desc')->get();
+    }
+}
 if (!function_exists('get_posts_in_category_limit')) {
     /**
      * @param bool $convert_to_list

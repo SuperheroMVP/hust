@@ -42,6 +42,8 @@ class SlidebarForm extends FormAbstract
                 'choices'    => [
                     'banner' => 'Banner',
                     'slide' => 'Slide',
+                    'tuyen_sinh' => 'Tuyển sinh ',
+
                 ],
             ])
             ->add('status', 'customSelect', [
@@ -51,6 +53,11 @@ class SlidebarForm extends FormAbstract
                     'class' => 'form-control select-full',
                 ],
                 'choices'    => BaseStatusEnum::labels(),
+            ])
+            ->add('sort', 'number', [
+                'label'         => trans('core/base::forms.sort'),
+                'label_attr'    => ['class' => 'control-label'],
+                'default_value' => false,
             ])
             ->setBreakFieldPoint('status');
     }

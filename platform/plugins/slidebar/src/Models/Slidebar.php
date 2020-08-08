@@ -25,6 +25,7 @@ class Slidebar extends BaseModel
         'image',
         'loai',
         'status',
+        'sort',
     ];
 
     /**

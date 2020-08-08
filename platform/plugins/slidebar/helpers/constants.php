@@ -13,7 +13,8 @@ if (!function_exists('get_slide')) {
      */
     function get_slide($loai)
     {
-        return Slidebar::where('loai', $loai)->where('status' , 'published')->first();
+       return Slidebar::where('loai', $loai)->where('status' , 'published')->orderBy('sort', 'desc')->get();
+
     }
 }
 
