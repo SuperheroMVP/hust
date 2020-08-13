@@ -12,6 +12,24 @@
 {{--        </div>--}}
 {{--    </div>--}}
 {{--</section>--}}
+<style type="text/css">
+    /*style cho  bai viet chi tiet tuyen sinh*/
+    li.sub-left {
+        margin-right: 15px;
+        width: 200px;
+        overflow: hidden;
+    }
+    li.sub-left,li.sub-right {
+        display: inline-block;
+        margin-bottom: 5px;
+        vertical-align: middle;
+    }
+    li.sub-right {
+        width: calc(100% - 220px);
+        padding-left :100px;
+    }
+
+</style>
 <div class="banner">
     <img src="{{ get_object_image(get_data_tuyensinh("banner")->image )}}">
     <div class="container">
@@ -30,6 +48,7 @@
                 }
             }
         @endphp
+{{--            {{dd($post->categories )}}--}}
         @php
             foreach($post->categories as $tag){
                 if ($tag->danhmuc == "lab"){
@@ -191,27 +210,35 @@
                 <section>
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-9 blog-pull-right">
+                            <div class="col-md-9 blog-pull-right content_alpha">
                                 {!! $post->content !!}
                             </div>
                             <div class="col-md-3">
                                 <div class="learnedu-sidebar left widget">
                                     <!-- baif vieets nooir baatj -->
                                     <div class="single-widget categories">
-                                        <h3 class="line-bottom">{{$post->categories[0]->name}}</h3>
+                                        <h3 class="line-bottom">{{$post->categories[1]->name}}</h3>
                                         <ul id="menu-dt list list-border angle-double-right">
-                                            @foreach(get_post_by_categorys( $post->categories , 12 ) as $postt)
-                                                <li>
-                                                    <a href="{{$postt->url}}" target="">{{$postt->name}}</a>
-                                                </li>
-                                            @endforeach
+                                            @if(get_posts_in_category_outstanding($post->categories[1]->name)->count())
+                                                @foreach(get_posts_in_category_outstanding($post->categories[1]->name) as $postt)
+                                                    <li>
+                                                        <a href="{{$postt->url}}" target="">{{$postt->name}}</a>
+                                                    </li>
+                                                @endforeach
+{{--                                            @else--}}
+{{--                                                @foreach(get_post_by_categorys($post->categories ) as $postt)--}}
+{{--                                                    <li>--}}
+{{--                                                        <a href="{{$postt->url}}" target="">{{$postt->name}}</a>--}}
+{{--                                                    </li>--}}
+{{--                                                @endforeach--}}
+                                            @endif
                                         </ul>
                                     </div>
                                     <!-- baif vieest mowis -->
                                     <!-- Categories -->
                                     <div class="single-widget categories">
-                                        <h3 class="line-bottom">Bài viết mới nhất</h3>
-                                        @foreach (get_post_by_categorys( $post->categories , 12 ) as $related_item)
+                                        <h3 class="line-bottom">Tin Tức Tuyển Sinh</h3>
+                                        @foreach (get_posts_in_category_limit('Tin tức tuyển sinh', 6 ) as $related_item)
                                             <article class="post media-post clearfix pb-0 mb-10">
                                                 <a class="post-thumb"  href="{{ $related_item->url }}"><img src="{{ get_object_image($related_item->image) }}"   alt="" width="75" height="75"> </a>
                                                 <div class="post-right">
